@@ -1,6 +1,6 @@
 import c from 'classnames';
 import { NextPage } from 'next';
-import { FiGithub, FiMail } from 'react-icons/fi';
+import { FiGithub, FiMail, FiLinkedin } from 'react-icons/fi';
 import Heading from '~/components/heading';
 import Image from '~/components/image';
 import Link from '~/components/link';
@@ -9,8 +9,7 @@ import Paragraph from '~/components/paragraph';
 const HomePage: NextPage = () => {
   const age = new Date(Date.now() - Date.parse('1995-04-28')).getUTCFullYear() - 1970;
 
-  const githubStarUrl = 'https://stars.github.com/profiles/tyrrrz';
-  const microsoftMvpUrl = 'https://credly.com/badges/04f634b6-189f-4bed-8acb-974541039ef9';
+  const famafLccUrl = 'https://www.famaf.unc.edu.ar/academica/grado/licenciatura-en-ciencias-de-la-computaci%C3%B3n/';
 
   return (
     <>
@@ -30,13 +29,25 @@ const HomePage: NextPage = () => {
 
         <div>
           <div className={c('text-center', 'md:text-left')}>
-            <Heading>👋 Hello!</Heading>
+            <Heading>👋 Buenas!</Heading>
           </div>
           <Paragraph>
-            textou
+            Me llamo Ezequiel, soy un estudiante de tercer año de la
+            <Link href={famafLccUrl}> Licenciatura en Ciencias de la Computación </Link>
+            en la FAMAF de la UNC. Me gusta el fútbol y andar en bicicleta.
+          </Paragraph>
+          <Paragraph>
+            De chico que estoy interesado en como funcionan los celulares y las computadoras.
+            Desde entonces que paso bastante tiempo aprendiendo sobre tecnología en general.
+            <br />
+            Hoy mis principales intereses son la programación backend, el software libre y la administración de sistemas.
+          </Paragraph>
+          <Paragraph>
+            En está pagina podrán encontrar mi CV y los distintos proyectos en los que estuve trabajando.
+            También está mi blog donde escribo para registrar y compartir lo que voy aprendiendo.
           </Paragraph>
         </div>
-      </section>
+      </section >
 
       <div className={c('my-8', 'h-1', 'rounded', 'bg-purple-500')} />
 
@@ -49,6 +60,12 @@ const HomePage: NextPage = () => {
         <Link variant="discreet" href="mailto:ezeluduena123@gmai.com">
           <div className={c('px-2')}>
             <FiMail strokeWidth={1} />
+          </div>
+        </Link>
+
+        <Link variant="discreet" href="https://www.linkedin.com/in/ezeluduena/">
+          <div className={c('px-2')}>
+            <FiLinkedin strokeWidth={1} />
           </div>
         </Link>
       </section>
