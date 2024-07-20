@@ -101,8 +101,7 @@ const Header: FC = () => {
       { href: '/', label: 'home' },
       { href: '/projects', label: 'projects' },
       { href: '/blog', label: 'blog' },
-      { href: '/speaking', label: 'speaking' },
-      { href: '/donate', label: 'donate' }
+      { href: '/speaking', label: 'speaking' }
     ],
     []
   );
