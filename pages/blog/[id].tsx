@@ -9,7 +9,6 @@ import Inline from '~/components/inline';
 import Link from '~/components/link';
 import Markdown from '~/components/markdown';
 import Meta from '~/components/meta';
-import UkraineAlert from '~/components/ukraineAlert';
 import { BlogPost, loadBlogPost, loadBlogPostRefs, publishBlogPostAssets } from '~/data/blog';
 import useTheme from '~/hooks/useTheme';
 import { deleteUndefined } from '~/utils/object';
@@ -57,14 +56,6 @@ const ArticleSection: FC<BlogPostPageProps> = ({ post }) => {
   );
 };
 
-const UkraineSection: FC = () => {
-  return (
-    <section>
-      <UkraineAlert />
-    </section>
-  );
-};
-
 const SubscribeSection: FC = () => {
   return (
     <section className={c('p-4', 'border', 'border-purple-500', 'rounded', 'space-y-1')}>
@@ -101,8 +92,8 @@ const CommentSection: FC<BlogPostPageProps> = ({ post }) => {
           userPreferredTheme === 'dark'
             ? 'dark'
             : userPreferredTheme === 'light'
-            ? 'light'
-            : 'preferred_color_scheme'
+              ? 'light'
+              : 'preferred_color_scheme'
         }
         lang="en"
         loading="lazy"
@@ -149,7 +140,6 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
 
         {/* Detailed info */}
         <CoverSection post={post} />
-        <UkraineSection />
         <ArticleSection post={post} />
         <SubscribeSection />
         <CommentSection post={post} />

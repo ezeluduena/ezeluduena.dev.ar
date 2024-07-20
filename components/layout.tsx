@@ -100,8 +100,7 @@ const Header: FC = () => {
     () => [
       { href: '/', label: 'home' },
       { href: '/projects', label: 'projects' },
-      { href: '/blog', label: 'blog' },
-      { href: '/speaking', label: 'speaking' }
+      { href: '/blog', label: 'blog' }
     ],
     []
   );
@@ -130,8 +129,7 @@ const Header: FC = () => {
         {/* Logo */}
         <div className={c('text-xl', 'font-mono', 'font-semibold', 'tracking-wide')}>
           <Link variant="hidden" href="/">
-            <span className={c('text-neutral-400')}>://</span>
-            <span>tyrrrz.me</span>
+            <span>ezeluduena.me</span>
           </Link>
         </div>
 
