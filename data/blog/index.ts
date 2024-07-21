@@ -110,12 +110,12 @@ export const publishBlogFeed = async () => {
 
   const feed = new Feed({
     id: getSiteUrl(),
-    title: "Oleksii Holub's Blog",
+    title: "Ezequiel Ludueña's Blog",
     description:
-      'Oleksii Holub (@tyrrrz) is a software developer, open-source maintainer, tech blogger and conference speaker',
+      'Ezequiel Ludueña - Estudiante de Licenciatura en Ciencias de la Computación en la FAMAF de la UNC.',
     link: getSiteUrl('/blog'),
     image: getSiteUrl('/logo.png'),
-    copyright: `Copyright (c) 2015-${date.getFullYear()} Oleksii Holub`,
+    copyright: `Copyright (c) 2024-${date.getFullYear()} Ezequiel Ludueña`,
     updated: date
   });
 

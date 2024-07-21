@@ -11,7 +11,7 @@ export const getGitHubRepos = async () => {
   const github = createClient();
 
   return await github.paginate(github.repos.listForUser, {
-    username: 'Tyrrrz',
+    username: 'ezeluduena',
     type: 'owner',
     per_page: 100,
     sort: 'pushed'
@@ -22,7 +22,7 @@ export const getGitHubDownloads = async (repositoryName: string) => {
   const github = createClient();
 
   const releases = await github.paginate(github.repos.listReleases, {
-    owner: 'Tyrrrz',
+    owner: 'ezeluduena',
     repo: repositoryName,
     per_page: 100
   });

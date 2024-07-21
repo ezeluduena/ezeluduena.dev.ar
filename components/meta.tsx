@@ -20,7 +20,7 @@ const Meta: FC<MetaProps> = ({ title, description, keywords, imageUrl, imageLayo
 
   const actualDescription =
     description ||
-    'Oleksii Holub (@tyrrrz) is a software developer, open-source maintainer, tech blogger and conference speaker';
+    'Ezequiel Ludueña - Estudiante de Licenciatura en Ciencias de la Computación en la FAMAF de la UNC.';
 
   const actualKeywords = keywords?.join(',') || '';
 
@@ -50,15 +50,6 @@ const Meta: FC<MetaProps> = ({ title, description, keywords, imageUrl, imageLayo
       <meta key="og:title" property="og:title" content={actualTitle} />
       <meta key="og:description" property="og:description" content={actualDescription} />
       <meta key="og:image" property="og:image" content={actualImageUrl} />
-
-      <meta key="twitter:title" name="twitter:title" content={actualTitle} />
-      <meta key="twitter:site" name="twitter:site" content="@Tyrrrz" />
-      <meta key="twitter:creator" name="twitter:creator" content="@Tyrrrz" />
-      <meta
-        key="twitter:card"
-        name="twitter:card"
-        content={actualImageLayout === 'fill' ? 'summary_large_image' : 'summary'}
-      />
 
       <link
         key="alternate"
