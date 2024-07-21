@@ -1,8 +1,8 @@
-name: redeploy
+name: redeploys
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: "0 0 1 * *"
 
 jobs:
   redeploy:
