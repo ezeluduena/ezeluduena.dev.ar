@@ -17,17 +17,3 @@ export const getGitHubRepos = async () => {
     sort: 'pushed'
   });
 };
-
-export const getGitHubDownloads = async (repositoryName: string) => {
-  const github = createClient();
-
-  const releases = await github.paginate(github.repos.listReleases, {
-    owner: 'ezeluduena',
-    repo: repositoryName,
-    per_page: 100
-  });
-
-  return releases
-    .flatMap((release) => release.assets)
-    .reduce((acc, cur) => acc + cur.download_count, 0);
-};

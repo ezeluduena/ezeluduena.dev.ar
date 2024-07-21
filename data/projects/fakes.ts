@@ -7,7 +7,6 @@ const fakes: Project[] = [
     archived: true,
     description: 'Implicit parameters via contexts',
     stars: 37,
-    downloads: 467,
     language: 'C#'
   }
 ];

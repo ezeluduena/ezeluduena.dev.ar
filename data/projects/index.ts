@@ -1,6 +1,5 @@
 import fakes from '~/data/projects/fakes';
-import { getGitHubDownloads, getGitHubRepos } from '~/data/projects/github';
-import { getNuGetDownloads } from '~/data/projects/nuget';
+import { getGitHubRepos } from '~/data/projects/github';
 import { isProduction } from '~/utils/env';
 
 export type Project = {
@@ -10,7 +9,6 @@ export type Project = {
   description?: string;
   homepageUrl?: string;
   stars: number;
-  downloads: number;
   language?: string;
 };
 
@@ -26,11 +24,6 @@ export const loadProjects = async function* () {
       continue;
     }
 
-    const downloads = [
-      await getGitHubDownloads(repo.name),
-      await getNuGetDownloads(repo.name)
-    ].reduce((acc, cur) => acc + cur, 0);
-
     const project: Project = {
       name: repo.name,
       url: repo.html_url,
@@ -38,7 +31,6 @@ export const loadProjects = async function* () {
       description: repo.description || undefined,
       homepageUrl: repo.homepage || undefined,
       stars: repo.stargazers_count || 0,
-      downloads,
       language: repo.language || undefined
     };
 

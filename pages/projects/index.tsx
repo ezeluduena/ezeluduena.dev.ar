@@ -20,7 +20,7 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
       <Meta title="Projects" />
 
       <section>
-        <Heading>Projects</Heading>
+        <Heading>Proyectos</Heading>
 
         <Paragraph>
           These are the open-source projects that I&apos;ve built. Most of these started out of
@@ -96,12 +96,6 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
                 </Inline>
               )}
 
-              {project.downloads > 0 && (
-                <Inline>
-                  <FiDownload strokeWidth={1} />
-                  <div>{project.downloads.toLocaleString('en-US')}</div>
-                </Inline>
-              )}
             </div>
           </section>
         ))}
