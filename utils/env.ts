@@ -27,13 +27,3 @@ export const getSiteUrl = (path?: string) => {
 
   return value
 };
-
-// https://github.com/settings/tokens
-export const getGitHubToken = () => {
-  const value = process.env.GITHUB_TOKEN;
-  if (!value) {
-    throw new Error(`Environment variable 'GITHUB_TOKEN' is not defined`);
-  }
-
-  return value;
-};

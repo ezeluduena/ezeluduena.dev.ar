@@ -1,6 +1,6 @@
 import { Project } from '~/data/projects';
 
-const fakes: Project[] = [
+const projects: Project[] = [
   {
     name: 'Contextual',
     url: 'https://github.com/Tyrrrz/Contextual',
@@ -11,4 +11,4 @@ const fakes: Project[] = [
   }
 ];
 
-export default fakes;
+export default projects;

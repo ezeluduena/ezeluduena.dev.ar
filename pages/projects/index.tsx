@@ -1,6 +1,6 @@
 import c from 'classnames';
 import { GetStaticProps, NextPage } from 'next';
-import { FiArchive, FiCode, FiDownload, FiExternalLink, FiStar } from 'react-icons/fi';
+import { FiArchive, FiCode, FiExternalLink, FiStar } from 'react-icons/fi';
 import Heading from '~/components/heading';
 import Inline from '~/components/inline';
 import Link from '~/components/link';
