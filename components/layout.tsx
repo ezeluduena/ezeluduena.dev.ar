@@ -36,7 +36,7 @@ const Loader: FC = () => {
   return (
     <div
       className={c('h-1', {
-        'bg-purple-500': isVisible
+        'bg-cyan-500': isVisible
       })}
       style={{
         width: `${progress * 100}%`,
@@ -64,12 +64,12 @@ const NavLink: FC<NavLinkProps> = ({ href, children }) => {
         'border-2',
         {
           'border-transparent': !isActive,
-          'border-purple-500': isActive
+          'border-cyan-500': isActive
         },
         'rounded',
         {
-          'bg-purple-100': isActive,
-          'dark:bg-purple-900': isActive
+          'bg-cyan-100': isActive,
+          'dark:bg-cyan-900': isActive
         },
         'transition-colors',
         'duration-300'
@@ -154,7 +154,7 @@ const Header: FC = () => {
 
           {/* Nav button */}
           <button
-            className={c('sm:hidden', { 'text-purple-500': isMobileNavVisible })}
+            className={c('sm:hidden', { 'text-cyan-500': isMobileNavVisible })}
             onClick={() => setIsMobileNavVisible((v) => !v)}
           >
             <FiMenu />

@@ -9,10 +9,10 @@ const Code: FC<CodeProps> = ({ children }) => {
       className={c(
         'px-1',
         'border',
-        'border-purple-500',
+        'border-cyan-500',
         'rounded',
-        'bg-purple-100',
-        'dark:bg-purple-900',
+        'bg-cyan-100',
+        'dark:bg-cyan-900',
         'text-sm',
         'font-mono'
       )}

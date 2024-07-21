@@ -10,10 +10,10 @@ const Quote: FC<QuoteProps> = ({ children }) => {
         'px-4',
         'py-1',
         'border-l-4',
-        'border-purple-500',
+        'border-cyan-500',
         'rounded',
-        'bg-purple-100',
-        'dark:bg-purple-900'
+        'bg-cyan-100',
+        'dark:bg-cyan-900'
       )}
     >
       {children}

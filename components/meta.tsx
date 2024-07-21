@@ -12,7 +12,7 @@ type MetaProps = {
 };
 
 const Meta: FC<MetaProps> = ({ title, description, keywords, imageUrl, imageLayout, rssUrl }) => {
-  const siteName = 'Oleksii Holub';
+  const siteName = 'Ezequiel Ludueña';
 
   const buildId = getBuildId();
 

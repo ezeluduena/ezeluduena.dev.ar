@@ -49,7 +49,7 @@ const HomePage: NextPage = () => {
         </div>
       </section >
 
-      <div className={c('my-8', 'h-1', 'rounded', 'bg-purple-500')} />
+      <div className={c('my-8', 'h-1', 'rounded', 'bg-cyan-500')} />
 
       <section className={c('flex', 'justify-center', 'gap-3', 'text-2xl', 'font-light')}>
         <Link variant="discreet" href="https://github.com/ezeluduena">

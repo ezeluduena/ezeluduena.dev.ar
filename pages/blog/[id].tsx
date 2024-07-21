@@ -28,7 +28,7 @@ const CoverSection: FC<BlogPostPageProps> = ({ post }) => {
   }
 
   return (
-    <section className={c('p-4', 'border', 'border-purple-500', 'rounded', 'bg-purple-100')}>
+    <section className={c('p-4', 'border', 'border-cyan-500', 'rounded', 'bg-cyan-100')}>
       <div className={c('w-fit', 'mx-auto')}>
         <Image src={post.coverUrl} width={800} height={450} alt="Cover image" priority />
       </div>
@@ -58,7 +58,7 @@ const ArticleSection: FC<BlogPostPageProps> = ({ post }) => {
 
 const SubscribeSection: FC = () => {
   return (
-    <section className={c('p-4', 'border', 'border-purple-500', 'rounded', 'space-y-1')}>
+    <section className={c('p-4', 'border', 'border-cyan-500', 'rounded', 'space-y-1')}>
       <div className={c('font-semibold')}>🔔 Subscribe for more</div>
 
       <div>

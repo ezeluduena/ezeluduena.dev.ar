@@ -15,7 +15,7 @@ const TimelineItem: FC<TimelineItemProps> = ({ children }) => {
           'top-2',
           'md:top-3',
           'rounded-full',
-          'bg-purple-500'
+          'bg-cyan-500'
         )}
       />
       <div className={c('ml-4')}>{children}</div>

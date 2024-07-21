@@ -5,7 +5,7 @@ type TimelineProps = PropsWithChildren;
 
 const Timeline: FC<TimelineProps> = ({ children }) => {
   return (
-    <ul className={c('border-l-[2px]', 'border-purple-300', 'dark:border-purple-700', 'space-y-2')}>
+    <ul className={c('border-l-[2px]', 'border-cyan-300', 'dark:border-cyan-700', 'space-y-2')}>
       {children}
     </ul>
   );
