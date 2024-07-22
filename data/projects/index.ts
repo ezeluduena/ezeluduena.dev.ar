@@ -11,7 +11,7 @@ const projects: Project[] = [
   {
     name: 'Feeds-Analyzer',
     url: 'https://github.com/ezeluduena/feeds-analyzer',
-    description: 'Un analizador de feeds RSS de páginas de noticias CLI',
+    description: 'Una app CLI para encontrar "entidades nombradas" en feeds RSS de páginas de noticias',
     language: 'Java',
     technologies: 'Spark'
   },
@@ -19,7 +19,7 @@ const projects: Project[] = [
     name: 'La Cosa',
     url: 'https://github.com/TukiLaCosa/backend',
     description: 'El backend de una implementación web del juego de mesa "La Cosa"',
-    language: 'FastAPI'
+    technologies: 'FastAPI - WebSockets - PonyORM'
   },
   {
     name: 'ezeluduena.me',

@@ -1,6 +1,6 @@
 import c from 'classnames';
 import { GetStaticProps, NextPage } from 'next';
-import { FiTerminal, FiCode, FiExternalLink } from 'react-icons/fi';
+import { FiTool, FiCode, FiExternalLink } from 'react-icons/fi';
 import Heading from '~/components/heading';
 import Inline from '~/components/inline';
 import Link from '~/components/link';
@@ -17,7 +17,7 @@ type ProjectsPageProps = {
 const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
   return (
     <>
-      <Meta title="Projects" />
+      <Meta title="Proyectos" />
 
       <section>
         <Heading>Proyectos</Heading>
@@ -30,7 +30,7 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
       </section>
 
       <section
-        className={c('grid', 'sm:grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'mt-15', 'gap-3')}
+        className={c('grid', 'sm:grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'mt-8', 'gap-3')}
       >
         {projects.map((project, i) => (
           <section
@@ -49,10 +49,13 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
             <div className={c('text-lg', 'text-ellipsis', 'overflow-hidden')} title={project.name}>
               <Link href={project.url}>{project.name}</Link>
             </div>
-            <div>
+
+            <div className={c('grow', 'my-1', 'space-y-1')}>
               {/* Description */}
               <div>{project.description}</div>
+            </div>
 
+            <div>
               {/* Homepage */}
               {project.homepageUrl && (
                 <div className={c('overflow-hidden')}>
@@ -67,19 +70,19 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
             </div>
 
             {/* Misc info */}
-            <div className={c('flex', 'flex-wrap', 'mt-1', 'gap-x-3', 'font-light')}>
+            <div className={c('flex', 'flex-wrap', 'mt-1', 'gap-x-3')}>
 
               {project.language && (
                 <Inline>
-                  <FiCode strokeWidth={1} />
-                  <div>{project.language}</div>
+                  <FiCode className={c('font-bold', 'border-cyan-900')} strokeWidth={1.6} />
+                  <div className={c('font-light')}>{project.language}</div>
                 </Inline>
               )}
-
               {project.technologies && (
                 <Inline>
-                  <FiTerminal strokeWidth={1} />
-                  <div>{project.technologies}</div>
+                  <FiTool className={c('font-bold', 'fill-yellow-400', 'dark:text-yellow-400')}
+                    strokeWidth={1} />
+                  <div className={c('font-light')}>{project.technologies}</div>
                 </Inline>
               )}
 
