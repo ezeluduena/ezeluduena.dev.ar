@@ -1,21 +1,31 @@
 export type Project = {
   name: string;
   url: string;
-  archived: boolean;
   description?: string;
   homepageUrl?: string;
-  stars: number;
   language?: string;
+  technologies?: string;
 };
 
 const projects: Project[] = [
   {
-    name: 'Contextual',
-    url: 'https://github.com/Tyrrrz/Contextual',
-    archived: true,
-    description: 'Implicit parameters via contexts',
-    stars: 37,
-    language: 'C#'
+    name: 'Feeds-Analyzer',
+    url: 'https://github.com/ezeluduena/feeds-analyzer',
+    description: 'Un analizador de feeds RSS de páginas de noticias CLI',
+    language: 'Java',
+    technologies: 'Spark'
+  },
+  {
+    name: 'La Cosa',
+    url: 'https://github.com/TukiLaCosa/backend',
+    description: 'El backend de una implementación web del juego de mesa "La Cosa"',
+    language: 'FastAPI'
+  },
+  {
+    name: 'ezeluduena.me',
+    url: 'https://github.com/ezeluduena/ezeluduena.me',
+    description: 'Mi sitio web personal',
+    language: 'TypeScript'
   }
 ];
 

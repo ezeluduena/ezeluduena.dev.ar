@@ -1,6 +1,6 @@
 import c from 'classnames';
 import { GetStaticProps, NextPage } from 'next';
-import { FiArchive, FiCode, FiExternalLink, FiStar } from 'react-icons/fi';
+import { FiTerminal, FiCode, FiExternalLink } from 'react-icons/fi';
 import Heading from '~/components/heading';
 import Inline from '~/components/inline';
 import Link from '~/components/link';
@@ -23,14 +23,14 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
         <Heading>Proyectos</Heading>
 
         <Paragraph>
-          These are the open-source projects that I&apos;ve built. Most of these started out of
-          personal necessity, but over time evolved into popular tools used by thousands of people
-          around the world. If you want to support the development of my projects, please consider{' '}
+          Estos son proyectos en los que estuve trabajando. Algunos de ellos son personales mientras que
+          otros son producto de mis estudios.
+
         </Paragraph>
       </section>
 
       <section
-        className={c('grid', 'sm:grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'mt-8', 'gap-3')}
+        className={c('grid', 'sm:grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'mt-15', 'gap-3')}
       >
         {projects.map((project, i) => (
           <section
@@ -40,13 +40,8 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
               'flex-col',
               'p-4',
               'border',
-              {
-                'border-cyan-500': project.stars >= 1000,
-                'border-cyan-300': project.stars >= 100 && project.stars < 1000,
-                'dark:border-cyan-700': project.stars >= 100 && project.stars < 1000,
-                'border-cyan-100': project.stars < 100,
-                'dark:border-cyan-900': project.stars < 100
-              },
+              'border-cyan-500',
+              'dark:border-cyan-700',
               'rounded'
             )}
           >
@@ -54,18 +49,7 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
             <div className={c('text-lg', 'text-ellipsis', 'overflow-hidden')} title={project.name}>
               <Link href={project.url}>{project.name}</Link>
             </div>
-
-            {/* Maintenance status */}
-            <div className={c('grow', 'my-1', 'space-y-1')}>
-              {project.archived && (
-                <div className={c('font-light')}>
-                  <Inline>
-                    <FiArchive strokeWidth={1} />
-                    <div>Not maintained</div>
-                  </Inline>
-                </div>
-              )}
-
+            <div>
               {/* Description */}
               <div>{project.description}</div>
 
@@ -84,15 +68,18 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
 
             {/* Misc info */}
             <div className={c('flex', 'flex-wrap', 'mt-1', 'gap-x-3', 'font-light')}>
-              <Inline>
-                <FiStar className={c('dark:text-yellow-400', 'fill-yellow-400')} strokeWidth={1} />
-                <div>{project.stars.toLocaleString('en-US')}</div>
-              </Inline>
 
               {project.language && (
                 <Inline>
                   <FiCode strokeWidth={1} />
                   <div>{project.language}</div>
+                </Inline>
+              )}
+
+              {project.technologies && (
+                <Inline>
+                  <FiTerminal strokeWidth={1} />
+                  <div>{project.technologies}</div>
                 </Inline>
               )}
 
@@ -109,8 +96,6 @@ export const getStaticProps: GetStaticProps<ProjectsPageProps> = async () => {
 
   // Remove undefined values because they cannot be serialized
   deleteUndefined(projects);
-
-  projects.sort((a, b) => b.stars - a.stars);
 
   return {
     props: {
