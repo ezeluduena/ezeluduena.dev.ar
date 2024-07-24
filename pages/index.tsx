@@ -43,7 +43,7 @@ const HomePage: NextPage = () => {
             Hoy mis principales intereses son la programación backend, el software libre y la administración de sistemas.
           </Paragraph>
           <Paragraph>
-            En está pagina podrán encontrar mi CV y los distintos proyectos en los que estuve trabajando.
+            En está pagina podrán encontrar mi CV y los distintos <Link href={'/projects'}> proyectos</Link> en los que estuve trabajando.
             También está mi blog donde escribo para registrar y compartir lo que voy aprendiendo.
           </Paragraph>
         </div>

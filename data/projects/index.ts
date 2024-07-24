@@ -1,47 +1,36 @@
-import fakes from '~/data/projects/fakes';
-import { getGitHubDownloads, getGitHubRepos } from '~/data/projects/github';
-import { getNuGetDownloads } from '~/data/projects/nuget';
-import { isProduction } from '~/utils/env';
-
 export type Project = {
   name: string;
   url: string;
-  archived: boolean;
   description?: string;
   homepageUrl?: string;
-  stars: number;
-  downloads: number;
   language?: string;
+  technologies?: string;
 };
 
-export const loadProjects = async function* () {
-  // Use fake data in development
-  if (!isProduction()) {
-    yield* fakes;
-    return;
+const projects: Project[] = [
+  {
+    name: 'Feeds-Analyzer',
+    url: 'https://github.com/ezeluduena/feeds-analyzer',
+    description: 'Una app CLI para encontrar "entidades nombradas" en feeds RSS de páginas de noticias',
+    language: 'Java',
+    technologies: 'Spark'
+  },
+  {
+    name: 'La Cosa',
+    url: 'https://github.com/TukiLaCosa/backend',
+    description: 'El backend de una implementación web del juego de mesa "La Cosa"',
+    technologies: 'FastAPI - WebSockets - PonyORM'
+  },
+  {
+    name: 'ezeluduena.me',
+    url: 'https://github.com/ezeluduena/ezeluduena.me',
+    description: 'Mi sitio web personal',
+    language: 'TypeScript'
   }
+];
 
-  for (const repo of await getGitHubRepos()) {
-    if (!repo.stargazers_count || repo.stargazers_count < 35) {
-      continue;
-    }
-
-    const downloads = [
-      await getGitHubDownloads(repo.name),
-      await getNuGetDownloads(repo.name)
-    ].reduce((acc, cur) => acc + cur, 0);
-
-    const project: Project = {
-      name: repo.name,
-      url: repo.html_url,
-      archived: repo.archived || false,
-      description: repo.description || undefined,
-      homepageUrl: repo.homepage || undefined,
-      stars: repo.stargazers_count || 0,
-      downloads,
-      language: repo.language || undefined
-    };
-
+export const loadProjects = async function* () {
+  for (const project of projects) {
     yield project;
   }
 };
