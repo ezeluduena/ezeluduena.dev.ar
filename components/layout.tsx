@@ -99,7 +99,8 @@ const Header: FC = () => {
   const links = useMemo(
     () => [
       { href: '/', label: 'home' },
-      { href: '/projects', label: 'proyectos' }
+      { href: '/projects', label: 'proyectos' },
+      { href: '/blog', label: 'blog' }
     ],
     []
   );
