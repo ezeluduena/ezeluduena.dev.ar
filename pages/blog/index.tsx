@@ -30,13 +30,13 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
         <Heading>Blog</Heading>
 
         <Paragraph>
-          I write about software design, architecture, programming languages, and other technical
-          topics. Follow me on <Link href="https://twitter.com/Tyrrrz">Twitter</Link> or subscribe
-          to the{' '}
+          Este es mi blog. Acá escribo para registrar los proyectos en los que voy trabajando,
+          lo que voy aprendiendo y cualquier otra cosa que me parezca interesante.
+          <br />
+          Por si te sirve para algo, este blog tiene disponible su{' '}
           <Link href="/blog/rss.xml" external>
-            RSS Feed
-          </Link>{' '}
-          to get notified when I post a new article.
+            Feed RSS
+          </Link>{'.'}
         </Paragraph>
       </section>
 
@@ -59,7 +59,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
                       <Inline>
                         <FiCalendar strokeWidth={1} />
                         <div>
-                          {new Date(post.date).toLocaleDateString('en-US', {
+                          {new Date(post.date).toLocaleDateString('es-AR', {
                             day: 'numeric',
                             month: 'long',
                             year: 'numeric'
@@ -69,7 +69,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
 
                       <Inline>
                         <FiClock strokeWidth={1} />
-                        <div>{Math.round(post.readingTimeMins)} min read</div>
+                        <div>{Math.round(post.readingTimeMins)} min de lectura</div>
                       </Inline>
                     </div>
                   </TimelineItem>

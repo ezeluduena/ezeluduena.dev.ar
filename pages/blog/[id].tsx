@@ -56,32 +56,16 @@ const ArticleSection: FC<BlogPostPageProps> = ({ post }) => {
   );
 };
 
-const SubscribeSection: FC = () => {
-  return (
-    <section className={c('p-4', 'border', 'border-cyan-500', 'rounded', 'space-y-1')}>
-      <div className={c('font-semibold')}>🔔 Subscribe for more</div>
-
-      <div>
-        Want to know when I post a new article? Follow me on{' '}
-        <Link href="https://twitter.com/Tyrrrz">Twitter</Link> or subscribe to the{' '}
-        <Link href="/blog/rss.xml" external>
-          RSS Feed
-        </Link>
-      </div>
-    </section>
-  );
-};
-
 const CommentSection: FC<BlogPostPageProps> = ({ post }) => {
   const { userPreferredTheme } = useTheme();
 
   return (
     <section>
       <Giscus
-        repo="Tyrrrz/Tyrrrz.me"
-        repoId="MDEwOlJlcG9zaXRvcnkyMDY0MDIxMDc="
+        repo="ezeluduena/ezeluduena.me"
+        repoId="R_kgDOMZ12Hw"
         category="Blog"
-        categoryId="DIC_kwDODE1yO84CT-_a"
+        categoryId="DIC_kwDOMZ12H84ChJN4"
         mapping="specific"
         strict="1"
         term={post.title}
@@ -95,7 +79,7 @@ const CommentSection: FC<BlogPostPageProps> = ({ post }) => {
               ? 'light'
               : 'preferred_color_scheme'
         }
-        lang="en"
+        lang="es"
         loading="lazy"
       />
     </section>
@@ -123,7 +107,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
             <Inline>
               <FiCalendar strokeWidth={1} />
               <div>
-                {new Date(post.date).toLocaleDateString('en-US', {
+                {new Date(post.date).toLocaleDateString('es-AR', {
                   day: 'numeric',
                   month: 'long',
                   year: 'numeric'
@@ -133,7 +117,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
 
             <Inline>
               <FiClock strokeWidth={1} />
-              <div>{Math.round(post.readingTimeMins)} min read</div>
+              <div>{Math.round(post.readingTimeMins)} min de lectura</div>
             </Inline>
           </div>
         </section>
@@ -141,7 +125,6 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
         {/* Detailed info */}
         <CoverSection post={post} />
         <ArticleSection post={post} />
-        <SubscribeSection />
         <CommentSection post={post} />
       </div>
     </>
