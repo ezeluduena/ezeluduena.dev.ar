@@ -7,7 +7,7 @@ import Link from '~/components/link';
 import Paragraph from '~/components/paragraph';
 
 const HomePage: NextPage = () => {
-  const age = new Date(Date.now() - Date.parse('1995-04-28')).getUTCFullYear() - 1970;
+  const age = new Date(Date.now() - Date.parse('2000-12-06')).getUTCFullYear() - 1970;
 
   const famafLccUrl = 'https://www.famaf.unc.edu.ar/academica/grado/licenciatura-en-ciencias-de-la-computaci%C3%B3n/';
 
@@ -32,19 +32,21 @@ const HomePage: NextPage = () => {
             <Heading>👋 Buenas!</Heading>
           </div>
           <Paragraph>
-            Me llamo Ezequiel, soy un estudiante de tercer año de la
-            <Link href={famafLccUrl}> Licenciatura en Ciencias de la Computación </Link>
-            en la FAMAF de la UNC. Me gusta el fútbol y andar en bicicleta.
+            Me llamo Ezequiel, tengo {age} años y soy de Córdoba, Argentina.
+            <br />
+            Actualmente soy estudiante de tercer año de <Link href={famafLccUrl}> Ciencias de la Computación</Link>
+            , en la Universidad Nacional de Córdoba. Me gusta el fútbol, el cine y andar en bicicleta.
           </Paragraph>
           <Paragraph>
             De chico que estoy interesado en como funcionan los celulares y las computadoras.
-            Desde entonces que paso bastante tiempo aprendiendo sobre tecnología en general.
+            Desde entonces que paso bastante tiempo investigando sobre tecnología en general.
             <br />
             Hoy mis principales intereses son la programación backend, el software libre y la administración de sistemas.
           </Paragraph>
           <Paragraph>
-            En está pagina podrán encontrar mi CV y los distintos <Link href={'/projects'}> proyectos</Link> en los que estuve trabajando.
-            También está mi blog donde escribo para registrar y compartir lo que voy aprendiendo.
+            En está pagina vas a encontrar los distintos <Link href={'/projects'}> proyectos</Link> en los que estuve trabajando.
+            También podés leer mi <Link href={'/blog'}> blog</Link>, donde escribo principalmente
+            para registrar y compartir lo que voy aprendiendo.
           </Paragraph>
         </div>
       </section >
