@@ -12,7 +12,7 @@ El objetivo del trabajo era simular una experiencia de desarrollo de software en
 
 ## El juego
 
-"La Cosa" o "Stay Away! en inglés, es un juego de cartas de [deducción social](https://es.wikipedia.org/wiki/Juego_de_deducci%C3%B3n_social) basado en la película "The Thing" y en las historias de Lovecraft. El juego la verdad que tiene una dinámica media rara, si les interesa les dejo sus [reglas](https://drive.google.com/file/d/1s4IeDpYbX20jbroazP-CqOoIsnFvUnlZ/view?usp=sharing) y el [videíto](https://www.youtube.com/watch?v=MTqKINXKybI) de publicación que le hicieron que está muy piola.
+"La Cosa", o "Stay Away!" en inglés, es un juego de cartas de [deducción social](https://es.wikipedia.org/wiki/Juego_de_deducci%C3%B3n_social) basado en la película "The Thing" y en las historias de Lovecraft. La verdad es que el juego tiene una dinámica media rara. Si les interesa, les dejo sus [reglas](https://drive.google.com/file/d/1s4IeDpYbX20jbroazP-CqOoIsnFvUnlZ/view?usp=sharing) y el [videíto](https://www.youtube.com/watch?v=MTqKINXKybI) de publicación que le hicieron que está muy piola.
 
 ## Desarrollo
 
@@ -29,18 +29,18 @@ Con respecto al backend, creamos un server con FastAPI que gestiona las siguient
 
 Para gestionar los datos de la aplicación utilizamos PonyORM a partir de un diagrama de clases creado y discutido previamente en la etapa de diseño.
 
-Con respecto al testing, utilizamos Pytest para realizar tests de unidad y de integración con la base de datos. Integramos estos test a nuestro flujo de trabajo creando una Github Action en el repositorio para que se ejecutaran automaticamente en cada commit.
+Con respecto al testing, utilizamos Pytest para realizar tests de unidad y de integración con la base de datos. Agregamos estos tests a nuestro flujo de trabajo, creando una Github Action en el repositorio para que se ejecutaran automáticamente en cada commit.
 
-## Desafios
+## Desafíos
 
 Este proyecto significó mi primer acercamiento al desarrollo de una app web, poniendo en práctica conceptos como la comunicación entre el frontend y el backend, testing, múltiples conexiones, asincronía, diseño y arquitectura de software, entre muchos otros.
 
-Ante mi completa inexperiencia previa y la presión de cada entrega pasé bastante tiempo leyendo las documentaciones de las tecnologías mencionadas. También descubrí que fue fundamental para lograr los objetivos una comunicación asertiva con el grupo, siendo que en en los momentos de mayor dificultad fue el enfoque colectivo lo que nos ayudó a avanzar (perdón por el cierre cursi pero basado).
+Ante mi completa inexperiencia previa y la presión de cada entrega, pasé bastante tiempo leyendo las documentaciones de las tecnologías mencionadas. También descubrí que fue fundamental para lograr los objetivos una comunicación asertiva con el grupo, siendo que en los momentos de mayor dificultad fue el enfoque colectivo lo que nos ayudó a avanzar (perdón por el cierre cursi pero basado).
 
 ## Links y demo
 
-**[Repositorio de github del backend](https://github.com/TukiLaCosa/backend)**
+**[Repositorio de GitHub del backend](https://github.com/TukiLaCosa/backend)**
 
 **[Documentación generada por FastAPI](https://backend-tuki.onrender.com/docs#/)** (Tarda en cargar la primera vez)
 
-Una vez cargado el backend entrando al link anterior, se puede probrar la app con el **[frontend del juego](https://tuki-frontend-nine.vercel.app/)**.
+Una vez cargado el backend, entrando al link anterior, se puede probar la app con el **[frontend del juego](https://tuki-frontend-nine.vercel.app/)**.
