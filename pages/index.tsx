@@ -29,23 +29,23 @@ const HomePage: NextPage = () => {
 
         <div>
           <div className={c('text-center', 'md:text-left')}>
-            <Heading>👋 Buenas!</Heading>
+            <Heading>Buenas! 👋</Heading>
           </div>
           <Paragraph>
             Me llamo Ezequiel, tengo {age} años y soy de Córdoba, Argentina.
             <br />
-            Actualmente soy estudiante de tercer año de <Link href={famafLccUrl}> Ciencias de la Computación</Link>
-            , en la Universidad Nacional de Córdoba. Me gusta el fútbol, el cine y andar en bicicleta.
+            Soy un estudiante avanzado de <Link href={famafLccUrl}> Ciencias de la Computación </Link>
+            en la Universidad Nacional de Córdoba. Me gusta el fútbol, el cine y andar en bicicleta.
           </Paragraph>
           <Paragraph>
-            De chico que estoy interesado en como funcionan los celulares y las computadoras.
+            Desde chico que estoy interesado en cómo funcionan los celulares y las computadoras.
             Desde entonces que paso bastante tiempo investigando sobre tecnología en general.
             <br />
             Hoy mis principales intereses son la programación backend, el software libre y la administración de sistemas.
           </Paragraph>
           <Paragraph>
-            En está pagina vas a encontrar los distintos <Link href={'/projects'}> proyectos</Link> en los que estuve trabajando.
-            También podés leer mi <Link href={'/blog'}> blog</Link>, donde escribo principalmente
+            En esta página vas a encontrar los distintos <Link href={'/projects'}> proyectos</Link> en los que estuve trabajando.
+            También podés leer mi <Link href={'/blog'}> blog</Link>, donde escribo
             para registrar y compartir lo que voy aprendiendo.
           </Paragraph>
         </div>

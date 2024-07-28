@@ -30,13 +30,14 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
         <Heading>Blog</Heading>
 
         <Paragraph>
-          Este es mi blog. Acá escribo para registrar los proyectos en los que voy trabajando,
+          Acá escribo sobre los proyectos en los que voy trabajando,
           lo que voy aprendiendo y cualquier otra cosa que me parezca interesante.
           <br />
-          Por si te sirve para algo, este blog tiene disponible su{' '}
+          Este blog tiene disponible su{' '}
           <Link href="/blog/rss.xml" external>
-            Feed RSS
-          </Link>{'.'}
+            feed RSS
+          </Link>{', '}
+          para que puedas seguirlo desde tu lector de feeds favorito y enterarte de nuevas publicaciones.
         </Paragraph>
       </section>
 

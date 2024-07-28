@@ -24,7 +24,7 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
 
         <Paragraph>
           Estos son algunos proyectos en los que estuve trabajando. Si querés ver más, podés entrar
-          al enlace en el nombre del proyecto, que te lleva a su correspondiente su post de blog.
+          al enlace en el nombre de cada proyecto, que te lleva a su post de blog.
         </Paragraph>
       </section>
 

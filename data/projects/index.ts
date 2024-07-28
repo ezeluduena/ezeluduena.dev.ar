@@ -18,7 +18,7 @@ const projects: Project[] = [
   {
     name: 'La Cosa',
     url: '/blog/la-cosa',
-    description: 'El backend de un juego web basado en el juego de mesa "La Cosa".',
+    description: 'El backend de una implementación web del juego de mesa "La Cosa".',
     technologies: 'FastAPI - WebSockets - PonyORM'
   },
   {
