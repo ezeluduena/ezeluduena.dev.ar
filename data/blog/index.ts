@@ -11,6 +11,7 @@ export type BlogPost = {
   id: string;
   title: string;
   date: string;
+  description: string;
   readingTimeMins: number;
   coverUrl?: string;
   excerpt: string;
@@ -35,9 +36,9 @@ export const loadBlogPosts = async function* () {
     const data = await fs.readFile(indexFilePath, 'utf8');
 
     const {
-      attributes: { title, date },
+      attributes: { title, date, description },
       body
-    } = frontmatter<{ title: string; date: string }>(data);
+    } = frontmatter<{ title: string; date: string; description: string }>(data);
 
     if (!title || typeof title !== 'string') {
       throw new Error(`Blog post '${id}' has missing or invalid title`);
@@ -45,6 +46,10 @@ export const loadBlogPosts = async function* () {
 
     if (!date || typeof date !== 'string') {
       throw new Error(`Blog post '${id}' has missing or invalid date`);
+    }
+
+    if (!description || typeof description !== 'string') {
+      throw new Error(`Blog post '${id}' has missing or invalid description`);
     }
 
     const readingTimeMins = readingTime(body, { wordsPerMinute: 220 }).minutes;
@@ -56,6 +61,7 @@ export const loadBlogPosts = async function* () {
       id,
       title,
       date,
+      description,
       readingTimeMins,
       coverUrl,
       excerpt,
@@ -72,6 +78,7 @@ export const loadBlogPostRefs = async function* () {
       id: post.id,
       title: post.title,
       date: post.date,
+      description: post.description,
       readingTimeMins: post.readingTimeMins,
       coverUrl: post.coverUrl,
       excerpt: post.excerpt
@@ -112,7 +119,7 @@ export const publishBlogFeed = async () => {
     id: getSiteUrl(),
     title: "Ezequiel Ludueña's Blog",
     description:
-      'Ezequiel Ludueña - Estudiante de Licenciatura en Ciencias de la Computación en la FAMAF de la UNC.',
+      'Ezequiel Ludueña - Estudiante de Ciencias de la Computación.',
     link: getSiteUrl('/blog'),
     image: getSiteUrl('/logo.png'),
     copyright: `Copyright (c) 2024-${date.getFullYear()} Ezequiel Ludueña`,
@@ -125,7 +132,7 @@ export const publishBlogFeed = async () => {
       link: getSiteUrl(`/blog/${post.id}`),
       date: new Date(post.date),
       title: post.title,
-      description: post.excerpt
+      description: post.description
     });
   }
 

@@ -1,7 +1,7 @@
 ---
 title: 'La Cosa'
 date: '2024-07-25'
-description: 
+description: 'En el marco de la materia Ingeniería del Software, creamos una versión web del juego de cartas "La Cosa". Aplicando Scrum, utilizamos FastAPI para el backend y PonyORM para la gestión de datos. Durante el proyecto, me desempeñé como desarrollador backend y scrum master, enfrentando diversos desafíos técnicos y de colaboración. Incluimos enlaces al repositorio de GitHub, la documentación generada y una demo del juego.' 
 ---
 
 ## La Cosa
