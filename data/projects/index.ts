@@ -22,8 +22,8 @@ const projects: Project[] = [
     technologies: 'FastAPI - WebSockets - PonyORM'
   },
   {
-    name: 'ezeluduena.me',
-    url: 'https://github.com/ezeluduena/ezeluduena.me',
+    name: 'ezeluduena.dev.ar',
+    url: 'https://github.com/ezeluduena/ezeluduena.dev.ar',
     description: 'Mi sitio web personal.',
     language: 'TypeScript',
     technologies: 'Next.js - TailwindCSS - React.js'

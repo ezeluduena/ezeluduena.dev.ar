@@ -62,7 +62,7 @@ const CommentSection: FC<BlogPostPageProps> = ({ post }) => {
   return (
     <section>
       <Giscus
-        repo="ezeluduena/ezeluduena.me"
+        repo="ezeluduena/ezeluduena.dev.ar"
         repoId="R_kgDOMZ12Hw"
         category="Blog"
         categoryId="DIC_kwDOMZ12H84ChJN4"
