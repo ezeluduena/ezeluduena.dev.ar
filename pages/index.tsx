@@ -38,7 +38,7 @@ const HomePage: NextPage = () => {
             en la Universidad Nacional de Córdoba. Me gusta el fútbol, el cine y andar en bicicleta.
           </Paragraph>
           <Paragraph>
-            Desde chico que estoy interesado en cómo funcionan los celulares y las computadoras.
+            Cuando era chico me interesé en cómo funcionan los celulares y las computadoras.
             Desde entonces que paso bastante tiempo investigando sobre tecnología en general.
             <br />
             Hoy mis principales intereses son la programación backend, el software libre y la administración de sistemas.

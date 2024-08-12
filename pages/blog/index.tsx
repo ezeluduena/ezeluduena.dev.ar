@@ -38,7 +38,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
           <Link href="/blog/rss.xml" external>
             feed RSS
           </Link>{', '}
-          para que puedas seguirlo desde tu lector de feeds favorito y enterarte de nuevas publicaciones.
+          para que puedas seguirlo desde tu lector de feeds y enterarte de nuevas publicaciones.
         </Paragraph>
       </section>
 

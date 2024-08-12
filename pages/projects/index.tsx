@@ -22,10 +22,9 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
 
       <section>
         <Heading>Proyectos</Heading>
-
         <Paragraph>
-          Estos son algunos proyectos en los que estuve trabajando. Si querés ver más, podés entrar
-          al enlace en el nombre de cada proyecto, que te lleva a su post de blog.
+          Estos son algunos proyectos en los que estuve trabajando. El enlace en el nombre de cada
+          uno te lleva a un post en mi blog con más información.
         </Paragraph>
       </section>
 
