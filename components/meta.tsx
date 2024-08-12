@@ -43,7 +43,7 @@ const Meta: FC<MetaProps> = ({ title, description, keywords, imageUrl, imageLayo
       <meta key="build-id" name="build-id" content={buildId} />
       <meta key="description" name="description" content={actualDescription} />
       <meta key="keywords" name="keywords" content={actualKeywords} />
-      <meta key="theme-color" name="theme-color" content="#a855f7" />
+      <meta key="theme-color" name="theme-color" content="#00e5e5" />
 
       <meta key="og:type" property="og:type" content="website" />
       <meta key="og:site_name" property="og:site_name" content={siteName} />
