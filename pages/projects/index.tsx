@@ -6,6 +6,7 @@ import Inline from '~/components/inline';
 import Link from '~/components/link';
 import Meta from '~/components/meta';
 import Paragraph from '~/components/paragraph';
+import SocialLinks from '~/components/sociallinks';
 import { Project, loadProjects } from '~/data/projects';
 import { bufferIterable } from '~/utils/async';
 import { deleteUndefined } from '~/utils/object';
@@ -89,6 +90,8 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
           </section>
         ))}
       </section>
+
+      <SocialLinks />
     </>
   );
 };

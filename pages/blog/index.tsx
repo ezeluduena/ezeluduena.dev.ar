@@ -8,6 +8,7 @@ import Meta from '~/components/meta';
 import Paragraph from '~/components/paragraph';
 import Timeline from '~/components/timeline';
 import TimelineItem from '~/components/timelineItem';
+import SocialLinks from '~/components/sociallinks';
 import { BlogPostRef, loadBlogPostRefs, publishBlogFeed } from '~/data/blog';
 import { groupBy } from '~/utils/array';
 import { bufferIterable } from '~/utils/async';
@@ -80,6 +81,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
           </section>
         ))}
       </section>
+      <SocialLinks />
     </>
   );
 };
