@@ -13,7 +13,7 @@ const SocialLinks = () => {
                         <FiGithub strokeWidth={1} />
                     </div>
                 </Link>
-                <Link variant="discreet" href="mailto:ezeluduena123@gmai.com">
+                <Link variant="discreet" href="mailto:ezeluduena123@gmail.com">
                     <div className={c('px-2')}>
                         <FiMail strokeWidth={1} />
                     </div>
