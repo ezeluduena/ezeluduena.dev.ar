@@ -180,6 +180,9 @@ const Header: FC = () => {
           {/* Theme switcher */}
           <ThemeSwitcher />
 
+          {/* Language switcher */}
+          <LanguageSwitcher />
+
           {/* Nav button */}
           <button
             className={c('sm:hidden', { 'text-cyan-500': isMobileNavVisible })}
