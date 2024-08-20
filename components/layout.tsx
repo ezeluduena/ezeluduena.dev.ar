@@ -4,11 +4,13 @@ import { useRouter } from 'next/router';
 import { FC, PropsWithChildren, useEffect, useMemo, useState } from 'react';
 import FadeIn from 'react-fade-in';
 import { FiMenu, FiMoon, FiSun } from 'react-icons/fi';
+import { GrLanguage } from "react-icons/gr";
 import Link from '~/components/link';
 import Meta from '~/components/meta';
 import useDebounce from '~/hooks/useDebounce';
 import useRouterStatus from '~/hooks/useRouterStatus';
 import useTheme from '~/hooks/useTheme';
+import useLocale from '~/hooks/useLocale';
 
 const Loader: FC = () => {
   // Only show the loading indicator if the navigation takes a while.
@@ -95,6 +97,27 @@ const ThemeSwitcher: FC = () => {
   );
 };
 
+const LanguageSwitcher: FC = () => {
+  const { locale, setLocale } = useLocale();
+
+  return (
+    <button
+      className={c(
+        'px-2',
+        'py-1',
+        'border-2',
+        'bg-gray-100',
+        'dark:bg-gray-800',
+        'border-gray-500',
+        'rounded', 'transition-colors',
+        'duration-300')}
+      onClick={() => setLocale(locale === 'es' ? 'en' : 'es')}
+    >
+      {locale === 'es' ? 'En' : 'Es'}
+    </button >
+  );
+}
+
 const Header: FC = () => {
   const links = useMemo(
     () => [
@@ -144,6 +167,11 @@ const Header: FC = () => {
           {/* Theme switcher */}
           <div className={c('flex', 'ml-2', 'mt-0.5', 'text-2xl')}>
             <ThemeSwitcher />
+          </div>
+
+          {/* Language switcher */}
+          <div className={c('flex', 'ml-2', 'mt-0.5', 'text-2xl')}>
+            <LanguageSwitcher />
           </div>
         </nav>
 
