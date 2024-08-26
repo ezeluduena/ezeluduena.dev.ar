@@ -11,6 +11,7 @@ import useDebounce from '~/hooks/useDebounce';
 import useRouterStatus from '~/hooks/useRouterStatus';
 import useTheme from '~/hooks/useTheme';
 import useLocale from '~/hooks/useLocale';
+import layoutTranslations from '~/public/locale/layout';
 
 const Loader: FC = () => {
   // Only show the loading indicator if the navigation takes a while.
@@ -113,19 +114,21 @@ const LanguageSwitcher: FC = () => {
         'duration-300')}
       onClick={() => setLocale(locale === 'es' ? 'en' : 'es')}
     >
-      {locale === 'es' ? 'En' : 'Es'}
+      {locale === 'es' ? <GrLanguage /> : <GrLanguage />}
     </button >
   );
 }
 
 const Header: FC = () => {
+  const { locale } = useLocale();
+  const t = layoutTranslations[locale];
   const links = useMemo(
     () => [
       { href: '/', label: 'home' },
-      { href: '/projects', label: 'proyectos' },
+      { href: '/projects', label: t.projects },
       { href: '/blog', label: 'blog' }
     ],
-    []
+    [locale]
   );
 
   const router = useRouter();
