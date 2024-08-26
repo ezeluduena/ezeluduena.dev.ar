@@ -100,16 +100,23 @@ const ThemeSwitcher: FC = () => {
 
 const LanguageSwitcher: FC = () => {
   const { locale, setLocale } = useLocale();
+  const isEnglish = locale === 'en';
 
   return (
     <button
       className={c(
         'px-2',
         'py-1',
-        'border-2',
-        'bg-gray-100',
-        'dark:bg-gray-800',
-        'border-gray-500',
+        {
+          'border-2': isEnglish,
+          'border-gray-400': isEnglish,
+        },
+        {
+          'bg-gray-100': isEnglish,
+          'dark:bg-gray-800': isEnglish,
+          'bg-transparent': !isEnglish,
+          'dark:bg-transparent': !isEnglish,
+        },
         'rounded', 'transition-colors',
         'duration-300')}
       onClick={() => setLocale(locale === 'es' ? 'en' : 'es')}
