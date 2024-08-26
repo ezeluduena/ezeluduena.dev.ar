@@ -16,11 +16,6 @@ const HomePage: NextPage = () => {
 
   const t = homeTranslations[locale];
 
-  const handleLocaleChange = () => {
-    setLocale(locale === 'es' ? 'en' : 'es');
-  }
-
-
   return (
     <>
       <section
