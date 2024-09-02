@@ -4,9 +4,9 @@ import useMedia from '~/hooks/useMedia';
 
 
 const useLocale = () => {
-    const systemPreferredLocale = useMedia('(prefers-language: es)')
-        ? ('es' as const)
-        : ('en' as const);
+    const systemPreferredLocale = useMedia('(prefers-language: en)')
+        ? ('en' as const)
+        : ('es' as const);
 
     const [userPreferredLocale, setUserPreferredLocale] = useLocalState<'en' | 'es' | null>(
         'locale',
@@ -17,7 +17,7 @@ const useLocale = () => {
         return {
             systemPreferredLocale,
             userPreferredLocale,
-            locale: userPreferredLocale || systemPreferredLocale,
+            locale: userPreferredLocale || systemPreferredLocale || 'es',
             setLocale: setUserPreferredLocale
         };
     }, [systemPreferredLocale, userPreferredLocale, setUserPreferredLocale]);
