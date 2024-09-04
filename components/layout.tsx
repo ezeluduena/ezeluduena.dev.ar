@@ -12,6 +12,13 @@ import useRouterStatus from '~/hooks/useRouterStatus';
 import useTheme from '~/hooks/useTheme';
 import useLocale from '~/hooks/useLocale';
 import layoutTranslations from '~/public/locale/layout';
+// import { ReactComponent as EnIcon } from '~/public/icons/en_icon.svg';
+// import { ReactComponent as EsIcon } from '~/public/icons/es_icon.svg';
+import enIconLight from '~/public/icons/en_icon.svg';
+import esIconLight from '~/public/icons/es_icon.svg';
+import enIconDark from '~/public/icons/en_icon.svg';
+import esIconDark from '~/public/icons/es_icon.svg';
+
 
 const Loader: FC = () => {
   // Only show the loading indicator if the navigation takes a while.
@@ -100,28 +107,24 @@ const ThemeSwitcher: FC = () => {
 
 const LanguageSwitcher: FC = () => {
   const { locale, setLocale } = useLocale();
-  const isEnglish = locale === 'en';
+  const isDark = useTheme().theme === 'dark';
+
+  const esIcon = isDark ? esIconDark : esIconLight;
+  const enIcon = isDark ? enIconDark : enIconLight;
 
   return (
     <button
       className={c(
-        'px-2',
-        'py-1',
-        {
-          'border-2': isEnglish,
-          'border-gray-400': isEnglish,
-        },
-        {
-          'bg-gray-100': isEnglish,
-          'dark:bg-gray-800': isEnglish,
-          'bg-transparent': !isEnglish,
-          'dark:bg-transparent': !isEnglish,
-        },
+        'flex',
+        'items-center',
+        'justify-center',
         'rounded', 'transition-colors',
         'duration-300')}
       onClick={() => setLocale(locale === 'es' ? 'en' : 'es')}
     >
-      {locale === 'es' ? <GrLanguage /> : <GrLanguage />}
+
+      {locale === 'es' ? <img src={esIcon} alt="Es" width="42" height="42" /> :
+        <img src={enIcon} alt="En" width="42" height="42" />}
     </button >
   );
 }
@@ -135,7 +138,7 @@ const Header: FC = () => {
       { href: '/projects', label: t.projects },
       { href: '/blog', label: 'blog' }
     ],
-    [locale]
+    [locale, t.projects]
   );
 
   const router = useRouter();
@@ -167,7 +170,7 @@ const Header: FC = () => {
         </div>
 
         {/* Desktop nav */}
-        <nav className={c('hidden', 'sm:flex', 'px-2', 'gap-x-2', 'text-lg')}>
+        <nav className={c('hidden', 'sm:flex', 'px-2', 'gap-x-2', 'text-lg', 'items-center')}>
           {links.map((link, i) => (
             <NavLink key={i} href={link.href}>
               {link.label}
