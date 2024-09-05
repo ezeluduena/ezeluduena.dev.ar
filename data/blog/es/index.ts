@@ -55,7 +55,7 @@ export const loadBlogPosts = async function* () {
 
     const readingTimeMins = readingTime(body, { wordsPerMinute: 220 }).minutes;
     const coverFileName = childFileNames.find((fileName) => path.parse(fileName).name === 'cover');
-    const coverUrl = coverFileName && `/blog/${id}/${coverFileName}`;
+    const coverUrl = coverFileName && `/blog/es/${id}/${coverFileName}`;
     const excerpt = ellipsize(markdownToTxt(body), 256);
 
     const post: BlogPost = {

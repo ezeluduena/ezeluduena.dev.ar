@@ -28,7 +28,7 @@ const CoverSection: FC<BlogPostPageProps> = ({ post }) => {
   }
 
   return (
-    <section className={c('p-4', 'border', 'border-cyan-500', 'rounded', 'bg-cyan-100')}>
+    <section className={c('p-4', 'rounded')}>
       <div className={c('w-fit', 'mx-auto')}>
         <Image src={post.coverUrl} width={800} height={450} alt="Cover image" priority />
       </div>
@@ -48,7 +48,7 @@ const ArticleSection: FC<BlogPostPageProps> = ({ post }) => {
               return url;
             }
 
-            return `/blog/${post.id}/${url}`;
+            return `/blog/es/${post.id}/${url}`;
           }}
         />
       </article>
