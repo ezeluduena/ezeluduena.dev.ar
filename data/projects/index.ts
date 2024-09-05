@@ -1,5 +1,3 @@
-import useLocale from "~/hooks/useLocale";
-import projectsTranslations from "~/public/locale/projects";
 
 export type Project = {
   name: string;
