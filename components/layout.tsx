@@ -12,12 +12,10 @@ import useRouterStatus from '~/hooks/useRouterStatus';
 import useTheme from '~/hooks/useTheme';
 import useLocale from '~/hooks/useLocale';
 import layoutTranslations from '~/public/locale/layout';
-// import { ReactComponent as EnIcon } from '~/public/icons/en_icon.svg';
-// import { ReactComponent as EsIcon } from '~/public/icons/es_icon.svg';
 import enIconLight from '~/public/icons/en_icon.svg';
 import esIconLight from '~/public/icons/es_icon.svg';
-import enIconDark from '~/public/icons/en_icon.svg';
-import esIconDark from '~/public/icons/es_icon.svg';
+import enIconDark from '~/public/icons/en_icon_dark.svg';
+import esIconDark from '~/public/icons/es_icon_dark.svg';
 
 
 const Loader: FC = () => {
