@@ -9,7 +9,7 @@ import Paragraph from '~/components/paragraph';
 import Timeline from '~/components/timeline';
 import TimelineItem from '~/components/timelineItem';
 import SocialLinks from '~/components/sociallinks';
-import { BlogPostRef, loadBlogPostRefs, publishBlogFeed } from '~/data/blog';
+import { BlogPostRef, loadBlogPostRefs, publishBlogFeed } from '~/data/blog/es';
 import { groupBy } from '~/utils/array';
 import { bufferIterable } from '~/utils/async';
 import { deleteUndefined } from '~/utils/object';
@@ -25,8 +25,8 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
     (a, b) => b.key - a.key
   );
 
-  const locale = useLocale();
-  const t = blogTranslations[useLocale().locale];
+  const locale = useLocale().locale;
+  const t = blogTranslations[locale];
 
   return (
     <>
@@ -57,7 +57,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
                   <TimelineItem key={i}>
                     {/* Title */}
                     <div className={c('text-lg')}>
-                      <Link href={`/blog/${post.id}`}>{post.title}</Link>
+                      <Link href={`/blog/${locale}/${post.id}`}>{post.title}</Link>
                     </div>
 
                     {/* Misc info */}
@@ -65,7 +65,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
                       <Inline>
                         <FiCalendar strokeWidth={1} />
                         <div>
-                          {locale.locale === 'es'
+                          {locale === 'es'
                             ? new Date(post.date).toLocaleDateString('es-ES', {
                               year: 'numeric',
                               month: 'long',

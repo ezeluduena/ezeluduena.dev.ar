@@ -9,7 +9,7 @@ import Inline from '~/components/inline';
 import Link from '~/components/link';
 import Markdown from '~/components/markdown';
 import Meta from '~/components/meta';
-import { BlogPost, loadBlogPost, loadBlogPostRefs, publishBlogPostAssets } from '~/data/blog';
+import { BlogPost, loadBlogPost, loadBlogPostRefs, publishBlogPostAssets } from '~/data/blog/en';
 import useTheme from '~/hooks/useTheme';
 import { deleteUndefined } from '~/utils/object';
 import { isAbsoluteUrl } from '~/utils/url';
@@ -79,7 +79,7 @@ const CommentSection: FC<BlogPostPageProps> = ({ post }) => {
               ? 'light'
               : 'preferred_color_scheme'
         }
-        lang="es"
+        lang="en"
         loading="lazy"
       />
     </section>
@@ -107,17 +107,17 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
             <Inline>
               <FiCalendar strokeWidth={1} />
               <div>
-                {new Date(post.date).toLocaleDateString('es-AR', {
-                  day: 'numeric',
+                {new Date(post.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
                   month: 'long',
-                  year: 'numeric'
+                  day: 'numeric'
                 })}
               </div>
             </Inline>
 
             <Inline>
               <FiClock strokeWidth={1} />
-              <div>{Math.round(post.readingTimeMins)} min de lectura</div>
+              <div>{Math.round(post.readingTimeMins)} min read</div>
             </Inline>
           </div>
         </section>

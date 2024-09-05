@@ -6,7 +6,6 @@ import markdownToTxt from 'markdown-to-txt';
 import path from 'path';
 import readingTime from 'reading-time';
 import { getSiteUrl } from '~/utils/env';
-import useLocale from '~/hooks/useLocale';
 
 export type BlogPost = {
   id: string;
@@ -23,7 +22,7 @@ export type BlogPostRef = Omit<BlogPost, 'source'>;
 
 export const loadBlogPosts = async function* () {
 
-  const dirPath = path.resolve(process.cwd(), 'data', 'blog');
+  const dirPath = path.resolve(process.cwd(), 'data', 'blog', 'es');
   const entries = await fs.opendir(dirPath);
 
   for await (const entry of entries) {
@@ -101,8 +100,8 @@ export const loadBlogPost = async (id: string) => {
 };
 
 export const publishBlogPostAssets = async (id: string) => {
-  const dirPath = path.resolve(process.cwd(), 'data', 'blog', id);
-  const targetDirPath = path.resolve(process.cwd(), 'public', 'blog', id);
+  const dirPath = path.resolve(process.cwd(), 'data', 'blog', 'es', id);
+  const targetDirPath = path.resolve(process.cwd(), 'public', 'blog', 'es', id);
 
   await fs.rm(targetDirPath, { recursive: true, force: true });
   await fs.cp(dirPath, targetDirPath, {

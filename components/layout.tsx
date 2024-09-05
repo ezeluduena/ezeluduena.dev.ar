@@ -18,6 +18,7 @@ import enIconDark from '~/public/icons/en_icon_dark.svg';
 import esIconDark from '~/public/icons/es_icon_dark.svg';
 
 
+
 const Loader: FC = () => {
   // Only show the loading indicator if the navigation takes a while.
   // This prevents the indicator from flashing during faster navigation.
@@ -106,9 +107,19 @@ const ThemeSwitcher: FC = () => {
 const LanguageSwitcher: FC = () => {
   const { locale, setLocale } = useLocale();
   const isDark = useTheme().theme === 'dark';
+  const router = useRouter();
 
   const esIcon = isDark ? esIconDark : esIconLight;
   const enIcon = isDark ? enIconDark : enIconLight;
+
+  const handleLocaleChange = () => {
+    const newLocale = locale === 'es' ? 'en' : 'es';
+    setLocale(newLocale);
+
+    // Redirect to the new locale path
+    const newPath = router.asPath.replace(`/${locale}`, `/${newLocale}`);
+    router.push(newPath);
+  };
 
   return (
     <button
@@ -118,11 +129,12 @@ const LanguageSwitcher: FC = () => {
         'justify-center',
         'rounded', 'transition-colors',
         'duration-300')}
-      onClick={() => setLocale(locale === 'es' ? 'en' : 'es')}
+      onClick={handleLocaleChange}
     >
 
       {locale === 'es' ? <img src={esIcon} alt="Es" width="42" height="42" /> :
         <img src={enIcon} alt="En" width="42" height="42" />}
+
     </button >
   );
 }
