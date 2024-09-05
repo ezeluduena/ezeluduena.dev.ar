@@ -9,10 +9,12 @@ import Paragraph from '~/components/paragraph';
 import Timeline from '~/components/timeline';
 import TimelineItem from '~/components/timelineItem';
 import SocialLinks from '~/components/sociallinks';
-import { BlogPostRef, loadBlogPostRefs, publishBlogFeed } from '~/data/blog';
+import { BlogPostRef, loadBlogPostRefs, publishBlogFeed } from '~/data/blog/es';
 import { groupBy } from '~/utils/array';
 import { bufferIterable } from '~/utils/async';
 import { deleteUndefined } from '~/utils/object';
+import blogTranslations from '~/public/locale/blog';
+import useLocale from '~/hooks/useLocale';
 
 type BlogPageProps = {
   posts: BlogPostRef[];
@@ -23,6 +25,9 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
     (a, b) => b.key - a.key
   );
 
+  const locale = useLocale().locale;
+  const t = blogTranslations[locale];
+
   return (
     <>
       <Meta title="Blog" rssUrl="/blog/rss.xml" />
@@ -31,14 +36,13 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
         <Heading>Blog</Heading>
 
         <Paragraph>
-          Acá escribo sobre los proyectos en los que voy trabajando,
-          lo que voy aprendiendo y cualquier otra cosa que me parezca interesante.
+          {t.description0}
           <br />
-          Este blog tiene disponible su{' '}
+          {t.description1}
           <Link href="/blog/rss.xml" external>
-            feed RSS
-          </Link>{', '}
-          para que puedas seguirlo desde tu lector de feeds y enterarte de nuevas publicaciones.
+            {t.description2}
+          </Link>
+          {t.description3}
         </Paragraph>
       </section>
 
@@ -53,7 +57,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
                   <TimelineItem key={i}>
                     {/* Title */}
                     <div className={c('text-lg')}>
-                      <Link href={`/blog/${post.id}`}>{post.title}</Link>
+                      <Link href={`/blog/${locale}/${post.id}`}>{post.title}</Link>
                     </div>
 
                     {/* Misc info */}
@@ -61,17 +65,23 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
                       <Inline>
                         <FiCalendar strokeWidth={1} />
                         <div>
-                          {new Date(post.date).toLocaleDateString('es-AR', {
-                            day: 'numeric',
-                            month: 'long',
-                            year: 'numeric'
-                          })}
+                          {locale === 'es'
+                            ? new Date(post.date).toLocaleDateString('es-ES', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric'
+                            })
+                            : new Date(post.date).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric'
+                            })}
                         </div>
                       </Inline>
 
                       <Inline>
                         <FiClock strokeWidth={1} />
-                        <div>{Math.round(post.readingTimeMins)} min de lectura</div>
+                        <div>{Math.round(post.readingTimeMins)} {t.time} </div>
                       </Inline>
                     </div>
                   </TimelineItem>

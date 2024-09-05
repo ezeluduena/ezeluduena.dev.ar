@@ -21,7 +21,8 @@ export type BlogPost = {
 export type BlogPostRef = Omit<BlogPost, 'source'>;
 
 export const loadBlogPosts = async function* () {
-  const dirPath = path.resolve(process.cwd(), 'data', 'blog');
+
+  const dirPath = path.resolve(process.cwd(), 'data', 'blog', 'es');
   const entries = await fs.opendir(dirPath);
 
   for await (const entry of entries) {
@@ -54,7 +55,7 @@ export const loadBlogPosts = async function* () {
 
     const readingTimeMins = readingTime(body, { wordsPerMinute: 220 }).minutes;
     const coverFileName = childFileNames.find((fileName) => path.parse(fileName).name === 'cover');
-    const coverUrl = coverFileName && `/blog/${id}/${coverFileName}`;
+    const coverUrl = coverFileName && `/blog/es/${id}/${coverFileName}`;
     const excerpt = ellipsize(markdownToTxt(body), 256);
 
     const post: BlogPost = {
@@ -99,8 +100,8 @@ export const loadBlogPost = async (id: string) => {
 };
 
 export const publishBlogPostAssets = async (id: string) => {
-  const dirPath = path.resolve(process.cwd(), 'data', 'blog', id);
-  const targetDirPath = path.resolve(process.cwd(), 'public', 'blog', id);
+  const dirPath = path.resolve(process.cwd(), 'data', 'blog', 'es', id);
+  const targetDirPath = path.resolve(process.cwd(), 'public', 'blog', 'es', id);
 
   await fs.rm(targetDirPath, { recursive: true, force: true });
   await fs.cp(dirPath, targetDirPath, {
@@ -128,8 +129,8 @@ export const publishBlogFeed = async () => {
 
   for await (const post of loadBlogPosts()) {
     feed.addItem({
-      id: getSiteUrl(`/blog/${post.id}`),
-      link: getSiteUrl(`/blog/${post.id}`),
+      id: getSiteUrl(`/blog/es/${post.id}`),
+      link: getSiteUrl(`/blog/es/${post.id}`),
       date: new Date(post.date),
       title: post.title,
       description: post.description

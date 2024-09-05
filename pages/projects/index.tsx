@@ -10,25 +10,31 @@ import SocialLinks from '~/components/sociallinks';
 import { Project, loadProjects } from '~/data/projects';
 import { bufferIterable } from '~/utils/async';
 import { deleteUndefined } from '~/utils/object';
+import useLocale from "~/hooks/useLocale";
+import projectsTranslations from "~/public/locale/projects";
+
 
 type ProjectsPageProps = {
   projects: Project[];
 };
 
+
 const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
+  const t: { [key: string]: string } = projectsTranslations[useLocale().locale];
+
   return (
     <>
-      <Meta title="Proyectos" />
+      <Meta title={t.title} />
 
       <section>
-        <Heading>Proyectos</Heading>
+        <Heading>{t.title}</Heading>
         <Paragraph>
-          Estos son algunos proyectos en los que estuve trabajando. El enlace en el nombre de cada
-          uno te lleva a un post en mi blog con más información.
+          {t.description}
         </Paragraph>
       </section>
 
       <section
+
         className={c('grid', 'sm:grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'mt-8', 'gap-3')}
       >
         {projects.map((project, i) => (
@@ -51,7 +57,7 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
 
             <div className={c('grow', 'my-1', 'space-y-1')}>
               {/* Description */}
-              <div>{project.description}</div>
+              <div>{project.description && t[project.description]}</div>
             </div>
 
             <div>

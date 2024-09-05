@@ -1,3 +1,4 @@
+
 export type Project = {
   name: string;
   url: string;
@@ -7,24 +8,25 @@ export type Project = {
   technologies?: string;
 };
 
+
 const projects: Project[] = [
   {
     name: 'Feeds-Analyzer',
     url: 'https://github.com/ezeluduena/feeds-analyzer',
-    description: 'Una app CLI para encontrar "entidades nombradas" en feeds RSS de páginas de noticias.',
     language: 'Java',
+    description: 'description1',
     technologies: 'Spark'
   },
   {
     name: 'La Cosa',
-    url: '/blog/la-cosa',
-    description: 'El backend de una implementación web del juego de mesa "La Cosa".',
+    url: '/blog/es/la-cosa',
+    description: 'description2',
     technologies: 'FastAPI - WebSockets - PonyORM'
   },
   {
     name: 'ezeluduena.dev.ar',
     url: 'https://github.com/ezeluduena/ezeluduena.dev.ar',
-    description: 'Mi sitio web personal.',
+    description: 'description3',
     language: 'TypeScript',
     technologies: 'Next.js - TailwindCSS - React.js'
   }

@@ -1,14 +1,23 @@
 import { Analytics } from '@vercel/analytics/react';
 import c from 'classnames';
 import { useRouter } from 'next/router';
-import { FC, PropsWithChildren, useEffect, useMemo, useState } from 'react';
+import { FC, PropsWithChildren, use, useEffect, useMemo, useState } from 'react';
 import FadeIn from 'react-fade-in';
 import { FiMenu, FiMoon, FiSun } from 'react-icons/fi';
+import { GrLanguage } from "react-icons/gr";
 import Link from '~/components/link';
 import Meta from '~/components/meta';
 import useDebounce from '~/hooks/useDebounce';
 import useRouterStatus from '~/hooks/useRouterStatus';
 import useTheme from '~/hooks/useTheme';
+import useLocale from '~/hooks/useLocale';
+import layoutTranslations from '~/public/locale/layout';
+import enIconLight from '~/public/icons/en_icon.svg';
+import esIconLight from '~/public/icons/es_icon.svg';
+import enIconDark from '~/public/icons/en_icon_dark.svg';
+import esIconDark from '~/public/icons/es_icon_dark.svg';
+
+
 
 const Loader: FC = () => {
   // Only show the loading indicator if the navigation takes a while.
@@ -95,14 +104,62 @@ const ThemeSwitcher: FC = () => {
   );
 };
 
+const LanguageSwitcher: FC = () => {
+  const { locale, setLocale } = useLocale();
+  const isDark = useTheme().theme === 'dark';
+  const router = useRouter();
+
+  const esIcon = isDark ? esIconDark : esIconLight;
+  const enIcon = isDark ? enIconDark : enIconLight;
+
+  const handleLocaleChange = async () => {
+    const newLocale = locale === 'es' ? 'en' : 'es';
+    setLocale(newLocale);
+
+    // Redirect to the new locale path
+    const newPath = router.asPath.replace(`/${locale}`, `/${newLocale}`);
+    if (newPath !== router.asPath) {
+      router.push(newPath);
+    }
+  };
+
+  useEffect(() => {
+    const { pathname } = router;
+    const pathLocale = pathname.startsWith('/blog/en') ? 'en' : pathname.startsWith('/blog/es') ? 'es' : null;
+
+    if (pathLocale && pathLocale !== locale) {
+      handleLocaleChange();
+    }
+  }, [locale, router, setLocale]);
+
+  return (
+    <button
+      className={c(
+        'flex',
+        'items-center',
+        'justify-center',
+        'rounded', 'transition-colors',
+        'duration-300')}
+      onClick={handleLocaleChange}
+    >
+
+      {locale === 'es' ? <img src={esIcon} alt="Es" width="42" height="42" /> :
+        <img src={enIcon} alt="En" width="42" height="42" />}
+
+    </button >
+  );
+}
+
 const Header: FC = () => {
+  const { locale } = useLocale();
+  const t = layoutTranslations[locale];
   const links = useMemo(
     () => [
       { href: '/', label: 'home' },
-      { href: '/projects', label: 'proyectos' },
+      { href: '/projects', label: t.projects },
       { href: '/blog', label: 'blog' }
     ],
-    []
+    [locale, t.projects]
   );
 
   const router = useRouter();
@@ -134,7 +191,7 @@ const Header: FC = () => {
         </div>
 
         {/* Desktop nav */}
-        <nav className={c('hidden', 'sm:flex', 'px-2', 'gap-x-2', 'text-lg')}>
+        <nav className={c('hidden', 'sm:flex', 'px-2', 'gap-x-2', 'text-lg', 'items-center')}>
           {links.map((link, i) => (
             <NavLink key={i} href={link.href}>
               {link.label}
@@ -145,12 +202,20 @@ const Header: FC = () => {
           <div className={c('flex', 'ml-2', 'mt-0.5', 'text-2xl')}>
             <ThemeSwitcher />
           </div>
+
+          {/* Language switcher */}
+          <div className={c('flex', 'ml-2', 'mt-0.5', 'text-2xl')}>
+            <LanguageSwitcher />
+          </div>
         </nav>
 
         {/* Mobile buttons */}
         <div className={c('sm:hidden', 'flex', 'gap-x-5', 'text-2xl')}>
           {/* Theme switcher */}
           <ThemeSwitcher />
+
+          {/* Language switcher */}
+          <LanguageSwitcher />
 
           {/* Nav button */}
           <button
