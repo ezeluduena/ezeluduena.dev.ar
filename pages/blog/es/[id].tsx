@@ -9,6 +9,7 @@ import Inline from '~/components/inline';
 import Link from '~/components/link';
 import Markdown from '~/components/markdown';
 import Meta from '~/components/meta';
+import SocialLinks from '~/components/sociallinks';
 import { BlogPost, loadBlogPost, loadBlogPostRefs, publishBlogPostAssets } from '~/data/blog/es';
 import useTheme from '~/hooks/useTheme';
 import { deleteUndefined } from '~/utils/object';
@@ -82,7 +83,9 @@ const CommentSection: FC<BlogPostPageProps> = ({ post }) => {
         lang="es"
         loading="lazy"
       />
+      <SocialLinks />
     </section>
+
   );
 };
 
