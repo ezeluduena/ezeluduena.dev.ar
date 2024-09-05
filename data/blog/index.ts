@@ -6,6 +6,7 @@ import markdownToTxt from 'markdown-to-txt';
 import path from 'path';
 import readingTime from 'reading-time';
 import { getSiteUrl } from '~/utils/env';
+import useLocale from '~/hooks/useLocale';
 
 export type BlogPost = {
   id: string;
@@ -21,6 +22,7 @@ export type BlogPost = {
 export type BlogPostRef = Omit<BlogPost, 'source'>;
 
 export const loadBlogPosts = async function* () {
+
   const dirPath = path.resolve(process.cwd(), 'data', 'blog');
   const entries = await fs.opendir(dirPath);
 
