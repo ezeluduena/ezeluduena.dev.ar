@@ -1,7 +1,7 @@
 import { Analytics } from '@vercel/analytics/react';
 import c from 'classnames';
 import { useRouter } from 'next/router';
-import { FC, PropsWithChildren, useEffect, useMemo, useState } from 'react';
+import { FC, PropsWithChildren, use, useEffect, useMemo, useState } from 'react';
 import FadeIn from 'react-fade-in';
 import { FiMenu, FiMoon, FiSun } from 'react-icons/fi';
 import { GrLanguage } from "react-icons/gr";
@@ -112,14 +112,25 @@ const LanguageSwitcher: FC = () => {
   const esIcon = isDark ? esIconDark : esIconLight;
   const enIcon = isDark ? enIconDark : enIconLight;
 
-  const handleLocaleChange = () => {
+  const handleLocaleChange = async () => {
     const newLocale = locale === 'es' ? 'en' : 'es';
     setLocale(newLocale);
 
     // Redirect to the new locale path
     const newPath = router.asPath.replace(`/${locale}`, `/${newLocale}`);
-    router.push(newPath);
+    if (newPath !== router.asPath) {
+      router.push(newPath);
+    }
   };
+
+  useEffect(() => {
+    const { pathname } = router;
+    const pathLocale = pathname.startsWith('/blog/en') ? 'en' : pathname.startsWith('/blog/es') ? 'es' : null;
+
+    if (pathLocale && pathLocale !== locale) {
+      handleLocaleChange();
+    }
+  }, [locale, router, setLocale]);
 
   return (
     <button
