@@ -129,8 +129,8 @@ export const publishBlogFeed = async () => {
 
   for await (const post of loadBlogPosts()) {
     feed.addItem({
-      id: getSiteUrl(`/blog/${post.id}`),
-      link: getSiteUrl(`/blog/${post.id}`),
+      id: getSiteUrl(`/blog/es/${post.id}`),
+      link: getSiteUrl(`/blog/es/${post.id}`),
       date: new Date(post.date),
       title: post.title,
       description: post.description

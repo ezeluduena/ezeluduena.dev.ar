@@ -3,7 +3,7 @@ import { time } from "console";
 const blogTranslations = {
     en: {
         description0: "Here I write about the projects I'm working on, what I'm learning and anything else that I find interesting.",
-        description1: "You can suscribe to the ",
+        description1: "You can suscribe to the blog's ",
         description2: "RSS Feed",
         description3: " to get notified when I post a new article.",
         time: "min read"
