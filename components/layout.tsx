@@ -199,23 +199,25 @@ const Header: FC = () => {
           ))}
 
           {/* Theme switcher */}
-          <div className={c('flex', 'ml-2', 'mt-0.5', 'text-2xl')}>
+          <div className={c('flex', 'ml-2', 'mt-0.5', 'text-3xl')}>
             <ThemeSwitcher />
           </div>
 
           {/* Language switcher */}
-          <div className={c('flex', 'ml-2', 'mt-0.5', 'text-2xl')}>
+          <div className={c('flex', 'ml-2', 'mt-0.5', "w-10 h-10")}>
             <LanguageSwitcher />
           </div>
         </nav>
 
         {/* Mobile buttons */}
-        <div className={c('sm:hidden', 'flex', 'gap-x-5', 'text-2xl')}>
+        <div className={c('sm:hidden', 'flex', 'gap-x-5', 'text-3xl')}>
           {/* Theme switcher */}
           <ThemeSwitcher />
 
           {/* Language switcher */}
-          <LanguageSwitcher />
+          <div className={c('flex', "w-9 h-9")}>
+            <LanguageSwitcher />
+          </div>
 
           {/* Nav button */}
           <button
