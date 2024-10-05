@@ -1,46 +1,46 @@
 ---
 title: 'La Cosa'
 date: '2024-07-25'
-description: 'En el marco de la materia Ingeniería del Software, creamos una versión web del juego de cartas "La Cosa". Aplicando Scrum, utilizamos FastAPI para el backend y PonyORM para la gestión de datos. Durante el proyecto, me desempeñé como desarrollador backend y scrum master, enfrentando diversos desafíos técnicos y de colaboración. Incluimos enlaces al repositorio de GitHub, la documentación generada y una demo del juego.' 
+description: 'As part of the Software Engineering course, we created a web version of the card game "The Thing". Applying Scrum, we used FastAPI for the backend and PonyORM for data management. During the project, I worked as a backend developer and scrum master, facing various technical and collaboration challenges. We include links to the GitHub repository, the generated documentation, and a demo of the game.'
 ---
 
-## La Cosa
+## The Thing
 
-CoEEEEEEEEEEEEEEEemo trabajo de laboratorio de la materia [Ingeniería del Software](https://www.famaf.unc.edu.ar/documents/4409/Ingenier%C3%ADa_del_Software_I_LCC.pdf), se nos pidió realizar una implementación web del juego de mesa "La Cosa".
+As a lab project for the [Software Engineering](https://www.famaf.unc.edu.ar/documents/4409/Ingenier%C3%ADa_del_Software_I_LCC.pdf) course, we were tasked with creating a web implementation of the card game "Stay Away!".
 
-El objetivo del trabajo era simular una experiencia de desarrollo de software en la industria. Con este fin, utilizamos Jira como sistema de tickets y, durante 3 sprints de 15 días cada uno, aplicamos la metodología scrum en un grupo de 7 personas.
+The goal of the project was to simulate a software development experience in the industry. To this end, we used Jira as a ticketing system, and during 3 sprints of 15 days each, we applied the Scrum methodology in a group of 7 people.
 
-## El juego
+## The game
 
-"La Cosa", o "Stay Away!" en inglés, es un juego de cartas de [deducción social](https://es.wikipedia.org/wiki/Juego_de_deducci%C3%B3n_social) basado en la película "The Thing" y en las historias de Lovecraft. La verdad es que el juego tiene una dinámica media rara. Si les interesa, les dejo sus [reglas](https://drive.google.com/file/d/1s4IeDpYbX20jbroazP-CqOoIsnFvUnlZ/view?usp=sharing) y el [videíto](https://www.youtube.com/watch?v=MTqKINXKybI) de publicación que le hicieron que está muy piola.
+"Stay Away!", or "La Cosa" in Spanish, is a [social deduction game](https://en.wikipedia.org/wiki/Social_deduction_game) based on the movie "The Thing" and Lovecraftian stories. The truth is, the game has a somewhat odd dynamic. If you're interested, here are the [rules](https://drive.google.com/file/d/1OcZp60oKTge9ZDd1ImXcw81zQC9kxDLe/view?usp=sharing) and the [publication video](https://www.youtube.com/watch?v=MTqKINXKybI), which is quite cool.
 
-## Desarrollo
+## Development
 
-Mi participación durante todo el proyecto fue de desarrollador backend y durante el último sprint también de scrum master.
+My role throughout the project was as a backend developer and also as scrum master.
 
-Con respecto al backend, creamos un server con FastAPI que gestiona las siguientes funcionalidades:
+Regarding the backend, we created a server with FastAPI that manages the following functionalities:
 
-- Jugadores conectados.
-- Salas de espera para la creación de partidas.
-- Partidas en curso.
-- Chat en la sala de espera y dentro del juego, utilizando WebSockets.
-- Dinámica y estado de cada partida, también utilizando WebSockets.
-- Las cartas de cada partida y sus efectos al aplicarlas.
+- Connected players.
+- Waiting rooms for game creation.
+- Games in progress.
+- Chat in the waiting room and within the game, using WebSockets.
+- The dynamics and state of each game, also using WebSockets.
+- The cards in each game and their effects when applied.
 
-Para gestionar los datos de la aplicación utilizamos PonyORM a partir de un diagrama de clases creado y discutido previamente en la etapa de diseño.
+To manage the application data, we used PonyORM based on a class diagram created and discussed earlier in the design stage.
 
-Con respecto al testing, utilizamos Pytest para realizar tests de unidad y de integración con la base de datos. Agregamos estos tests a nuestro flujo de trabajo, creando una Github Action en el repositorio para que se ejecutaran automáticamente en cada commit.
+Regarding testing, we used Pytest for unit and integration tests with the database. We added these tests to our workflow by creating a GitHub Action in the repository so that they would run automatically on every commit.
 
-## Desafíos
+## Challenges
 
-Este proyecto significó mi primer acercamiento al desarrollo de una app web, poniendo en práctica conceptos como la comunicación entre el frontend y el backend, testing, múltiples conexiones, asincronía, diseño y arquitectura de software, entre muchos otros.
+This project was my first approach to web app development, putting into practice concepts such as frontend-backend communication, testing, multiple connections, asynchronous programming, software design, and architecture, among many others.
 
-Ante mi completa inexperiencia previa y la presión de cada entrega, pasé bastante tiempo leyendo las documentaciones de las tecnologías mencionadas. También descubrí que fue fundamental para lograr los objetivos una comunicación asertiva con el grupo, siendo que en los momentos de mayor dificultad fue el enfoque colectivo lo que nos ayudó a avanzar (perdón por el cierre cursi pero basado).
+Given my complete lack of previous experience and the pressure of each deadline, I spent quite some time reading the documentation for the mentioned technologies. I also discovered that assertive communication within the group was essential to achieving our goals, as collective focus helped us move forward during the most challenging moments (sorry for the cheesy ending, but it's true).
 
-## Links y demo
+## Links and demo
 
-**[Repositorio de GitHub del backend](https://github.com/TukiLaCosa/backend)**
+**[GitHub repository for the backend](https://github.com/TukiLaCosa/backend)**
 
-**[Documentación generada por FastAPI](https://backend-tuki.onrender.com/docs#/)** (Tarda en cargar la primera vez)
+**[Generated documentation by FastAPI](https://backend-tuki.onrender.com/docs#/)** (It takes a while to load the first time)
 
-Una vez cargado el backend, entrando al link anterior, se puede probar la app con el **[frontend del juego](https://tuki-frontend-nine.vercel.app/)**.
+Once the backend is loaded, you can try the app with the **[game's frontend](https://tuki-frontend-nine.vercel.app/)**.
