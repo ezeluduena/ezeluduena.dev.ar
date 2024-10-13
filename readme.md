@@ -2,6 +2,8 @@
 
 Welcome to the repository for my personal portfolio and blog website. This project is a derivative work of [Tyrrrz.me](https://github.com/Tyrrrz/Tyrrrz.me) and is built using modern web technologies.
 
+You can read more about this project on my [blog](https://ezeluduena.dev.ar/blog/en/ezeluduena).
+
 ## Table of Contents
 
 - [ezeluduena.dev.ar](#ezeluduenadevar)
