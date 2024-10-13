@@ -69,7 +69,7 @@ const CommentSection: FC<BlogPostPageProps> = ({ post }) => {
         categoryId="DIC_kwDOMZ12H84ChJN4"
         mapping="specific"
         strict="1"
-        term={post.title}
+        term={post.comment_section_title}
         reactionsEnabled="1"
         emitMetadata="0"
         inputPosition="top"

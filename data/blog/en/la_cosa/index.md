@@ -1,7 +1,8 @@
 ---
-title: '"La Cosa": A backend web game development'
+title: 'La Cosa: A web game backend development'
 date: '2024-07-25'
 description: 'As part of the Software Engineering course, we created a web version of the card game "The Thing". Applying Scrum, we used FastAPI for the backend and PonyORM for data management. During the project, I worked as a backend developer and scrum master, facing various technical and collaboration challenges. We include links to the GitHub repository, the generated documentation, and a demo of the game.'
+comment_section_title: 'La Cosa: A web game backend development'
 ---
 
 ## The Thing

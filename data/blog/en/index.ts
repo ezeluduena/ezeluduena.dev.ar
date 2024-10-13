@@ -12,6 +12,7 @@ export type BlogPost = {
   title: string;
   date: string;
   description: string;
+  comment_section_title: string;
   readingTimeMins: number;
   coverUrl?: string;
   excerpt: string;
@@ -37,9 +38,9 @@ export const loadBlogPosts = async function* () {
     const data = await fs.readFile(indexFilePath, 'utf8');
 
     const {
-      attributes: { title, date, description },
+      attributes: { title, date, description, comment_section_title },
       body
-    } = frontmatter<{ title: string; date: string; description: string }>(data);
+    } = frontmatter<{ title: string; date: string; description: string; comment_section_title: string }>(data);
 
     if (!title || typeof title !== 'string') {
       throw new Error(`Blog post '${id}' has missing or invalid title`);
@@ -53,6 +54,10 @@ export const loadBlogPosts = async function* () {
       throw new Error(`Blog post '${id}' has missing or invalid description`);
     }
 
+    if (!comment_section_title || typeof comment_section_title !== 'string') {
+      throw new Error(`Blog post '${id}' has missing or invalid comment_section_title`);
+    }
+
     const readingTimeMins = readingTime(body, { wordsPerMinute: 220 }).minutes;
     const coverFileName = childFileNames.find((fileName) => path.parse(fileName).name === 'cover');
     const coverUrl = coverFileName && `/blog/en/${id}/${coverFileName}`;
@@ -63,6 +68,7 @@ export const loadBlogPosts = async function* () {
       title,
       date,
       description,
+      comment_section_title,
       readingTimeMins,
       coverUrl,
       excerpt,
@@ -80,6 +86,7 @@ export const loadBlogPostRefs = async function* () {
       title: post.title,
       date: post.date,
       description: post.description,
+      comment_section_title: post.comment_section_title,
       readingTimeMins: post.readingTimeMins,
       coverUrl: post.coverUrl,
       excerpt: post.excerpt
