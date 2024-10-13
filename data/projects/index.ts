@@ -11,24 +11,17 @@ export type Project = {
 
 const projects: Project[] = [
   {
-    name: 'Feeds-Analyzer',
-    url: 'https://github.com/ezeluduena/feeds-analyzer',
-    language: 'Java',
-    description: 'description1',
-    technologies: 'Spark'
+    name: 'ezeluduena.dev.ar',
+    url: 'https://github.com/ezeluduena/ezeluduena.dev.ar',
+    description: 'description_ezeluduena',
+    language: 'TypeScript',
+    technologies: 'Next.js - TailwindCSS - React.js'
   },
   {
     name: 'La Cosa',
     url: '/blog/es/la_cosa',
-    description: 'description2',
+    description: 'description_la_cosa',
     technologies: 'FastAPI - WebSockets - PonyORM'
-  },
-  {
-    name: 'ezeluduena.dev.ar',
-    url: 'https://github.com/ezeluduena/ezeluduena.dev.ar',
-    description: 'description3',
-    language: 'TypeScript',
-    technologies: 'Next.js - TailwindCSS - React.js'
   }
 ];
 
