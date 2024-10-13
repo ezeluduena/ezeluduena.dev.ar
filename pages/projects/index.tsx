@@ -52,7 +52,7 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
           >
             {/* Name */}
             <div className={c('text-lg', 'text-ellipsis', 'overflow-hidden')} title={project.name}>
-              <Link href={project.url}>{project.name}</Link>
+              <Link href={t[project.url] || '#'}>{project.name}</Link>
             </div>
 
             <div className={c('grow', 'my-1', 'space-y-1')}>

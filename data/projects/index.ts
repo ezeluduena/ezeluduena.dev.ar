@@ -12,14 +12,14 @@ export type Project = {
 const projects: Project[] = [
   {
     name: 'ezeluduena.dev.ar',
-    url: 'https://github.com/ezeluduena/ezeluduena.dev.ar',
+    url: 'url_ezeluduena_dev_ar',
     description: 'description_ezeluduena',
     language: 'TypeScript',
     technologies: 'Next.js - TailwindCSS - React.js'
   },
   {
     name: 'La Cosa',
-    url: '/blog/es/la_cosa',
+    url: 'url_la_cosa',
     description: 'description_la_cosa',
     technologies: 'FastAPI - WebSockets - PonyORM'
   }
