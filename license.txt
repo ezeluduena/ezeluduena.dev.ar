@@ -1,3 +1,5 @@
+This is a derivative work of Oleksii Holub website https://github.com/Tyrrrz/Tyrrrz.me
+
 The MIT License (MIT)
 
 Copyright (c) 2024 Ezequiel Ludueña
