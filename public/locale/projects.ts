@@ -10,7 +10,7 @@ const projectsTranslations = {
         title: "Proyectos",
         description: "Estos son algunos proyectos en los que estuve trabajando. El enlace en el nombre de cada uno te lleva a un post en mi blog con más información.",
         description1: 'Una app CLI para encontrar "entidades nombradas" en feeds RSS de páginas de noticias.',
-        description2: 'El backend de una implementación web del juego de mesa "La Cosa".',
+        description2: 'Desarrollo backend de una implementación web del juego de mesa "La Cosa".',
         description3: 'Mi sitio web personal.'
     }
 };

@@ -8,7 +8,7 @@ const blogTranslations = {
         description3: " to get notified when I post a new article.",
         time: "min read",
         ezeluduena: "Creating a personal website",
-        la_cosa: "\"La Cosa\": A backend web game development"
+        la_cosa: "La Cosa: A web game backend development"
     },
     es: {
         description0: "Acá escribo sobre los proyectos en los que voy trabajando, lo que voy aprendiendo y cualquier otra cosa que me parezca interesante.",
@@ -17,7 +17,7 @@ const blogTranslations = {
         description3: "para que puedas abrirlo desde tu lector y enterarte de nuevas publicaciones.",
         time: "min de lectura",
         ezeluduena: "Creando una página web personal",
-        la_cosa: "\"La Cosa\": Implementación del backend de un juego web"
+        la_cosa: "La Cosa: Implementación del backend de un juego web"
 
     }
 };
