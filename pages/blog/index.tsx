@@ -26,7 +26,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
   );
 
   const locale = useLocale().locale;
-  const t = blogTranslations[locale];
+  const t: Record<string, string> = blogTranslations[locale];
 
   return (
     <>
@@ -57,7 +57,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
                   <TimelineItem key={i}>
                     {/* Title */}
                     <div className={c('text-lg')}>
-                      <Link href={`/blog/${locale}/${post.id}`}>{post.title}</Link>
+                      <Link href={`/blog/${locale}/${post.id}`}>{t[post.id]}</Link>
                     </div>
 
                     {/* Misc info */}

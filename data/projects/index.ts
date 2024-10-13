@@ -19,7 +19,7 @@ const projects: Project[] = [
   },
   {
     name: 'La Cosa',
-    url: '/blog/es/la-cosa',
+    url: '/blog/es/la_cosa',
     description: 'description2',
     technologies: 'FastAPI - WebSockets - PonyORM'
   },
