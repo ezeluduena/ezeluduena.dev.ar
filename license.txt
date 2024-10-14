@@ -2,6 +2,7 @@ This is a derivative work of Oleksii Holub website https://github.com/Tyrrrz/Tyr
 
 The MIT License (MIT)
 
+Copyright (c) 2019-2024 Oleksii Holub
 Copyright (c) 2024 Ezequiel Ludueña
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
