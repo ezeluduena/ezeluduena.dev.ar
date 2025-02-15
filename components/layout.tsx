@@ -1,7 +1,7 @@
 import { Analytics } from '@vercel/analytics/react';
 import c from 'classnames';
 import { useRouter } from 'next/router';
-import { FC, PropsWithChildren, use, useEffect, useMemo, useState } from 'react';
+import { FC, PropsWithChildren, useCallback, use, useEffect, useMemo, useState } from 'react';
 import FadeIn from 'react-fade-in';
 import { FiMenu, FiMoon, FiSun } from 'react-icons/fi';
 import { GrLanguage } from "react-icons/gr";
@@ -16,7 +16,7 @@ import enIconLight from '~/public/icons/en_icon.svg';
 import esIconLight from '~/public/icons/es_icon.svg';
 import enIconDark from '~/public/icons/en_icon_dark.svg';
 import esIconDark from '~/public/icons/es_icon_dark.svg';
-
+import Image from 'next/image';
 
 
 const Loader: FC = () => {
@@ -112,7 +112,7 @@ const LanguageSwitcher: FC = () => {
   const esIcon = isDark ? esIconDark : esIconLight;
   const enIcon = isDark ? enIconDark : enIconLight;
 
-  const handleLocaleChange = async () => {
+  const handleLocaleChange = useCallback(async () => {
     const newLocale = locale === 'es' ? 'en' : 'es';
     setLocale(newLocale);
 
@@ -121,7 +121,7 @@ const LanguageSwitcher: FC = () => {
     if (newPath !== router.asPath) {
       router.push(newPath);
     }
-  };
+  }, [locale, router, setLocale]);
 
   useEffect(() => {
     const { pathname } = router;
@@ -130,7 +130,7 @@ const LanguageSwitcher: FC = () => {
     if (pathLocale && pathLocale !== locale) {
       handleLocaleChange();
     }
-  }, [locale, router, setLocale]);
+  }, [locale, router, setLocale, handleLocaleChange]);
 
   return (
     <button
@@ -143,8 +143,8 @@ const LanguageSwitcher: FC = () => {
       onClick={handleLocaleChange}
     >
 
-      {locale === 'es' ? <img src={esIcon} alt="Es" width="42" height="42" /> :
-        <img src={enIcon} alt="En" width="42" height="42" />}
+      {locale === 'es' ? <Image src={esIcon} alt="Es" width="42" height="42" /> :
+        <Image src={enIcon} alt="En" width="42" height="42" />}
 
     </button >
   );
@@ -159,7 +159,7 @@ const Header: FC = () => {
       { href: '/projects', label: t.projects },
       { href: '/blog', label: 'blog' }
     ],
-    [locale, t.projects]
+    [t.projects]
   );
 
   const router = useRouter();
