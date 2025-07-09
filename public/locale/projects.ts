@@ -7,7 +7,9 @@ const projectsTranslations = {
         description_la_cosa: 'The backend of a web implementation of the board game "La Cosa".',
         url_la_cosa: '/blog/en/la_cosa',
         description_ezeluduena: 'My personal website.',
-        url_ezeluduena_dev_ar: '/blog/en/ezeluduena'
+        url_ezeluduena_dev_ar: '/blog/en/ezeluduena',
+        description_odoo_union: 'An Odoo module pack for work unions management.',
+        url_odoo_union: 'https://github.com/Mueve-TEC/odoo-union'
     },
     es: {
         title: "Proyectos",
@@ -15,7 +17,9 @@ const projectsTranslations = {
         description_la_cosa: 'Desarrollo backend de una implementación web del juego de mesa "La Cosa".',
         url_la_cosa: '/blog/es/la_cosa',
         description_ezeluduena: 'Mi sitio web personal.',
-        url_ezeluduena_dev_ar: '/blog/es/ezeluduena'
+        url_ezeluduena_dev_ar: '/blog/es/ezeluduena',
+        description_odoo_union: 'Un paquete de módulos de Odoo para la gestión de sindicatos laborales.',
+        url_odoo_union: 'https://github.com/Mueve-TEC/odoo-union'
     }
 };
 

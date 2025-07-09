@@ -11,6 +11,13 @@ export type Project = {
 
 const projects: Project[] = [
   {
+    name: 'odoo-union',
+    url: 'url_odoo_union',
+    description: 'description_odoo_union',
+    language: 'Python - XML',
+    technologies: 'Odoo - PostgreSQL'
+  },
+  {
     name: 'ezeluduena.dev.ar',
     url: 'url_ezeluduena_dev_ar',
     description: 'description_ezeluduena',
