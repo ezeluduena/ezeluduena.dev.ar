@@ -45,6 +45,11 @@ const Meta: FC<MetaProps> = ({ title, description, keywords, imageUrl, imageLayo
       <meta key="keywords" name="keywords" content={actualKeywords} />
       <meta key="theme-color" name="theme-color" content="#00e5e5" />
 
+      {/* This is a blog author atribution for rebel.ar*/}
+      <meta key="fediverse:creator" name="fediverse:creator" content="@ezeluduena@rebel.ar" />
+      {/* This is a link to my rebel.ar profile for rebel.ar verification. */}
+      <link rel="me" href="https://rebel.ar/@ezeluduena" />
+
       <meta key="og:type" property="og:type" content="website" />
       <meta key="og:site_name" property="og:site_name" content={siteName} />
       <meta key="og:title" property="og:title" content={actualTitle} />
