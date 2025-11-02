@@ -57,7 +57,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
                   <TimelineItem key={i}>
                     {/* Title */}
                     <div className={c('text-lg')}>
-                      <Link href={`/blog/${locale}/${post.id}`}>{t[post.id]}</Link>
+                      <Link href={`/blog/${locale}/${post.id}`}>{t[post.id] || post.title}</Link>
                     </div>
 
                     {/* Misc info */}

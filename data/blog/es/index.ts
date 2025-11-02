@@ -110,7 +110,7 @@ export const publishBlogPostAssets = async (id: string) => {
   await fs.cp(dirPath, targetDirPath, {
     recursive: true,
     filter: (src) => {
-      return ['', '.png', '.jpg'].includes(path.extname(src));
+      return path.extname(src) !== '.md';
     }
   });
 };
