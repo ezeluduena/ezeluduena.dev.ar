@@ -5,48 +5,32 @@ description: 'Este trabajo analiza la relación del presupuesto ejecutado por el
 comment_section_title: 'Putting the numbers to work'
 ---
 
-Motivados por las dificultades que enfrentamos en Argentina para conseguir trabajos decentes, las crisis económicas y la permanente discusión de los últimos años acerca del rol del Estado en la sociedad, fue que nos propusimos indagar **¿en qué medida el presupuesto nacional en políticas de empleo incide en las estadísticas laborales?**.
+Motivated by the difficulties we face in Argentina in finding quality jobs, the recurring economic crises, and the ongoing debate in recent years about the role of the State in society, we set out to explore **to what extent does the national budget for employment policies affect labor statistics?**
 
-Con este fin, seleccionamos para comparar los períodos de gobierno 2011-2015 y 2015-2019, con Cristina Fernandez y Mauricio Macri en la presidencia respectivamente. Estas administraciones nos resultaron interesantes ya que se dieron en un contexto global y social relativamente estable, evitando por ejemplo la pandemia por el COVID-19, y además representaron un marcado contraste en cuanto a las políticas laborales y económicas que llevaron a cabo.
+To this end, we selected **the government periods 2011–2015 and 2015–2019, under the presidencies of Cristina Fernández and Mauricio Macri**, respectively. These administrations were particularly interesting because they occurred in a relatively stable global and social context, avoiding, for instance, the COVID-19 pandemic, and represented a clear contrast in terms of the labor and economic policies they implemented. Based on this selection, **we analyzed the relationship between the executed budget for the “Labor” function and the indicators of unemployment, informality, and underemployment.**
 
-A partir de esta selección, analizamos la relación entre el presupuesto ejecutado con la función "Trabajo" y los indicadores de desempleo, informalidad y subocupación.
+This work was developed by **Ezequiel Ludueña (myself), Manuel Barragán, Micaela de Hernández, and Marco Spalleti**, in the context of the [SocioHackathon](https://sociales.unc.edu.ar/content/todav-est-s-tiempo-de-presentarte-en-el-i-socio-hackathon-investigar-en-sociales-2024-la) organized by the Faculty of Social Sciences of the National University of Córdoba last year. Our team, composed of members from Computer Science, Political Science, and Sociology, approached this research question using large public datasets and achieved **[first prize](https://sociales.unc.edu.ar/content/i-socio-hackathon-investigar-en-sociales-2024-ya-se-conocen-les-ganadores-del-concurso)**.
 
-Este trabajo fue desarrollado por Ezequiel Ludueña (yo), Manuel Barragan, Micaela de Hernández y Marco Spalleti, en el contexto de la SocioHackathon realizada por la facultad de Ciencias Sociales de la UNC el año pasado. Con un equipo interdisciplinario, provenientes de Ciencias de la Computación, Ciencia Política y Sociología, abordamos esta consigna de investigación utilizando grandes bases de datos y conseguimos el primer premio.
+## Data
 
-## Datos
+- To obtain the amount invested in labor policies, we used the **[Open Budget](https://www.presupuestoabierto.gob.ar/sici/datos-abiertos)** database from the **Ministry of Economy**, specifically the dataset **“Detailed expenditure budget and execution”**, which contains all national government budget allocations. These amounts were deflated to allow comparison in an inflationary context.
 
-Encaramos esta cuestión utilizamos el dataset de presupuesto abierto y el de la encuesta permanente de hogares, con la que realizamos el cálculo de las tasas de desempleo, informalidad y subocupación.
+- For the calculation of **unemployment, informality, and underemployment rates**, we used data from the **[Permanent Household Survey (EPH)](https://www.indec.gob.ar/indec/web/Institucional-Indec-BasesDeDatos)** conducted by **INDEC**. To address the absence of INDEC data for the fourth quarter of 2015, we estimated those values through linear interpolation.
 
-## Períodos de gobierno
+## Results
 
-Con respecto a los gobiernos analizados seleccionamos dos que contrastaron posturas marcadas acerca de las formas y el rol que debe ocupar el estado en la economía.  
+As a result, we found a negative correlation between the amounts invested in labor policies and the calculated rates. In other words, during the analyzed periods, **higher investment in employment-related policies statistically corresponds with lower rates of unemployment, informality, and underemployment**.
 
-A continuación les dejo con nuestros resultados.  
+Our main conclusions highlight the fundamental role of the State in shaping employment, the need to complement this type of quantitative analysis with qualitative approaches, and the potential to apply our methodology to other areas, such as analyzing different budget functions or focusing on specific population groups within the EPH.
 
-## Resultados
+## Argentine Conference on Informatics (JAIIO)
 
-Luego medimos la correlación a través del coeficiente de Pearson, con el que encontramos una correlación negativa. Es decir que estadísticamente si una de las variables aumenta la otra tenderá a disminuir.
+As the final step of this project, we presented our work in the Student Paper Contest at the **[54th Argentine Conference on Informatics (JAIIO)](https://54jaiio.sadio.org.ar/)**. There, we formalized our research in a scientific article format and shared our interdisciplinary experience in computational social sciences with other researchers and students.
 
-Entre las conclusiones principales del trabajo se destaca el rol fundamental que cumple el estado en la composición del empleo, la necesidad de acompañar este tipo de trabajos con otros análisis con un enfoque cualitativo y que la metodología desarrollada puede aplicarse en otras investigaciones del estilo.
+## Links
 
-para mayor detalle
+For more details, you can visit the following links:
 
-## Mi rol en el trabajo
-
-## JAIIO 54
-
-Adaptar el trabajo y el proceso de aceptación
-
-presentación de poster
-
-## Links y demo
-
-**[Repositorio de GitHub](https://github.com/TukiLaCosa/backend)**
-
-**[Artículo competencia](https://backend-tuki.onrender.com/docs#/)**
-
-**[Video de difusión]()**
-
-**[Poster JAIIO]()**
-
-**[Artículo JAIIO](https://backend-tuki.onrender.com/docs#/)**
+- **[GitHub repository with notebooks, documentation, scripts, and visualizations](https://github.com/ezeluduena/socio-hackathon)**
+- **[Article presented at the 54th JAIIO](https://revistas.unlp.edu.ar/JAIIO/article/view/19907)**
+- **[Poster presented at the 54th JAIIO](/blog/es/poniendo_a_trabajar_a_los_numeros/Poster_JAIIO.pdf)**
