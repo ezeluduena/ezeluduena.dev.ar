@@ -1,5 +1,5 @@
 ---
-title: 'Poniendo a trabajar a los números'
+title: 'Putting the numbers to work'
 date: '2025-08-07'
 description: 'Este trabajo analiza la relación del presupuesto ejecutado por el estado nacional argentino en políticas laborales y los indicadores sociales de desempleo,  subocupación e informalidad durante los períodos de gobierno 2011-2015 y (2015-2019). Se utilizó la base de datos de Presupuesto Abierto del Ministerio de Economía para filtrar los montos invertidos con la función de promover el trabajo. Para el cálculo de las tasas laborales se consideraron los resultados de la EPH del INDEC. Este artículo también describe detalladamente la metodología utilizada para el estudio de grandes bases de datos gubernamentales abiertas, la reproducción de indicadores sociales públicos, el proceso de deflactación de valores (necesario al comparar montos presupuestarios ejecutados en un contexto inflacionario) y la estimación de datos faltantes utilizando interpolación numérica.'
 comment_section_title: 'Putting the numbers to work'
