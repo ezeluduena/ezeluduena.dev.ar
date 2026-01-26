@@ -9,7 +9,6 @@ const blogTranslations = {
                 time: "min read",
                 ezeluduena: "Creating a personal website",
                 la_cosa: "La Cosa: A web game backend development",
-                sob_tecnologica: "¿Qué es lo que se juega cuando Trump ordena cerrarnos el mail?",
                 poniendo_a_trabajar_a_los_numeros: "Putting the numbers to work"
         },
         es: {
@@ -20,7 +19,6 @@ const blogTranslations = {
                 time: "min de lectura",
                 ezeluduena: "Creando una página web personal",
                 la_cosa: "La Cosa: Implementación del backend de un juego web",
-                sob_tecnologica: "¿Qué es lo que se juega cuando Trump ordena cerrarnos el mail?",
                 poniendo_a_trabajar_a_los_numeros: "Poniendo a trabajar los números"
 
         }

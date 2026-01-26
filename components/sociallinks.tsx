@@ -1,7 +1,6 @@
 import c from 'classnames';
 import Link from '~/components/link';
 import { FiGithub, FiMail, FiLinkedin } from 'react-icons/fi';
-import { PiMastodonLogoLight } from "react-icons/pi";
 
 const SocialLinks = () => {
     return (
@@ -17,12 +16,6 @@ const SocialLinks = () => {
                 <Link variant="discreet" href="mailto:ezeluduena123@gmail.com">
                     <div className={c('px-2')}>
                         <FiMail strokeWidth={1} />
-                    </div>
-                </Link>
-
-                <Link variant="discreet" href="https://rebel.ar/@ezeluduena">
-                    <div className={c('px-2')}>
-                        <PiMastodonLogoLight strokeWidth={1} />
                     </div>
                 </Link>
 

@@ -4,6 +4,9 @@ const { spawnSync } = require('child_process');
 const config = {
   output: "export",
   reactStrictMode: true,
+  experimental: {
+    turbopack: false,
+  },
   images: {
     unoptimized: true,
   },
