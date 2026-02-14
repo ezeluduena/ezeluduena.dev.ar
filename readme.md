@@ -2,7 +2,7 @@
 
 Welcome to the repository for my personal portfolio and blog website.
 
-This project is a derivative work of [Tyrrrz.me](https://github.com/Tyrrrz/Tyrrrz.me), you can read more its development on my [blog](https://ezeluduena.dev.ar/blog/en/ezeluduena).
+This project is a derivative work of [Tyrrrz.me](https://github.com/Tyrrrz/Tyrrrz.me), you can read more from its development on my [blog](https://ezeluduena.dev.ar/blog/en/ezeluduena).
 
 ## Features
 
