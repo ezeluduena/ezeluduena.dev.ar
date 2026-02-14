@@ -1,19 +1,8 @@
 # ezeluduena.dev.ar
 
-Welcome to the repository for my personal portfolio and blog website. This project is a derivative work of [Tyrrrz.me](https://github.com/Tyrrrz/Tyrrrz.me) and is built using modern web technologies.
+Welcome to the repository for my personal portfolio and blog website.
 
-You can read more about this project on my [blog](https://ezeluduena.dev.ar/blog/en/ezeluduena).
-
-## Table of Contents
-
-- [ezeluduena.dev.ar](#ezeluduenadevar)
-  - [Table of Contents](#table-of-contents)
-  - [Features](#features)
-  - [Technologies Used](#technologies-used)
-  - [Setup and Installation](#setup-and-installation)
-  - [License](#license)
-  - [Contributing](#contributing)
-  - [Contact](#contact)
+This project is a derivative work of [Tyrrrz.me](https://github.com/Tyrrrz/Tyrrrz.me), you can read more its development on my [blog](https://ezeluduena.dev.ar/blog/en/ezeluduena).
 
 ## Features
 
@@ -62,14 +51,10 @@ To set up the project locally, follow these steps:
 
 This project is licensed under the MIT License. See the [LICENSE](license.txt) file for details.
 
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
-
 ## Contact
 
 For any inquiries or feedback, please reach out via [email](mailto:ezeluduena123@gmail.com) or connect with me on [LinkedIn](www.linkedin.com/in/ezeluduena).
 
 ---
 
-Thank you for visiting my repository! If you find this project useful, please consider giving it a star ⭐.
+Thank you for visiting my repository! Feel free to explore the code and contribute if you have any suggestions or improvements.
