@@ -34,8 +34,16 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
       </section>
 
       <section
-
-        className={c('grid', 'sm:grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'mt-8', 'gap-3')}
+        className={c(
+          'grid',
+          'sm:grid-cols-1',
+          'md:grid-cols-2',
+          'lg:grid-cols-3',
+          'mt-8',
+          'gap-3',
+          'auto-rows-fr',
+          'items-stretch'
+        )}
       >
         {projects.map((project, i) => (
           <section
@@ -43,6 +51,7 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
             className={c(
               'flex',
               'flex-col',
+              'h-full',
               'p-4',
               'border',
               'border-cyan-500',
