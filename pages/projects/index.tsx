@@ -49,61 +49,78 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
           <section
             key={i}
             className={c(
-              'flex',
-              'flex-col',
+              'group',
+              'relative',
               'h-full',
               'p-4',
               'border',
               'border-cyan-500',
               'dark:border-cyan-700',
-              'rounded'
+              'rounded',
+              'transition-colors',
+              'hover:border-cyan-400',
+              'hover:bg-cyan-50',
+              'dark:hover:bg-cyan-900/20'
             )}
           >
-            {/* Name */}
-            <div
-              className={c('text-lg', 'text-ellipsis', 'overflow-hidden')}
-              title={t[project.name] || project.name}
+            <Link
+              href={t[project.url] || '#'}
+              variant="hidden"
+              className={c('absolute', 'inset-0', 'z-10', 'block')}
             >
-              <Link href={t[project.url] || '#'}>{t[project.name] || project.name}</Link>
-            </div>
+              <span className={c('sr-only')}>{t[project.name] || project.name}</span>
+            </Link>
 
-            <div className={c('grow', 'my-1', 'space-y-1')}>
-              {/* Description */}
-              <div>{project.description && t[project.description]}</div>
-            </div>
+            <div className={c('relative', 'z-0', 'flex', 'flex-col', 'h-full', 'pointer-events-none')}>
+              {/* Name */}
+              <div
+                className={c(
+                  'text-lg',
+                  'text-ellipsis',
+                  'overflow-hidden',
+                  'text-blue-500',
+                  'dark:text-blue-300',
+                  'group-hover:underline'
+                )}
+                title={t[project.name] || project.name}
+              >
+                {t[project.name] || project.name}
+              </div>
 
-            <div>
-              {/* Homepage */}
-              {project.homepageUrl && (
-                <div className={c('overflow-hidden')}>
+              <div className={c('grow', 'my-1', 'space-y-1')}>
+                {/* Description */}
+                <div>{project.description && t[project.description]}</div>
+              </div>
+
+              {/* Misc info */}
+              <div className={c('flex', 'flex-wrap', 'mt-1', 'gap-x-3')}>
+                {project.language && (
                   <Inline>
-                    <FiExternalLink strokeWidth={1} />
-                    <div>
-                      <Link href={project.homepageUrl}>{project.homepageUrl}</Link>
-                    </div>
+                    <FiCode className={c('font-bold', 'border-cyan-900')} strokeWidth={1.6} />
+                    <div className={c('font-light')}>{project.language}</div>
                   </Inline>
-                </div>
-              )}
+                )}
+                {project.technologies && (
+                  <Inline>
+                    <FiTool className={c('font-bold', 'fill-yellow-400', 'dark:text-yellow-400')}
+                      strokeWidth={1} />
+                    <div className={c('font-light')}>{project.technologies}</div>
+                  </Inline>
+                )}
+              </div>
             </div>
 
-            {/* Misc info */}
-            <div className={c('flex', 'flex-wrap', 'mt-1', 'gap-x-3')}>
-
-              {project.language && (
+            {/* Homepage */}
+            {project.homepageUrl && (
+              <div className={c('overflow-hidden', 'pointer-events-auto', 'relative', 'z-20')}>
                 <Inline>
-                  <FiCode className={c('font-bold', 'border-cyan-900')} strokeWidth={1.6} />
-                  <div className={c('font-light')}>{project.language}</div>
+                  <FiExternalLink strokeWidth={1} />
+                  <div>
+                    <Link href={project.homepageUrl}>{project.homepageUrl}</Link>
+                  </div>
                 </Inline>
-              )}
-              {project.technologies && (
-                <Inline>
-                  <FiTool className={c('font-bold', 'fill-yellow-400', 'dark:text-yellow-400')}
-                    strokeWidth={1} />
-                  <div className={c('font-light')}>{project.technologies}</div>
-                </Inline>
-              )}
-
-            </div>
+              </div>
+            )}
           </section>
         ))}
       </section>
