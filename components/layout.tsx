@@ -157,9 +157,10 @@ const Header: FC = () => {
     () => [
       { href: '/', label: 'home' },
       { href: '/projects', label: t.projects },
+      { href: '/talks', label: t.talks },
       { href: '/blog', label: 'blog' }
     ],
-    [t.projects]
+    [t.projects, t.talks]
   );
 
   const router = useRouter();
