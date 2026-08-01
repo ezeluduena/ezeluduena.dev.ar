@@ -171,12 +171,12 @@ const Header: FC = () => {
   const t = layoutTranslations[locale];
   const links = useMemo(
     () => [
-      { href: '/', label: 'home' },
+      { href: '/', label: t.home },
       { href: '/projects', label: t.projects },
       { href: '/talks', label: t.talks },
-      { href: '/blog', label: 'blog' }
+      { href: '/blog', label: t.blog }
     ],
-    [t.projects, t.talks]
+    [t.home, t.projects, t.talks, t.blog]
   );
 
   const router = useRouter();
