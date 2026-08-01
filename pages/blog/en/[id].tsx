@@ -96,7 +96,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
         description={post.excerpt}
         imageLayout={post.coverUrl ? 'fill' : 'aside'}
         imageUrl={post.coverUrl}
-        rssUrl="/blog/rss.xml"
+        rssUrl="/blog/en/rss.xml"
       />
 
       <div className={c('space-y-4')}>
