@@ -92,13 +92,15 @@ const NavLink: FC<NavLinkProps> = ({ href, children }) => {
 
 const ThemeSwitcher: FC = () => {
   const { theme, setTheme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
     <button
+      aria-label={isDark ? 'Switch to light mode' : 'Cambiar a modo oscuro'}
       className={c('text-blue-500', 'dark:text-yellow-500', 'cursor-pointer')}
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
     >
-      {theme === 'dark' ? <FiMoon /> : <FiSun />}
+      {isDark ? <FiMoon aria-hidden /> : <FiSun aria-hidden />}
     </button>
   );
 };
@@ -187,6 +189,24 @@ const Header: FC = () => {
 
   return (
     <header>
+      <a
+        href="#main"
+        className={c(
+          'sr-only',
+          'focus:not-sr-only',
+          'focus:absolute',
+          'focus:z-50',
+          'focus:top-2',
+          'focus:left-2',
+          'focus:px-3',
+          'focus:py-1',
+          'focus:rounded',
+          'focus:bg-cyan-500',
+          'focus:text-white'
+        )}
+      >
+        {locale === 'es' ? 'Saltar al contenido' : 'Skip to content'}
+      </a>
       <div
         className={c(
           'flex',
@@ -236,10 +256,13 @@ const Header: FC = () => {
 
           {/* Nav button */}
           <button
+            aria-label={locale === 'es' ? 'Abrir menú' : 'Open menu'}
+            aria-expanded={isMobileNavVisible}
+            aria-controls="mobile-nav"
             className={c('sm:hidden', { 'text-cyan-500': isMobileNavVisible })}
             onClick={() => setIsMobileNavVisible((v) => !v)}
           >
-            <FiMenu />
+            <FiMenu aria-hidden />
           </button>
         </div>
       </div>
@@ -247,6 +270,7 @@ const Header: FC = () => {
       {/* Mobile nav */}
       <div className={c('sm:hidden', 'overflow-hidden')}>
         <nav
+          id="mobile-nav"
           className={c(
             { '-mt-[100%]': !isMobileNavVisible },
             'p-2',
@@ -276,7 +300,7 @@ const Main: FC<PropsWithChildren> = ({ children }) => {
   const fadeKey = useMemo(() => Math.random().toString() + router.pathname, [router.pathname]);
 
   return (
-    <main className={c('mx-4', 'mt-6', 'mb-20')}>
+    <main id="main" className={c('mx-4', 'mt-6', 'mb-20')}>
       <FadeIn key={fadeKey}>{children}</FadeIn>
     </main>
   );
