@@ -29,7 +29,7 @@ const HomePage: NextPage = () => {
         )}
       >
         <div className={c('flex-none', 'w-48', 'md:w-56', 'md:mt-12')}>
-          <Image src="/logo-trans.png" alt="picture" priority />
+          <Image src="/logo-trans.png" alt="Ezequiel Ludueña" priority />
         </div>
 
         <div>

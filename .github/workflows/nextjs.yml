@@ -73,8 +73,12 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      - name: Type check
+        run: ${{ steps.detect-package-manager.outputs.runner }} tsc --noEmit
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        env:
+          SITE_URL: https://ezeluduena.dev.ar
       - name: Create CNAME file
         run: echo "ezeluduena.dev.ar" > ./out/CNAME
       - name: Upload artifact
