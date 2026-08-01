@@ -25,4 +25,5 @@ lerna-debug.log*
 
 # blog assets
 /public/blog/
+/public/sitemap.xml
 /out/

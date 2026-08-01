@@ -15,6 +15,7 @@ import { loadBlogPostRefs as loadEsBlogPostRefs, publishBlogFeed as publishEsBlo
 import { groupBy } from '~/utils/array';
 import { bufferIterable } from '~/utils/async';
 import { deleteUndefined } from '~/utils/object';
+import { publishSitemap } from '~/utils/sitemap';
 import blogTranslations from '~/public/locale/blog';
 import useLocale from '~/hooks/useLocale';
 
@@ -115,6 +116,15 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
 
   enPosts.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
   esPosts.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+
+  await publishSitemap([
+    { loc: '/' },
+    { loc: '/projects' },
+    { loc: '/talks' },
+    { loc: '/blog' },
+    ...enPosts.map((post) => ({ loc: `/blog/en/${post.id}`, lastmod: post.date })),
+    ...esPosts.map((post) => ({ loc: `/blog/es/${post.id}`, lastmod: post.date }))
+  ]);
 
   return {
     props: {
