@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import { FC, PropsWithChildren, useCallback, use, useEffect, useMemo, useState } from 'react';
 import FadeIn from 'react-fade-in';
 import { FiMenu, FiMoon, FiSun } from 'react-icons/fi';
-import { GrLanguage } from "react-icons/gr";
 import Link from '~/components/link';
 import Meta from '~/components/meta';
 import useDebounce from '~/hooks/useDebounce';

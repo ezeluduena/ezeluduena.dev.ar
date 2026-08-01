@@ -96,13 +96,7 @@ const Markdown: FC<MarkdownProps> = ({ source, transformUrl }) => {
           );
         },
         img: ({ src, alt }) => {
-          // return <Image src={src!} alt={alt!} />;
-          return (
-            <Image
-              src={typeof src === 'string' ? src : src ? URL.createObjectURL(src) : ''}
-              alt={alt || ''}
-            />
-          );
+          return <Image src={typeof src === 'string' ? src : ''} alt={alt || ''} />;
         },
         blockquote: ({ children }) => {
           return <Quote>{children}</Quote>;

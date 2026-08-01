@@ -6,7 +6,6 @@ import { FiCalendar, FiClock } from 'react-icons/fi';
 import Heading from '~/components/heading';
 import Image from '~/components/image';
 import Inline from '~/components/inline';
-import Link from '~/components/link';
 import Markdown from '~/components/markdown';
 import Meta from '~/components/meta';
 import SocialLinks from '~/components/sociallinks';
