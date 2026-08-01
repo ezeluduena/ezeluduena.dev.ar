@@ -20,21 +20,6 @@ const config = {
       process.env.SITE_URL ||
       (process.env.VERCEL_URL && 'https://' + process.env.VERCEL_URL) ||
       'http://localhost:3000'
-  },
-
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: {
-        loader: 'url-loader',
-        options: {
-          limit: 8192,
-          name: '[name].[hash:8].[ext]'
-        }
-      }
-    });
-
-    return config;
   }
 };
 
