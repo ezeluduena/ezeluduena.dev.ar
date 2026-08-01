@@ -95,9 +95,10 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
       <Meta
         title={post.title}
         description={post.excerpt}
-        imageLayout={post.coverUrl ? 'fill' : 'aside'}
         imageUrl={post.coverUrl}
+        imageAlt={post.title}
         rssUrl="/blog/es/rss.xml"
+        publishedTime={post.date}
       />
 
       <div className={c('space-y-4')}>
