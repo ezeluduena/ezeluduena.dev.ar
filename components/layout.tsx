@@ -270,28 +270,32 @@ const Main: FC<PropsWithChildren> = ({ children }) => {
 
 const Page: FC<PropsWithChildren> = ({ children }) => {
   const { theme } = useTheme();
+  const { locale } = useLocale();
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    root.lang = locale;
+  }, [theme, locale]);
 
   return (
     <div
-      className={c({
-        dark: theme === 'dark',
-        light: theme === 'light'
-      })}
+      className={c(
+        'flex',
+        'flex-col',
+        'min-h-screen',
+        'dark:bg-neutral-900',
+        'dark:text-neutral-200'
+      )}
     >
-      <div
-        className={c(
-          'flex',
-          'flex-col',
-          'min-h-screen',
-          'dark:bg-neutral-900',
-          'dark:text-neutral-200'
-        )}
-      >
-        <Loader />
-        <div className={c('container', 'max-w-4xl', 'mx-auto')}>
-          <Header />
-          <Main>{children}</Main>
-        </div>
+      <Loader />
+      <div className={c('container', 'max-w-4xl', 'mx-auto')}>
+        <Header />
+        <Main>{children}</Main>
       </div>
     </div>
   );
