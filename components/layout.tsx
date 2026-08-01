@@ -105,7 +105,7 @@ const ThemeSwitcher: FC = () => {
 };
 
 const LanguageSwitcher: FC = () => {
-  const { locale, setLocale } = useLocale();
+  const { locale, setLocale, userPreferredLocale } = useLocale();
   const isDark = useTheme().theme === 'dark';
   const router = useRouter();
 
@@ -116,24 +116,39 @@ const LanguageSwitcher: FC = () => {
     const newLocale = locale === 'es' ? 'en' : 'es';
     setLocale(newLocale);
 
-    // Redirect to the new locale path
-    const newPath = router.asPath.replace(`/${locale}`, `/${newLocale}`);
+    // Redirect to the equivalent post in the other locale
+    const newPath = router.asPath.replace(`/blog/${locale}`, `/blog/${newLocale}`);
     if (newPath !== router.asPath) {
       router.push(newPath);
     }
   }, [locale, router, setLocale]);
 
+  // Only align the URL with the user's *explicit* preference. First-time
+  // visitors (no stored preference) are left on whatever locale URL they
+  // landed on, so shared English links are stable.
   useEffect(() => {
-    const { pathname } = router;
-    const pathLocale = pathname.startsWith('/blog/en') ? 'en' : pathname.startsWith('/blog/es') ? 'es' : null;
-
-    if (pathLocale && pathLocale !== locale) {
-      handleLocaleChange();
+    if (userPreferredLocale === null) {
+      return;
     }
-  }, [locale, router, setLocale, handleLocaleChange]);
+
+    const { pathname, asPath } = router;
+    const pathLocale = pathname.startsWith('/blog/en')
+      ? 'en'
+      : pathname.startsWith('/blog/es')
+        ? 'es'
+        : null;
+
+    if (pathLocale && pathLocale !== userPreferredLocale) {
+      const newPath = asPath.replace(`/blog/${pathLocale}`, `/blog/${userPreferredLocale}`);
+      if (newPath !== asPath) {
+        router.push(newPath);
+      }
+    }
+  }, [userPreferredLocale, router]);
 
   return (
     <button
+      aria-label={locale === 'es' ? 'Switch to English' : 'Cambiar a español'}
       className={c(
         'flex',
         'items-center',
@@ -143,8 +158,8 @@ const LanguageSwitcher: FC = () => {
       onClick={handleLocaleChange}
     >
 
-      {locale === 'es' ? <Image src={esIcon} alt="Es" width="42" height="42" /> :
-        <Image src={enIcon} alt="En" width="42" height="42" />}
+      {locale === 'es' ? <Image src={esIcon} alt="Castellano" width={28} height={28} /> :
+        <Image src={enIcon} alt="English" width={28} height={28} />}
 
     </button >
   );
