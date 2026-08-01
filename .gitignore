@@ -17,12 +17,6 @@ lerna-debug.log*
 /build/
 /next-env.d.ts
 
-# next-pwa
-/public/fallback-*.js*
-/public/workbox-*.js*
-/public/sw.js*
-/public/worker-*.js*
-
 # blog assets
 /public/blog/
 /public/sitemap.xml
