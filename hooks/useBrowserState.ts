@@ -25,7 +25,7 @@ const getStorageValue = (storage: Storage, key: string) => {
   return null;
 };
 
-const setStorageValue = (storage: Storage, key: string, value: any) => {
+const setStorageValue = (storage: Storage, key: string, value: unknown) => {
   if (typeof value !== 'undefined' && value !== null) {
     storage.setItem(key, JSON.stringify(value));
   } else {
@@ -45,6 +45,10 @@ const useLocalState = <T>(storageKind: StorageKind, key: string, initialState: T
   useEffect(() => {
     const item = getStorageValue(getStorage(storageKind), key);
     if (item) {
+      // Sync the initial value from localStorage after mount; the storage
+      // read is only safe client-side, so it cannot happen in the state
+      // initializer (which would run during SSR).
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setValue(item);
     }
 

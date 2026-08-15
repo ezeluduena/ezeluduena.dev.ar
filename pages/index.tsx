@@ -1,5 +1,5 @@
 import c from 'classnames';
-import { NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import Heading from '~/components/heading';
 import Image from '~/components/image';
 import Link from '~/components/link';
@@ -8,9 +8,12 @@ import SocialLinks from '~/components/sociallinks';
 import useLocale from '~/hooks/useLocale';
 import homeTranslations from '~/data/locale/home';
 
-const HomePage: NextPage = () => {
-  const { locale, setLocale } = useLocale();
-  const age = new Date(Date.now() - Date.parse('2000-12-06')).getUTCFullYear() - 1970;
+type HomePageProps = {
+  age: number;
+};
+
+const HomePage: NextPage<HomePageProps> = ({ age }) => {
+  const { locale } = useLocale();
 
   const famafLccUrl = 'https://www.famaf.unc.edu.ar/academica/grado/licenciatura-en-ciencias-de-la-computaci%C3%B3n/';
 
@@ -57,6 +60,17 @@ const HomePage: NextPage = () => {
       <SocialLinks />
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
+  // Age is derived at build time so the render stays pure.
+  const age = new Date(Date.now() - Date.parse('2000-12-06')).getUTCFullYear() - 1970;
+
+  return {
+    props: {
+      age
+    }
+  };
 };
 
 export default HomePage;

@@ -1,6 +1,6 @@
 import c from 'classnames';
 import { useRouter } from 'next/router';
-import { FC, PropsWithChildren, useCallback, use, useEffect, useMemo, useState } from 'react';
+import { FC, PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react';
 import FadeIn from '~/components/fadeIn';
 import { FiMenu, FiMoon, FiSun } from 'react-icons/fi';
 import Link from '~/components/link';
@@ -25,6 +25,9 @@ const Loader: FC = () => {
 
   useEffect(() => {
     if (!isVisible) {
+      // Reset the progress bar once the loader hides; this is a one-shot
+      // sync reset tied to the debounced status, not a cascading render.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setProgress(0);
       return;
     }
@@ -186,6 +189,8 @@ const Header: FC = () => {
 
   // Hide the mobile nav when the page changes
   useEffect(() => {
+    // Closing the menu on route change is a one-shot sync reset.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMobileNavVisible(false);
   }, [router.pathname]);
 
@@ -297,9 +302,9 @@ const Header: FC = () => {
 };
 
 const Main: FC<PropsWithChildren> = ({ children }) => {
-  // Below is a hack to re-initialize the fade when the page changes
+  // Re-mount FadeIn whenever the route changes so the content fades in again
   const router = useRouter();
-  const fadeKey = useMemo(() => Math.random().toString() + router.pathname, [router.pathname]);
+  const fadeKey = router.pathname;
 
   return (
     <main id="main" className={c('mx-4', 'mt-6', 'mb-20')}>
