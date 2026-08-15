@@ -3,6 +3,9 @@
   "homepage": "https://ezeluduena.dev.ar",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "start": "next dev",
     "build": "next build",
