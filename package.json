@@ -27,12 +27,8 @@
   },
   "dependencies": {
     "@giscus/react": "^3.1.0",
-    "brace-expansion": "^5.0.8",
     "classnames": "^2.5.1",
-    "js-yaml": "^3.13.1",
-    "minimatch": "^3.1.2",
     "next": "^16.3.1",
-    "picomatch": "^2.3.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-icons": "^5.7.0",
