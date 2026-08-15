@@ -53,7 +53,7 @@ This project is licensed under the MIT License. See the [LICENSE](license.txt) f
 
 ## Contact
 
-For any inquiries or feedback, please reach out via [email](mailto:ezeluduena123@gmail.com) or connect with me on [LinkedIn](www.linkedin.com/in/ezeluduena).
+For any inquiries or feedback, please reach out via [email](mailto:ezeluduena123@gmail.com) or connect with me on [LinkedIn](https://www.linkedin.com/in/ezeluduena).
 
 ---
 

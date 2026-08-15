@@ -1,17 +1,15 @@
-import { Analytics } from '@vercel/analytics/react';
 import c from 'classnames';
 import { useRouter } from 'next/router';
 import { FC, PropsWithChildren, useCallback, use, useEffect, useMemo, useState } from 'react';
-import FadeIn from 'react-fade-in';
+import FadeIn from '~/components/fadeIn';
 import { FiMenu, FiMoon, FiSun } from 'react-icons/fi';
-import { GrLanguage } from "react-icons/gr";
 import Link from '~/components/link';
 import Meta from '~/components/meta';
 import useDebounce from '~/hooks/useDebounce';
 import useRouterStatus from '~/hooks/useRouterStatus';
 import useTheme from '~/hooks/useTheme';
 import useLocale from '~/hooks/useLocale';
-import layoutTranslations from '~/public/locale/layout';
+import layoutTranslations from '~/data/locale/layout';
 import enIconLight from '~/public/icons/en_icon.svg';
 import esIconLight from '~/public/icons/es_icon.svg';
 import enIconDark from '~/public/icons/en_icon_dark.svg';
@@ -93,19 +91,24 @@ const NavLink: FC<NavLinkProps> = ({ href, children }) => {
 
 const ThemeSwitcher: FC = () => {
   const { theme, setTheme } = useTheme();
+  const { locale } = useLocale();
+  const t = layoutTranslations[locale];
+  const isDark = theme === 'dark';
 
   return (
     <button
+      aria-label={isDark ? t.themeToLight : t.themeToDark}
       className={c('text-blue-500', 'dark:text-yellow-500', 'cursor-pointer')}
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
     >
-      {theme === 'dark' ? <FiMoon /> : <FiSun />}
+      {isDark ? <FiMoon aria-hidden /> : <FiSun aria-hidden />}
     </button>
   );
 };
 
 const LanguageSwitcher: FC = () => {
-  const { locale, setLocale } = useLocale();
+  const { locale, setLocale, userPreferredLocale } = useLocale();
+  const t = layoutTranslations[locale];
   const isDark = useTheme().theme === 'dark';
   const router = useRouter();
 
@@ -116,24 +119,39 @@ const LanguageSwitcher: FC = () => {
     const newLocale = locale === 'es' ? 'en' : 'es';
     setLocale(newLocale);
 
-    // Redirect to the new locale path
-    const newPath = router.asPath.replace(`/${locale}`, `/${newLocale}`);
+    // Redirect to the equivalent post in the other locale
+    const newPath = router.asPath.replace(`/blog/${locale}`, `/blog/${newLocale}`);
     if (newPath !== router.asPath) {
       router.push(newPath);
     }
   }, [locale, router, setLocale]);
 
+  // Only align the URL with the user's *explicit* preference. First-time
+  // visitors (no stored preference) are left on whatever locale URL they
+  // landed on, so shared English links are stable.
   useEffect(() => {
-    const { pathname } = router;
-    const pathLocale = pathname.startsWith('/blog/en') ? 'en' : pathname.startsWith('/blog/es') ? 'es' : null;
-
-    if (pathLocale && pathLocale !== locale) {
-      handleLocaleChange();
+    if (userPreferredLocale === null) {
+      return;
     }
-  }, [locale, router, setLocale, handleLocaleChange]);
+
+    const { pathname, asPath } = router;
+    const pathLocale = pathname.startsWith('/blog/en')
+      ? 'en'
+      : pathname.startsWith('/blog/es')
+        ? 'es'
+        : null;
+
+    if (pathLocale && pathLocale !== userPreferredLocale) {
+      const newPath = asPath.replace(`/blog/${pathLocale}`, `/blog/${userPreferredLocale}`);
+      if (newPath !== asPath) {
+        router.push(newPath);
+      }
+    }
+  }, [userPreferredLocale, router]);
 
   return (
     <button
+      aria-label={locale === 'es' ? t.langToEnglish : t.langToSpanish}
       className={c(
         'flex',
         'items-center',
@@ -143,8 +161,8 @@ const LanguageSwitcher: FC = () => {
       onClick={handleLocaleChange}
     >
 
-      {locale === 'es' ? <Image src={esIcon} alt="Es" width="42" height="42" /> :
-        <Image src={enIcon} alt="En" width="42" height="42" />}
+      {locale === 'es' ? <Image src={esIcon} alt="Castellano" width={28} height={28} /> :
+        <Image src={enIcon} alt="English" width={28} height={28} />}
 
     </button >
   );
@@ -155,12 +173,12 @@ const Header: FC = () => {
   const t = layoutTranslations[locale];
   const links = useMemo(
     () => [
-      { href: '/', label: 'home' },
+      { href: '/', label: t.home },
       { href: '/projects', label: t.projects },
       { href: '/talks', label: t.talks },
-      { href: '/blog', label: 'blog' }
+      { href: '/blog', label: t.blog }
     ],
-    [t.projects, t.talks]
+    [t.home, t.projects, t.talks, t.blog]
   );
 
   const router = useRouter();
@@ -173,6 +191,24 @@ const Header: FC = () => {
 
   return (
     <header>
+      <a
+        href="#main"
+        className={c(
+          'sr-only',
+          'focus:not-sr-only',
+          'focus:absolute',
+          'focus:z-50',
+          'focus:top-2',
+          'focus:left-2',
+          'focus:px-3',
+          'focus:py-1',
+          'focus:rounded',
+          'focus:bg-cyan-500',
+          'focus:text-white'
+        )}
+      >
+        {locale === 'es' ? 'Saltar al contenido' : 'Skip to content'}
+      </a>
       <div
         className={c(
           'flex',
@@ -222,10 +258,13 @@ const Header: FC = () => {
 
           {/* Nav button */}
           <button
+            aria-label={locale === 'es' ? 'Abrir menú' : 'Open menu'}
+            aria-expanded={isMobileNavVisible}
+            aria-controls="mobile-nav"
             className={c('sm:hidden', { 'text-cyan-500': isMobileNavVisible })}
             onClick={() => setIsMobileNavVisible((v) => !v)}
           >
-            <FiMenu />
+            <FiMenu aria-hidden />
           </button>
         </div>
       </div>
@@ -233,6 +272,7 @@ const Header: FC = () => {
       {/* Mobile nav */}
       <div className={c('sm:hidden', 'overflow-hidden')}>
         <nav
+          id="mobile-nav"
           className={c(
             { '-mt-[100%]': !isMobileNavVisible },
             'p-2',
@@ -262,7 +302,7 @@ const Main: FC<PropsWithChildren> = ({ children }) => {
   const fadeKey = useMemo(() => Math.random().toString() + router.pathname, [router.pathname]);
 
   return (
-    <main className={c('mx-4', 'mt-6', 'mb-20')}>
+    <main id="main" className={c('mx-4', 'mt-6', 'mb-20')}>
       <FadeIn key={fadeKey}>{children}</FadeIn>
     </main>
   );
@@ -270,28 +310,32 @@ const Main: FC<PropsWithChildren> = ({ children }) => {
 
 const Page: FC<PropsWithChildren> = ({ children }) => {
   const { theme } = useTheme();
+  const { locale } = useLocale();
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    root.lang = locale;
+  }, [theme, locale]);
 
   return (
     <div
-      className={c({
-        dark: theme === 'dark',
-        light: theme === 'light'
-      })}
+      className={c(
+        'flex',
+        'flex-col',
+        'min-h-screen',
+        'dark:bg-neutral-900',
+        'dark:text-neutral-200'
+      )}
     >
-      <div
-        className={c(
-          'flex',
-          'flex-col',
-          'min-h-screen',
-          'dark:bg-neutral-900',
-          'dark:text-neutral-200'
-        )}
-      >
-        <Loader />
-        <div className={c('container', 'max-w-4xl', 'mx-auto')}>
-          <Header />
-          <Main>{children}</Main>
-        </div>
+      <Loader />
+      <div className={c('container', 'max-w-4xl', 'mx-auto')}>
+        <Header />
+        <Main>{children}</Main>
       </div>
     </div>
   );
@@ -303,7 +347,6 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Meta />
-      <Analytics />
       <Page>{children}</Page>
     </>
   );

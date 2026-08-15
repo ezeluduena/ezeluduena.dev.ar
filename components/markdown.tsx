@@ -96,13 +96,7 @@ const Markdown: FC<MarkdownProps> = ({ source, transformUrl }) => {
           );
         },
         img: ({ src, alt }) => {
-          // return <Image src={src!} alt={alt!} />;
-          return (
-            <Image
-              src={typeof src === 'string' ? src : src ? URL.createObjectURL(src) : ''}
-              alt={alt || ''}
-            />
-          );
+          return <Image src={typeof src === 'string' ? src : ''} alt={alt || ''} />;
         },
         blockquote: ({ children }) => {
           return <Quote>{children}</Quote>;
@@ -137,6 +131,65 @@ const Markdown: FC<MarkdownProps> = ({ source, transformUrl }) => {
         },
         code: ({ children }) => {
           return <Code>{children}</Code>;
+        },
+        table: ({ children }) => {
+          return (
+            <div className={c('my-4', 'overflow-x-auto')}>
+              <table
+                className={c(
+                  'w-full',
+                  'border-collapse',
+                  'border',
+                  'border-neutral-200',
+                  'dark:border-neutral-700'
+                )}
+              >
+                {children}
+              </table>
+            </div>
+          );
+        },
+        thead: ({ children }) => {
+          return <thead className={c('bg-neutral-100', 'dark:bg-neutral-800')}>{children}</thead>;
+        },
+        tr: ({ children }) => {
+          return (
+            <tr className={c('border', 'border-neutral-200', 'dark:border-neutral-700')}>
+              {children}
+            </tr>
+          );
+        },
+        th: ({ children }) => {
+          return (
+            <th
+              className={c(
+                'px-3',
+                'py-2',
+                'text-left',
+                'font-semibold',
+                'border',
+                'border-neutral-200',
+                'dark:border-neutral-700'
+              )}
+            >
+              {children}
+            </th>
+          );
+        },
+        td: ({ children }) => {
+          return (
+            <td
+              className={c(
+                'px-3',
+                'py-2',
+                'border',
+                'border-neutral-200',
+                'dark:border-neutral-700'
+              )}
+            >
+              {children}
+            </td>
+          );
         },
         hr: () => {
           return (

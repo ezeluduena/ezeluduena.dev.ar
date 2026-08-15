@@ -6,7 +6,7 @@ import Link from '~/components/link';
 import Paragraph from '~/components/paragraph';
 import SocialLinks from '~/components/sociallinks';
 import useLocale from '~/hooks/useLocale';
-import homeTranslations from '~/public/locale/home';
+import homeTranslations from '~/data/locale/home';
 
 const HomePage: NextPage = () => {
   const { locale, setLocale } = useLocale();
@@ -29,7 +29,7 @@ const HomePage: NextPage = () => {
         )}
       >
         <div className={c('flex-none', 'w-48', 'md:w-56', 'md:mt-12')}>
-          <Image src="/logo-trans.png" alt="picture" priority />
+          <Image src="/logo-trans.png" alt="Ezequiel Ludueña" priority />
         </div>
 
         <div>

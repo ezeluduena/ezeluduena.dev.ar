@@ -1,5 +1,3 @@
-import { time } from "console";
-
 const blogTranslations = {
         en: {
                 description0: "Here I write about the projects I'm working on, what I'm learning and anything else that I find interesting.",

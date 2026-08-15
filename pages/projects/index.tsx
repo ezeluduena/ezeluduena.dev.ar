@@ -11,7 +11,7 @@ import { Project, loadProjects } from '~/data/projects';
 import { bufferIterable } from '~/utils/async';
 import { deleteUndefined } from '~/utils/object';
 import useLocale from "~/hooks/useLocale";
-import projectsTranslations from "~/public/locale/projects";
+import projectsTranslations from "~/data/locale/projects";
 
 
 type ProjectsPageProps = {

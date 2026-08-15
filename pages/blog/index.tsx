@@ -9,28 +9,35 @@ import Paragraph from '~/components/paragraph';
 import Timeline from '~/components/timeline';
 import TimelineItem from '~/components/timelineItem';
 import SocialLinks from '~/components/sociallinks';
-import { BlogPostRef, loadBlogPostRefs, publishBlogFeed } from '~/data/blog/es';
+import { BlogPostRef } from '~/data/blog/en';
+import { loadBlogPostRefs as loadEnBlogPostRefs, publishBlogFeed as publishEnBlogFeed } from '~/data/blog/en';
+import { loadBlogPostRefs as loadEsBlogPostRefs, publishBlogFeed as publishEsBlogFeed } from '~/data/blog/es';
 import { groupBy } from '~/utils/array';
 import { bufferIterable } from '~/utils/async';
 import { deleteUndefined } from '~/utils/object';
-import blogTranslations from '~/public/locale/blog';
+import { publishSitemap } from '~/utils/sitemap';
+import blogTranslations from '~/data/locale/blog';
 import useLocale from '~/hooks/useLocale';
 
 type BlogPageProps = {
-  posts: BlogPostRef[];
+  enPosts: BlogPostRef[];
+  esPosts: BlogPostRef[];
 };
 
-const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
+const BlogPage: NextPage<BlogPageProps> = ({ enPosts, esPosts }) => {
+  const locale = useLocale().locale;
+  const t: Record<string, string> = blogTranslations[locale];
+
+  const posts = locale === 'en' ? enPosts : esPosts;
+  const rssUrl = `/blog/${locale}/rss.xml`;
+
   const postsByYear = groupBy(posts, (post) => new Date(post.date).getFullYear()).sort(
     (a, b) => b.key - a.key
   );
 
-  const locale = useLocale().locale;
-  const t: Record<string, string> = blogTranslations[locale];
-
   return (
     <>
-      <Meta title="Blog" rssUrl="/blog/rss.xml" />
+      <Meta title="Blog" rssUrl={rssUrl} />
 
       <section>
         <Heading>Blog</Heading>
@@ -39,7 +46,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
           {t.description0}
           <br />
           {t.description1}
-          <Link href="/blog/rss.xml" external>
+          <Link href={rssUrl} external>
             {t.description2}
           </Link>
           {t.description3}
@@ -97,18 +104,32 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
 };
 
 export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
-  await publishBlogFeed();
+  await publishEnBlogFeed();
+  await publishEsBlogFeed();
 
-  const posts = await bufferIterable(loadBlogPostRefs());
+  const enPosts = await bufferIterable(loadEnBlogPostRefs());
+  const esPosts = await bufferIterable(loadEsBlogPostRefs());
 
   // Remove undefined values because they cannot be serialized
-  deleteUndefined(posts);
+  deleteUndefined(enPosts);
+  deleteUndefined(esPosts);
 
-  posts.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+  enPosts.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+  esPosts.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+
+  await publishSitemap([
+    { loc: '/' },
+    { loc: '/projects' },
+    { loc: '/talks' },
+    { loc: '/blog' },
+    ...enPosts.map((post) => ({ loc: `/blog/en/${post.id}`, lastmod: post.date })),
+    ...esPosts.map((post) => ({ loc: `/blog/es/${post.id}`, lastmod: post.date }))
+  ]);
 
   return {
     props: {
-      posts
+      enPosts,
+      esPosts
     }
   };
 };
