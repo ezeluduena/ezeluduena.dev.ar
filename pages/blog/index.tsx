@@ -16,7 +16,7 @@ import { groupBy } from '~/utils/array';
 import { bufferIterable } from '~/utils/async';
 import { deleteUndefined } from '~/utils/object';
 import { publishSitemap } from '~/utils/sitemap';
-import blogTranslations from '~/public/locale/blog';
+import blogTranslations from '~/data/locale/blog';
 import useLocale from '~/hooks/useLocale';
 
 type BlogPageProps = {

@@ -14,7 +14,7 @@ import { groupBy } from '~/utils/array';
 import { bufferIterable } from '~/utils/async';
 import { deleteUndefined } from '~/utils/object';
 import useLocale from "~/hooks/useLocale";
-import talksTranslations from "~/public/locale/talks";
+import talksTranslations from "~/data/locale/talks";
 
 type TalksPageProps = {
     talks: Talk[];

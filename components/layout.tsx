@@ -10,7 +10,7 @@ import useDebounce from '~/hooks/useDebounce';
 import useRouterStatus from '~/hooks/useRouterStatus';
 import useTheme from '~/hooks/useTheme';
 import useLocale from '~/hooks/useLocale';
-import layoutTranslations from '~/public/locale/layout';
+import layoutTranslations from '~/data/locale/layout';
 import enIconLight from '~/public/icons/en_icon.svg';
 import esIconLight from '~/public/icons/es_icon.svg';
 import enIconDark from '~/public/icons/en_icon_dark.svg';

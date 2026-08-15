@@ -6,7 +6,7 @@ import Link from '~/components/link';
 import Paragraph from '~/components/paragraph';
 import SocialLinks from '~/components/sociallinks';
 import useLocale from '~/hooks/useLocale';
-import homeTranslations from '~/public/locale/home';
+import homeTranslations from '~/data/locale/home';
 
 const HomePage: NextPage = () => {
   const { locale, setLocale } = useLocale();
