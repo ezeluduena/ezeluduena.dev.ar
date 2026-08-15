@@ -21,3 +21,6 @@ lerna-debug.log*
 /public/blog/
 /public/sitemap.xml
 /out/
+
+# husky generated hooks
+.husky/_

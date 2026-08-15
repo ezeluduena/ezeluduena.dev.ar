@@ -13,7 +13,17 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,mjs}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md,yml}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@giscus/react": "^3.1.0",
@@ -41,6 +51,8 @@
     "eslint-config-next": "^16.3.0",
     "feed": "^6.0.0",
     "front-matter": "^4.0.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16",
     "lodash": "^4.17.21",
     "markdown-to-txt": "^2.0.1",
     "postcss": "^8.5.25",
