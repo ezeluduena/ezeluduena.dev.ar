@@ -37,10 +37,11 @@ const Meta: FC<MetaProps> = ({
   const actualKeywords = keywords?.join(',') || '';
   const actualImageUrl = getSiteUrl(imageUrl || '/logo.png');
   const actualRssUrl = rssUrl && getSiteUrl(rssUrl);
-  const canonicalUrl = getSiteUrl(router.asPath || '/');
+  const canonicalUrl = getSiteUrl((router.asPath || '/').split(/[?#]/)[0]);
   const twitterCard = imageUrl ? 'summary_large_image' : 'summary';
 
   const personLd = {
+    '@context': 'https://schema.org',
     '@type': 'Person',
     name: siteName,
     url: getSiteUrl(),
@@ -49,6 +50,7 @@ const Meta: FC<MetaProps> = ({
   };
 
   const websiteLd = {
+    '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: siteName,
     url: getSiteUrl(),
@@ -57,6 +59,7 @@ const Meta: FC<MetaProps> = ({
 
   const articleLd = publishedTime
     ? {
+        '@context': 'https://schema.org',
         '@type': 'BlogPosting',
         headline: title,
         description: actualDescription,

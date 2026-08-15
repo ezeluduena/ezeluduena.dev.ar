@@ -92,11 +92,13 @@ const NavLink: FC<NavLinkProps> = ({ href, children }) => {
 
 const ThemeSwitcher: FC = () => {
   const { theme, setTheme } = useTheme();
+  const { locale } = useLocale();
+  const t = layoutTranslations[locale];
   const isDark = theme === 'dark';
 
   return (
     <button
-      aria-label={isDark ? 'Switch to light mode' : 'Cambiar a modo oscuro'}
+      aria-label={isDark ? t.themeToLight : t.themeToDark}
       className={c('text-blue-500', 'dark:text-yellow-500', 'cursor-pointer')}
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
     >
@@ -107,6 +109,7 @@ const ThemeSwitcher: FC = () => {
 
 const LanguageSwitcher: FC = () => {
   const { locale, setLocale, userPreferredLocale } = useLocale();
+  const t = layoutTranslations[locale];
   const isDark = useTheme().theme === 'dark';
   const router = useRouter();
 
@@ -149,7 +152,7 @@ const LanguageSwitcher: FC = () => {
 
   return (
     <button
-      aria-label={locale === 'es' ? 'Switch to English' : 'Cambiar a español'}
+      aria-label={locale === 'es' ? t.langToEnglish : t.langToSpanish}
       className={c(
         'flex',
         'items-center',
