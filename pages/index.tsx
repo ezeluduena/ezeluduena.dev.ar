@@ -5,8 +5,8 @@ import Image from '~/components/image';
 import Link from '~/components/link';
 import Paragraph from '~/components/paragraph';
 import SocialLinks from '~/components/sociallinks';
-import useLocale from '~/hooks/useLocale';
 import homeTranslations from '~/data/locale/home';
+import useLocale from '~/hooks/useLocale';
 
 type HomePageProps = {
   age: number;
@@ -15,7 +15,8 @@ type HomePageProps = {
 const HomePage: NextPage<HomePageProps> = ({ age }) => {
   const { locale } = useLocale();
 
-  const famafLccUrl = 'https://www.famaf.unc.edu.ar/academica/grado/licenciatura-en-ciencias-de-la-computaci%C3%B3n/';
+  const famafLccUrl =
+    'https://www.famaf.unc.edu.ar/academica/grado/licenciatura-en-ciencias-de-la-computaci%C3%B3n/';
 
   const t = homeTranslations[locale];
 
@@ -51,11 +52,12 @@ const HomePage: NextPage<HomePageProps> = ({ age }) => {
             </Paragraph>
             <Paragraph>
               {t.projects1} <Link href={'/projects'}> {t.projects2}</Link> {t.projects3}
-              <Link href={'/blog'}>blog</Link>{t.projects4}
+              <Link href={'/blog'}>blog</Link>
+              {t.projects4}
             </Paragraph>
           </div>
         </div>
-      </section >
+      </section>
 
       <SocialLinks />
     </>

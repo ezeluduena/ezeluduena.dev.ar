@@ -1,6 +1,6 @@
 import { createBlogLoader } from '~/data/blog/_loader';
 
-export type { BlogPost, BlogPostRef, BlogLocale } from '~/data/blog/_loader';
+export type { BlogLocale, BlogPost, BlogPostRef } from '~/data/blog/_loader';
 
 const loader = createBlogLoader('en');
 

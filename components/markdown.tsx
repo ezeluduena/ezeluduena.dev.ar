@@ -73,7 +73,6 @@ const Markdown: FC<MarkdownProps> = ({ source, transformUrl }) => {
           );
         },
         a: ({ href, children }) => {
-
           return <Link href={href || '#'}>{children}</Link>;
         },
         p: ({ children }) => {

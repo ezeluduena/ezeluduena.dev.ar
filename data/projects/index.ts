@@ -1,4 +1,3 @@
-
 export type Project = {
   name: string;
   url: string;
@@ -7,7 +6,6 @@ export type Project = {
   language?: string;
   technologies?: string;
 };
-
 
 const projects: Project[] = [
   {

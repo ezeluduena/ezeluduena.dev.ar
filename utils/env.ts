@@ -25,5 +25,5 @@ export const getSiteUrl = (path?: string) => {
     return new URL(path, value).toString();
   }
 
-  return value
+  return value;
 };

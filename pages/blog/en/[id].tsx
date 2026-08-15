@@ -39,7 +39,7 @@ const CoverSection: FC<BlogPostPageProps> = ({ post }) => {
 const ArticleSection: FC<BlogPostPageProps> = ({ post }) => {
   return (
     <section>
-      <article >
+      <article>
         <Markdown
           source={post.source}
           // Transform local-relative URLs to site-relative URLs
@@ -52,7 +52,7 @@ const ArticleSection: FC<BlogPostPageProps> = ({ post }) => {
           }}
         />
       </article>
-    </section >
+    </section>
   );
 };
 

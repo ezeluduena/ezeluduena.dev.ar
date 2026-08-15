@@ -1,21 +1,20 @@
 import c from 'classnames';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { FC, PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react';
-import FadeIn from '~/components/fadeIn';
 import { FiMenu, FiMoon, FiSun } from 'react-icons/fi';
+import FadeIn from '~/components/fadeIn';
 import Link from '~/components/link';
 import Meta from '~/components/meta';
+import layoutTranslations from '~/data/locale/layout';
 import useDebounce from '~/hooks/useDebounce';
+import useLocale from '~/hooks/useLocale';
 import useRouterStatus from '~/hooks/useRouterStatus';
 import useTheme from '~/hooks/useTheme';
-import useLocale from '~/hooks/useLocale';
-import layoutTranslations from '~/data/locale/layout';
 import enIconLight from '~/public/icons/en_icon.svg';
-import esIconLight from '~/public/icons/es_icon.svg';
 import enIconDark from '~/public/icons/en_icon_dark.svg';
+import esIconLight from '~/public/icons/es_icon.svg';
 import esIconDark from '~/public/icons/es_icon_dark.svg';
-import Image from 'next/image';
-
 
 const Loader: FC = () => {
   // Only show the loading indicator if the navigation takes a while.
@@ -159,17 +158,20 @@ const LanguageSwitcher: FC = () => {
         'flex',
         'items-center',
         'justify-center',
-        'rounded', 'transition-colors',
-        'duration-300')}
+        'rounded',
+        'transition-colors',
+        'duration-300'
+      )}
       onClick={handleLocaleChange}
     >
-
-      {locale === 'es' ? <Image src={esIcon} alt="Castellano" width={28} height={28} /> :
-        <Image src={enIcon} alt="English" width={28} height={28} />}
-
-    </button >
+      {locale === 'es' ? (
+        <Image src={esIcon} alt="Castellano" width={28} height={28} />
+      ) : (
+        <Image src={enIcon} alt="English" width={28} height={28} />
+      )}
+    </button>
   );
-}
+};
 
 const Header: FC = () => {
   const { locale } = useLocale();
@@ -246,7 +248,7 @@ const Header: FC = () => {
           </div>
 
           {/* Language switcher */}
-          <div className={c('flex', 'ml-2', 'mt-0.5', "w-10 h-10")}>
+          <div className={c('flex', 'ml-2', 'mt-0.5', 'w-10 h-10')}>
             <LanguageSwitcher />
           </div>
         </nav>
@@ -257,7 +259,7 @@ const Header: FC = () => {
           <ThemeSwitcher />
 
           {/* Language switcher */}
-          <div className={c('flex', "w-9 h-9")}>
+          <div className={c('flex', 'w-9 h-9')}>
             <LanguageSwitcher />
           </div>
 

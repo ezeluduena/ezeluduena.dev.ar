@@ -68,7 +68,9 @@ export const createBlogLoader = (locale: BlogLocale) => {
       }
 
       const readingTimeMins = readingTime(body, { wordsPerMinute: 220 }).minutes;
-      const coverFileName = childFileNames.find((fileName) => path.parse(fileName).name === 'cover');
+      const coverFileName = childFileNames.find(
+        (fileName) => path.parse(fileName).name === 'cover'
+      );
       const coverUrl = coverFileName && `/blog/${locale}/${id}/${coverFileName}`;
       const excerpt = ellipsize(markdownToTxt(body), 256);
 

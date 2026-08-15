@@ -1,23 +1,21 @@
 import c from 'classnames';
 import { GetStaticProps, NextPage } from 'next';
-import { FiTool, FiCode, FiExternalLink } from 'react-icons/fi';
+import { FiCode, FiExternalLink, FiTool } from 'react-icons/fi';
 import Heading from '~/components/heading';
 import Inline from '~/components/inline';
 import Link from '~/components/link';
 import Meta from '~/components/meta';
 import Paragraph from '~/components/paragraph';
 import SocialLinks from '~/components/sociallinks';
+import projectsTranslations from '~/data/locale/projects';
 import { Project, loadProjects } from '~/data/projects';
+import useLocale from '~/hooks/useLocale';
 import { bufferIterable } from '~/utils/async';
 import { deleteUndefined } from '~/utils/object';
-import useLocale from "~/hooks/useLocale";
-import projectsTranslations from "~/data/locale/projects";
-
 
 type ProjectsPageProps = {
   projects: Project[];
 };
-
 
 const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
   const t: { [key: string]: string } = projectsTranslations[useLocale().locale];
@@ -28,9 +26,7 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
 
       <section>
         <Heading>{t.title}</Heading>
-        <Paragraph>
-          {t.description}
-        </Paragraph>
+        <Paragraph>{t.description}</Paragraph>
       </section>
 
       <section
@@ -71,7 +67,9 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
               <span className={c('sr-only')}>{t[project.name] || project.name}</span>
             </Link>
 
-            <div className={c('relative', 'z-0', 'flex', 'flex-col', 'h-full', 'pointer-events-none')}>
+            <div
+              className={c('relative', 'z-0', 'flex', 'flex-col', 'h-full', 'pointer-events-none')}
+            >
               {/* Name */}
               <div
                 className={c(
@@ -102,8 +100,10 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
                 )}
                 {project.technologies && (
                   <Inline>
-                    <FiTool className={c('font-bold', 'fill-yellow-400', 'dark:text-yellow-400')}
-                      strokeWidth={1} />
+                    <FiTool
+                      className={c('font-bold', 'fill-yellow-400', 'dark:text-yellow-400')}
+                      strokeWidth={1}
+                    />
                     <div className={c('font-light')}>{project.technologies}</div>
                   </Inline>
                 )}

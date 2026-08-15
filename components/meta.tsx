@@ -43,30 +43,30 @@ const Meta: FC<MetaProps> = ({
   const personLd = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: siteName,
-    url: getSiteUrl(),
-    image: getSiteUrl('/logo.png'),
-    sameAs: ['https://github.com/ezeluduena', 'https://rebel.ar/@ezeluduena']
+    'name': siteName,
+    'url': getSiteUrl(),
+    'image': getSiteUrl('/logo.png'),
+    'sameAs': ['https://github.com/ezeluduena', 'https://rebel.ar/@ezeluduena']
   };
 
   const websiteLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: siteName,
-    url: getSiteUrl(),
-    author: { '@type': 'Person', name: siteName }
+    'name': siteName,
+    'url': getSiteUrl(),
+    'author': { '@type': 'Person', 'name': siteName }
   };
 
   const articleLd = publishedTime
     ? {
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',
-        headline: title,
-        description: actualDescription,
-        image: actualImageUrl,
-        datePublished: publishedTime,
-        author: { '@type': 'Person', name: author || defaultAuthor },
-        mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl }
+        'headline': title,
+        'description': actualDescription,
+        'image': actualImageUrl,
+        'datePublished': publishedTime,
+        'author': { '@type': 'Person', 'name': author || defaultAuthor },
+        'mainEntityOfPage': { '@type': 'WebPage', '@id': canonicalUrl }
       }
     : null;
 
@@ -99,7 +99,11 @@ const Meta: FC<MetaProps> = ({
       {imageAlt && <meta key="og:image:alt" property="og:image:alt" content={imageAlt} />}
       <meta key="og:url" property="og:url" content={canonicalUrl} />
       {publishedTime && (
-        <meta key="article:published_time" property="article:published_time" content={publishedTime} />
+        <meta
+          key="article:published_time"
+          property="article:published_time"
+          content={publishedTime}
+        />
       )}
       {publishedTime && (
         <meta key="article:author" property="article:author" content={author || defaultAuthor} />

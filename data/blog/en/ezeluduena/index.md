@@ -2,8 +2,9 @@
 title: 'Creating a Personal Website'
 date: '2024-10-13'
 description: 'In this blog, I discuss how I created my personal portfolio and blog using an open-source website. I mention the features I was looking for, how I adapted them, and how I added the missing ones.'
-comment_section_title: 'Creating a Personal Website' 
+comment_section_title: 'Creating a Personal Website'
 ---
+
 When you start looking for a job in programming or technology, you face a big challenge in getting hired: the lack of work experience.
 
 Without any prior jobs to validate the skills you claim to have, you need other ways to stand out and convince potential employers that hiring you is a good idea. One of these methods, which appears everywhere on the Internet, is having a web portfolio.
