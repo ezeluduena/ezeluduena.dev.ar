@@ -2,7 +2,7 @@ import { Analytics } from '@vercel/analytics/react';
 import c from 'classnames';
 import { useRouter } from 'next/router';
 import { FC, PropsWithChildren, useCallback, use, useEffect, useMemo, useState } from 'react';
-import FadeIn from 'react-fade-in';
+import FadeIn from '~/components/fadeIn';
 import { FiMenu, FiMoon, FiSun } from 'react-icons/fi';
 import Link from '~/components/link';
 import Meta from '~/components/meta';
