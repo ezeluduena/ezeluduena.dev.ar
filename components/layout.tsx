@@ -1,4 +1,3 @@
-import { Analytics } from '@vercel/analytics/react';
 import c from 'classnames';
 import { useRouter } from 'next/router';
 import { FC, PropsWithChildren, useCallback, use, useEffect, useMemo, useState } from 'react';
@@ -348,7 +347,6 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Meta />
-      <Analytics />
       <Page>{children}</Page>
     </>
   );
