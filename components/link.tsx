@@ -27,6 +27,11 @@ const Link: FC<LinkProps> = ({
       'text-inherit': variant === 'hidden',
       'hover:no-underline': variant === 'hidden'
     },
+    'focus-visible:outline-none',
+    'focus-visible:ring-2',
+    'focus-visible:ring-cyan-500',
+    'focus-visible:ring-offset-2',
+    'rounded',
     className
   );
 
@@ -39,8 +44,8 @@ const Link: FC<LinkProps> = ({
   }
 
   return (
-    <NextLink href={href} legacyBehavior>
-      <a className={linkClassName}>{children}</a>
+    <NextLink href={href} className={linkClassName}>
+      {children}
     </NextLink>
   );
 };

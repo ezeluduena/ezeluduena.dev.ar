@@ -8,6 +8,9 @@ type FadeInProps = PropsWithChildren<{
   onComplete?: () => void;
 }>;
 
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 const FadeIn: FC<FadeInProps> = ({
   children,
   delay = 50,
@@ -16,10 +19,13 @@ const FadeIn: FC<FadeInProps> = ({
   visible = true,
   onComplete
 }) => {
-  const [maxIsVisible, setMaxIsVisible] = useState(0);
+  const reduced = prefersReducedMotion();
   const childCount = Children.count(children);
+  const [maxIsVisible, setMaxIsVisible] = useState(reduced ? childCount : 0);
 
   useEffect(() => {
+    if (reduced) return;
+
     const count = visible ? childCount : 0;
 
     if (count === maxIsVisible) {
@@ -30,17 +36,23 @@ const FadeIn: FC<FadeInProps> = ({
     const increment = count > maxIsVisible ? 1 : -1;
     const timeout = setTimeout(() => setMaxIsVisible((value) => value + increment), delay);
     return () => clearTimeout(timeout);
-  }, [childCount, delay, maxIsVisible, visible, transitionDuration, onComplete]);
+  }, [childCount, delay, maxIsVisible, visible, transitionDuration, onComplete, reduced]);
+
+  const visibleCount = reduced ? childCount : maxIsVisible;
 
   return (
     <div className={className}>
       {Children.map(children, (child, i) => (
         <div
-          style={{
-            transition: `opacity ${transitionDuration}ms, transform ${transitionDuration}ms`,
-            transform: maxIsVisible > i ? 'none' : 'translateY(20px)',
-            opacity: maxIsVisible > i ? 1 : 0
-          }}
+          style={
+            reduced
+              ? undefined
+              : {
+                  transition: `opacity ${transitionDuration}ms, transform ${transitionDuration}ms`,
+                  transform: visibleCount > i ? 'none' : 'translateY(20px)',
+                  opacity: visibleCount > i ? 1 : 0
+                }
+          }
         >
           {child}
         </div>

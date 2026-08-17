@@ -6,18 +6,24 @@ import Inline from '~/components/inline';
 import Link from '~/components/link';
 import Meta from '~/components/meta';
 import Paragraph from '~/components/paragraph';
+import SocialLinks from '~/components/sociallinks';
 import Timeline from '~/components/timeline';
 import TimelineItem from '~/components/timelineItem';
-import SocialLinks from '~/components/sociallinks';
-import { BlogPostRef } from '~/data/blog/en';
-import { loadBlogPostRefs as loadEnBlogPostRefs, publishBlogFeed as publishEnBlogFeed } from '~/data/blog/en';
-import { loadBlogPostRefs as loadEsBlogPostRefs, publishBlogFeed as publishEsBlogFeed } from '~/data/blog/es';
+import {
+  BlogPostRef,
+  loadBlogPostRefs as loadEnBlogPostRefs,
+  publishBlogFeed as publishEnBlogFeed
+} from '~/data/blog/en';
+import {
+  loadBlogPostRefs as loadEsBlogPostRefs,
+  publishBlogFeed as publishEsBlogFeed
+} from '~/data/blog/es';
+import blogTranslations from '~/data/locale/blog';
+import useLocale from '~/hooks/useLocale';
 import { groupBy } from '~/utils/array';
 import { bufferIterable } from '~/utils/async';
 import { deleteUndefined } from '~/utils/object';
 import { publishSitemap } from '~/utils/sitemap';
-import blogTranslations from '~/data/locale/blog';
-import useLocale from '~/hooks/useLocale';
 
 type BlogPageProps = {
   enPosts: BlogPostRef[];
@@ -74,21 +80,23 @@ const BlogPage: NextPage<BlogPageProps> = ({ enPosts, esPosts }) => {
                         <div>
                           {locale === 'es'
                             ? new Date(post.date).toLocaleDateString('es-ES', {
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric'
-                            })
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                              })
                             : new Date(post.date).toLocaleDateString('en-US', {
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric'
-                            })}
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                              })}
                         </div>
                       </Inline>
 
                       <Inline>
                         <FiClock strokeWidth={1} />
-                        <div>{Math.round(post.readingTimeMins)} {t.time} </div>
+                        <div>
+                          {Math.round(post.readingTimeMins)} {t.time}{' '}
+                        </div>
                       </Inline>
                     </div>
                   </TimelineItem>
@@ -122,8 +130,22 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
     { loc: '/projects' },
     { loc: '/talks' },
     { loc: '/blog' },
-    ...enPosts.map((post) => ({ loc: `/blog/en/${post.id}`, lastmod: post.date })),
-    ...esPosts.map((post) => ({ loc: `/blog/es/${post.id}`, lastmod: post.date }))
+    ...enPosts.map((post) => ({
+      loc: `/blog/en/${post.id}`,
+      lastmod: post.date,
+      alternates: [
+        { locale: 'en', url: `/blog/en/${post.id}` },
+        { locale: 'es', url: `/blog/es/${post.id}` }
+      ]
+    })),
+    ...esPosts.map((post) => ({
+      loc: `/blog/es/${post.id}`,
+      lastmod: post.date,
+      alternates: [
+        { locale: 'en', url: `/blog/en/${post.id}` },
+        { locale: 'es', url: `/blog/es/${post.id}` }
+      ]
+    }))
   ]);
 
   return {

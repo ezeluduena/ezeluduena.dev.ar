@@ -28,22 +28,22 @@ To set up the project locally, follow these steps:
 
 1. **Clone the repository:**
 
-    ```sh
-    git clone https://github.com/ezeluduena/ezeluduena.dev.ar.git
-    cd ezeluduena.dev.ar
-    ```
+   ```sh
+   git clone https://github.com/ezeluduena/ezeluduena.dev.ar.git
+   cd ezeluduena.dev.ar
+   ```
 
 2. **Install dependencies:**
 
-    ```sh
-    yarn install
-    ```
+   ```sh
+   yarn install
+   ```
 
 3. **Run the development server:**
 
-    ```sh
-    yarn start
-    ```
+   ```sh
+   yarn start
+   ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the website.
 

@@ -39,7 +39,7 @@ const CoverSection: FC<BlogPostPageProps> = ({ post }) => {
 const ArticleSection: FC<BlogPostPageProps> = ({ post }) => {
   return (
     <section>
-      <article >
+      <article>
         <Markdown
           source={post.source}
           // Transform local-relative URLs to site-relative URLs
@@ -52,7 +52,7 @@ const ArticleSection: FC<BlogPostPageProps> = ({ post }) => {
           }}
         />
       </article>
-    </section >
+    </section>
   );
 };
 
@@ -97,6 +97,10 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
         imageAlt={post.title}
         rssUrl="/blog/en/rss.xml"
         publishedTime={post.date}
+        hreflang={[
+          { locale: 'en', url: `/blog/en/${post.id}` },
+          { locale: 'es', url: `/blog/es/${post.id}` }
+        ]}
       />
 
       <div className={c('space-y-4')}>

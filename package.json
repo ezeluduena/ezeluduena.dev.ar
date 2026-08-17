@@ -3,21 +3,32 @@
   "homepage": "https://ezeluduena.dev.ar",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "start": "next dev",
     "build": "next build",
     "serve": "next start",
-    "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,mjs}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md,yml}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@giscus/react": "^3.1.0",
-    "brace-expansion": "^5.0.8",
     "classnames": "^2.5.1",
-    "js-yaml": "^3.13.1",
-    "minimatch": "^3.1.2",
     "next": "^16.3.1",
-    "picomatch": "^2.3.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-icons": "^5.7.0",
@@ -32,10 +43,12 @@
     "@types/react-dom": "^19.2.4",
     "@types/react-syntax-highlighter": "^15.5.13",
     "ellipsize": "^0.7.0",
-    "eslint": "^10.8.1",
+    "eslint": "^9.39.5",
     "eslint-config-next": "^16.3.0",
     "feed": "^6.0.0",
     "front-matter": "^4.0.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16",
     "lodash": "^4.17.21",
     "markdown-to-txt": "^2.0.1",
     "postcss": "^8.5.25",

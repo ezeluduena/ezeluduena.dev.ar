@@ -1,21 +1,20 @@
 import c from 'classnames';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { FC, PropsWithChildren, useCallback, use, useEffect, useMemo, useState } from 'react';
-import FadeIn from '~/components/fadeIn';
+import { FC, PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react';
 import { FiMenu, FiMoon, FiSun } from 'react-icons/fi';
+import FadeIn from '~/components/fadeIn';
 import Link from '~/components/link';
 import Meta from '~/components/meta';
+import layoutTranslations from '~/data/locale/layout';
 import useDebounce from '~/hooks/useDebounce';
+import useLocale from '~/hooks/useLocale';
 import useRouterStatus from '~/hooks/useRouterStatus';
 import useTheme from '~/hooks/useTheme';
-import useLocale from '~/hooks/useLocale';
-import layoutTranslations from '~/data/locale/layout';
 import enIconLight from '~/public/icons/en_icon.svg';
-import esIconLight from '~/public/icons/es_icon.svg';
 import enIconDark from '~/public/icons/en_icon_dark.svg';
+import esIconLight from '~/public/icons/es_icon.svg';
 import esIconDark from '~/public/icons/es_icon_dark.svg';
-import Image from 'next/image';
-
 
 const Loader: FC = () => {
   // Only show the loading indicator if the navigation takes a while.
@@ -25,6 +24,9 @@ const Loader: FC = () => {
 
   useEffect(() => {
     if (!isVisible) {
+      // Reset the progress bar once the loader hides; this is a one-shot
+      // sync reset tied to the debounced status, not a cascading render.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setProgress(0);
       return;
     }
@@ -98,7 +100,16 @@ const ThemeSwitcher: FC = () => {
   return (
     <button
       aria-label={isDark ? t.themeToLight : t.themeToDark}
-      className={c('text-blue-500', 'dark:text-yellow-500', 'cursor-pointer')}
+      className={c(
+        'text-blue-500',
+        'dark:text-yellow-500',
+        'cursor-pointer',
+        'focus-visible:outline-none',
+        'focus-visible:ring-2',
+        'focus-visible:ring-cyan-500',
+        'focus-visible:ring-offset-2',
+        'rounded'
+      )}
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
     >
       {isDark ? <FiMoon aria-hidden /> : <FiSun aria-hidden />}
@@ -156,17 +167,24 @@ const LanguageSwitcher: FC = () => {
         'flex',
         'items-center',
         'justify-center',
-        'rounded', 'transition-colors',
-        'duration-300')}
+        'rounded',
+        'transition-colors',
+        'duration-300',
+        'focus-visible:outline-none',
+        'focus-visible:ring-2',
+        'focus-visible:ring-cyan-500',
+        'focus-visible:ring-offset-2'
+      )}
       onClick={handleLocaleChange}
     >
-
-      {locale === 'es' ? <Image src={esIcon} alt="Castellano" width={28} height={28} /> :
-        <Image src={enIcon} alt="English" width={28} height={28} />}
-
-    </button >
+      {locale === 'es' ? (
+        <Image src={esIcon} alt="Castellano" width={28} height={28} />
+      ) : (
+        <Image src={enIcon} alt="English" width={28} height={28} />
+      )}
+    </button>
   );
-}
+};
 
 const Header: FC = () => {
   const { locale } = useLocale();
@@ -186,6 +204,8 @@ const Header: FC = () => {
 
   // Hide the mobile nav when the page changes
   useEffect(() => {
+    // Closing the menu on route change is a one-shot sync reset.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMobileNavVisible(false);
   }, [router.pathname]);
 
@@ -241,7 +261,7 @@ const Header: FC = () => {
           </div>
 
           {/* Language switcher */}
-          <div className={c('flex', 'ml-2', 'mt-0.5', "w-10 h-10")}>
+          <div className={c('flex', 'ml-2', 'mt-0.5', 'w-10 h-10')}>
             <LanguageSwitcher />
           </div>
         </nav>
@@ -252,7 +272,7 @@ const Header: FC = () => {
           <ThemeSwitcher />
 
           {/* Language switcher */}
-          <div className={c('flex', "w-9 h-9")}>
+          <div className={c('flex', 'w-9 h-9')}>
             <LanguageSwitcher />
           </div>
 
@@ -261,7 +281,15 @@ const Header: FC = () => {
             aria-label={locale === 'es' ? 'Abrir menú' : 'Open menu'}
             aria-expanded={isMobileNavVisible}
             aria-controls="mobile-nav"
-            className={c('sm:hidden', { 'text-cyan-500': isMobileNavVisible })}
+            className={c(
+              'sm:hidden',
+              'focus-visible:outline-none',
+              'focus-visible:ring-2',
+              'focus-visible:ring-cyan-500',
+              'focus-visible:ring-offset-2',
+              'rounded',
+              { 'text-cyan-500': isMobileNavVisible }
+            )}
             onClick={() => setIsMobileNavVisible((v) => !v)}
           >
             <FiMenu aria-hidden />
@@ -297,9 +325,9 @@ const Header: FC = () => {
 };
 
 const Main: FC<PropsWithChildren> = ({ children }) => {
-  // Below is a hack to re-initialize the fade when the page changes
+  // Re-mount FadeIn whenever the route changes so the content fades in again
   const router = useRouter();
-  const fadeKey = useMemo(() => Math.random().toString() + router.pathname, [router.pathname]);
+  const fadeKey = router.pathname;
 
   return (
     <main id="main" className={c('mx-4', 'mt-6', 'mb-20')}>

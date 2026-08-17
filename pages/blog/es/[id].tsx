@@ -30,7 +30,13 @@ const CoverSection: FC<BlogPostPageProps> = ({ post }) => {
   return (
     <section className={c('p-4', 'rounded')}>
       <div className={c('w-fit', 'mx-auto')}>
-        <Image src={post.coverUrl} width={800} height={450} alt={`${post.title} portada`} priority />
+        <Image
+          src={post.coverUrl}
+          width={800}
+          height={450}
+          alt={`${post.title} portada`}
+          priority
+        />
       </div>
     </section>
   );
@@ -84,7 +90,6 @@ const CommentSection: FC<BlogPostPageProps> = ({ post }) => {
       />
       <SocialLinks />
     </section>
-
   );
 };
 
@@ -98,6 +103,10 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
         imageAlt={post.title}
         rssUrl="/blog/es/rss.xml"
         publishedTime={post.date}
+        hreflang={[
+          { locale: 'en', url: `/blog/en/${post.id}` },
+          { locale: 'es', url: `/blog/es/${post.id}` }
+        ]}
       />
 
       <div className={c('space-y-4')}>

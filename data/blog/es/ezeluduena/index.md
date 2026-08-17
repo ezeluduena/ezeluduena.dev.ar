@@ -2,7 +2,7 @@
 title: 'Creando una página web personal'
 date: '2024-10-13'
 description: 'En este blog comento como cree mi portfolio y blog personal a partir de una página web open source. Menciono las características buscadas, cómo fueron adaptadas, y cómo agregué las faltantes.'
-comment_section_title: 'Creating a Personal Website' 
+comment_section_title: 'Creating a Personal Website'
 ---
 
 Cuando uno comienza a buscar empleo en programación o tecnología, se enfrenta a un gran problema para ser contratado: la falta de experiencia laboral.
@@ -67,7 +67,7 @@ Hablando con un amigo sobre esta idea, me comentó que estaban disponibles gratu
 [Acá les dejo el link](https://home.dev.ar/) donde se puede solicitar el dominio gratuitamente. Sólo te piden que ingreses un mail, que prometen que no se lo van a vender a nadie.
 En la página comentan que no les significa mucho esfuerzo mantener el proyecto y que lo hacen para aportar al desarrollo de otros programadores argentinos. También les dejo el [link](https://github.com/pragmore/dev.ar) al repositorio de la app que utilizan para manejar los subdominios.
 
-El único inconveniente que encontré fue que no se ofrece la verificación a través de un registro `TXT`, que es necesaria para configurar un dominio personalizado en Vercel y en otros proveedores. Los registros `TXT` se utilizan, entre otras cosas, para  verificar la propiedad de un dominio en los sistemas DNS.
+El único inconveniente que encontré fue que no se ofrece la verificación a través de un registro `TXT`, que es necesaria para configurar un dominio personalizado en Vercel y en otros proveedores. Los registros `TXT` se utilizan, entre otras cosas, para verificar la propiedad de un dominio en los sistemas DNS.
 Al no disponer de esta opción, si deseaba utilizar este dominio, debía cambiar la forma de hostear la página. Dado que está explicado cómo utilizar el dominio con `GitHub Pages`, decidí mover la página a ese servicio.
 
 ### Github Pages
