@@ -1,0 +1,6 @@
+next.config.js
+postcss.config.js
+yarn.lock
+public/
+out/
+.next/
