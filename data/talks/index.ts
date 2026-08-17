@@ -15,7 +15,7 @@ const talks: Talk[] = [
   {
     name: 'SOL3: Software Libre de gestión con Odoo Community para organizaciones',
     description:
-      'Esta charla describe el programa SOL3 de la Fundación Mueve. Está dirigida tanto a personas interesadas en incorporar herramientas libres de gestión basadas en Odoo en sus organizaciones, como a desarrolladores/as que quieran involucrarse en el ecosistema de Odoo',
+      'Esta charla describe el programa SOL3 de la Fundación Mueve. Está dirigida tanto a personas interesadas en incorporar herramientas libres de gestión basadas en Odoo en sus organizaciones, como a desarrolladores/as que quieran involucrarse en el ecosistema de Odoo.',
     date: '2026-04-25',
     event: 'FLISOL 2026, Córdoba, Argentina',
     event_url: 'https://librebase.org.ar/flisol-cordoba-2026/',
