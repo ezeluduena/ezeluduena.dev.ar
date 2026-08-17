@@ -9,6 +9,26 @@ export type Project = {
 
 const projects: Project[] = [
   {
+    id: 'sol3',
+    categories: ['odoo'],
+    technologies: ['Docker', 'Python', 'XML', 'PostgreSQL']
+  },
+  {
+    id: 'inflation-adjustment',
+    categories: ['odoo'],
+    technologies: ['Python', 'XML']
+  },
+  {
+    id: 'odoo-argentina',
+    categories: ['odoo'],
+    technologies: ['Python', 'ARCA WebServices', 'XML']
+  },
+  {
+    id: 'payment-sipago',
+    categories: ['odoo', 'backend'],
+    technologies: ['Python', 'Checkout API', 'XML']
+  },
+  {
     id: 'poniendo_a_trabajar_a_los_numeros',
     categories: ['data-science'],
     technologies: ['Python', 'R', 'Pandas', 'Matplotlib', 'R eph']
@@ -16,7 +36,7 @@ const projects: Project[] = [
   {
     id: 'odoo-union',
     categories: ['odoo'],
-    technologies: ['Python', 'XML', 'Odoo', 'PostgreSQL']
+    technologies: ['Python', 'XML', 'PostgreSQL']
   },
   {
     id: 'ezeluduena-dev-ar',
