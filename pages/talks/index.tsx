@@ -55,7 +55,11 @@ const TalksPage: NextPage<TalksPageProps> = ({ talks }) => {
                   <TimelineItem key={i}>
                     {/* Title */}
                     <div className={c('text-lg')}>
-                      <Link href={t[talk.url] || talk.url || '#'}>{t[talk.name] || talk.name}</Link>
+                      {talk.url ? (
+                        <Link href={t[talk.url] || talk.url}>{t[talk.name] || talk.name}</Link>
+                      ) : (
+                        t[talk.name] || talk.name
+                      )}
                     </div>
 
                     <div
@@ -111,9 +115,7 @@ const TalksPage: NextPage<TalksPageProps> = ({ talks }) => {
                         <Inline>
                           <FiVideo strokeWidth={1} />
                           <div>
-                            <Link href={t[talk.video_url] || talk.video_url}>
-                              {locale === 'es' ? 'Video' : 'Video'}
-                            </Link>
+                            <Link href={t[talk.video_url] || talk.video_url}>Video</Link>
                           </div>
                         </Inline>
                       )}

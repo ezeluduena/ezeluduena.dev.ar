@@ -1,6 +1,6 @@
 export type Talk = {
   name: string;
-  url: string;
+  url?: string;
   description?: string;
   date?: string;
   event?: string;
@@ -11,11 +11,9 @@ export type Talk = {
   language?: string;
 };
 
-// TODO: add english locale
 const talks: Talk[] = [
   {
     name: 'SOL3: Software Libre de gestión con Odoo Community para organizaciones',
-    url: '/talks', //TODO: add talk blog
     description:
       'Esta charla describe el programa SOL3 de la Fundación Mueve. Está dirigida tanto a personas interesadas en incorporar herramientas libres de gestión basadas en Odoo en sus organizaciones, como a desarrolladores/as que quieran involucrarse en el ecosistema de Odoo',
     date: '2026-04-25',
@@ -28,7 +26,6 @@ const talks: Talk[] = [
   },
   {
     name: 'Todavía sirve: cómo armar tu propio servidor con una Conectar Igualdad',
-    url: '/talks', //TODO: add talk blog
     description:
       'En esta charla te contamos cómo utilizamos una netbook del programa Conectar Igualdad y YunoHost para implementar nuestro propio servidor casero con el objetivo de dejar de usar (o usar menos) servicios de terceros.',
     date: '2025-04-26',
