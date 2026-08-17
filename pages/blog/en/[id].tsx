@@ -97,6 +97,10 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
         imageAlt={post.title}
         rssUrl="/blog/en/rss.xml"
         publishedTime={post.date}
+        hreflang={[
+          { locale: 'en', url: `/blog/en/${post.id}` },
+          { locale: 'es', url: `/blog/es/${post.id}` }
+        ]}
       />
 
       <div className={c('space-y-4')}>

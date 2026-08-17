@@ -1,7 +1,13 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
+import useLocale from '~/hooks/useLocale';
 import { getBuildId, getSiteUrl } from '~/utils/env';
+
+type HreflangEntry = {
+  locale: string;
+  url: string;
+};
 
 type MetaProps = {
   title?: string;
@@ -12,12 +18,16 @@ type MetaProps = {
   rssUrl?: string;
   publishedTime?: string;
   author?: string;
+  hreflang?: HreflangEntry[];
 };
 
 const siteName = 'Ezequiel Ludueña';
 const defaultAuthor = 'Ezequiel Ludueña';
-const defaultDescription =
-  'Ezequiel Ludueña - Estudiante de Licenciatura en Ciencias de la Computación en la FAMAF de la UNC.';
+
+const defaultDescriptions = {
+  es: 'Ezequiel Ludueña - Estudiante de Licenciatura en Ciencias de la Computación en la FAMAF de la UNC.',
+  en: 'Ezequiel Ludueña - Computer Science student at the National University of Córdoba.'
+};
 
 const Meta: FC<MetaProps> = ({
   title,
@@ -27,18 +37,21 @@ const Meta: FC<MetaProps> = ({
   imageAlt,
   rssUrl,
   publishedTime,
-  author
+  author,
+  hreflang
 }) => {
   const router = useRouter();
+  const { locale } = useLocale();
   const buildId = getBuildId();
 
   const actualTitle = title ? title + ' • ' + siteName : siteName;
-  const actualDescription = description || defaultDescription;
+  const actualDescription = description || defaultDescriptions[locale];
   const actualKeywords = keywords?.join(',') || '';
   const actualImageUrl = getSiteUrl(imageUrl || '/logo.png');
   const actualRssUrl = rssUrl && getSiteUrl(rssUrl);
   const canonicalUrl = getSiteUrl((router.asPath || '/').split(/[?#]/)[0]);
   const twitterCard = imageUrl ? 'summary_large_image' : 'summary';
+  const ogLocale = locale === 'es' ? 'es_AR' : 'en_US';
 
   const personLd = {
     '@context': 'https://schema.org',
@@ -65,7 +78,18 @@ const Meta: FC<MetaProps> = ({
         'description': actualDescription,
         'image': actualImageUrl,
         'datePublished': publishedTime,
-        'author': { '@type': 'Person', 'name': author || defaultAuthor },
+        'dateModified': publishedTime,
+        'author': {
+          '@type': 'Person',
+          'name': author || defaultAuthor,
+          'url': getSiteUrl(),
+          'sameAs': ['https://github.com/ezeluduena', 'https://rebel.ar/@ezeluduena']
+        },
+        'publisher': {
+          '@type': 'Person',
+          'name': siteName,
+          'logo': { '@type': 'ImageObject', 'url': getSiteUrl('/logo.png') }
+        },
         'mainEntityOfPage': { '@type': 'WebPage', '@id': canonicalUrl }
       }
     : null;
@@ -98,6 +122,16 @@ const Meta: FC<MetaProps> = ({
       <meta key="og:image" property="og:image" content={actualImageUrl} />
       {imageAlt && <meta key="og:image:alt" property="og:image:alt" content={imageAlt} />}
       <meta key="og:url" property="og:url" content={canonicalUrl} />
+      <meta key="og:locale" property="og:locale" content={ogLocale} />
+      {hreflang
+        ?.filter((h) => h.locale !== locale)
+        .map((h) => (
+          <meta
+            key={`og:locale:alternate:${h.locale}`}
+            property="og:locale:alternate"
+            content={h.locale === 'es' ? 'es_AR' : 'en_US'}
+          />
+        ))}
       {publishedTime && (
         <meta
           key="article:published_time"
@@ -114,12 +148,21 @@ const Meta: FC<MetaProps> = ({
       <meta key="twitter:description" name="twitter:description" content={actualDescription} />
       <meta key="twitter:image" name="twitter:image" content={actualImageUrl} />
 
+      {hreflang?.map((h) => (
+        <link
+          key={`hreflang:${h.locale}`}
+          rel="alternate"
+          hrefLang={h.locale}
+          href={getSiteUrl(h.url)}
+        />
+      ))}
+
       {actualRssUrl && (
         <link
-          key="alternate"
+          key="alternate-rss"
           rel="alternate"
           type="application/rss+xml"
-          title="RSS Feed"
+          title={locale === 'es' ? 'Feed RSS' : 'RSS Feed'}
           href={actualRssUrl}
         />
       )}

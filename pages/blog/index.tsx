@@ -130,8 +130,22 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
     { loc: '/projects' },
     { loc: '/talks' },
     { loc: '/blog' },
-    ...enPosts.map((post) => ({ loc: `/blog/en/${post.id}`, lastmod: post.date })),
-    ...esPosts.map((post) => ({ loc: `/blog/es/${post.id}`, lastmod: post.date }))
+    ...enPosts.map((post) => ({
+      loc: `/blog/en/${post.id}`,
+      lastmod: post.date,
+      alternates: [
+        { locale: 'en', url: `/blog/en/${post.id}` },
+        { locale: 'es', url: `/blog/es/${post.id}` }
+      ]
+    })),
+    ...esPosts.map((post) => ({
+      loc: `/blog/es/${post.id}`,
+      lastmod: post.date,
+      alternates: [
+        { locale: 'en', url: `/blog/en/${post.id}` },
+        { locale: 'es', url: `/blog/es/${post.id}` }
+      ]
+    }))
   ]);
 
   return {

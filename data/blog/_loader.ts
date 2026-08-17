@@ -134,8 +134,11 @@ export const createBlogLoader = (locale: BlogLocale) => {
 
     const feed = new Feed({
       id: getSiteUrl(),
-      title: "Ezequiel Ludueña's Blog",
-      description: 'Ezequiel Ludueña - Estudiante de Ciencias de la Computación.',
+      title: locale === 'es' ? 'Blog de Ezequiel Ludueña' : "Ezequiel Ludueña's Blog",
+      description:
+        locale === 'es'
+          ? 'Ezequiel Ludueña - Estudiante de Ciencias de la Computación.'
+          : 'Ezequiel Ludueña - Computer Science student.',
       link: getSiteUrl('/blog'),
       image: getSiteUrl('/logo.png'),
       copyright: `Copyright (c) 2024-${date.getFullYear()} Ezequiel Ludueña`,
