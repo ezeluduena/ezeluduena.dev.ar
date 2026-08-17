@@ -57,14 +57,26 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={c('px-3', 'py-1', 'rounded', 'text-sm', 'border', 'transition-colors', {
-              'border-cyan-500': activeCategory === cat,
-              'bg-cyan-500': activeCategory === cat,
-              'text-white': activeCategory === cat,
-              'border-neutral-200': activeCategory !== cat,
-              'dark:border-neutral-700': activeCategory !== cat,
-              'hover:border-cyan-400': activeCategory !== cat
-            })}
+            className={c(
+              'px-3',
+              'py-1',
+              'rounded',
+              'text-sm',
+              'border',
+              'transition-colors',
+              'focus-visible:outline-none',
+              'focus-visible:ring-2',
+              'focus-visible:ring-cyan-500',
+              'focus-visible:ring-offset-2',
+              {
+                'border-cyan-500': activeCategory === cat,
+                'bg-cyan-500': activeCategory === cat,
+                'text-white': activeCategory === cat,
+                'border-neutral-200': activeCategory !== cat,
+                'dark:border-neutral-700': activeCategory !== cat,
+                'hover:border-cyan-400': activeCategory !== cat
+              }
+            )}
           >
             {t.categories[cat]}
           </button>

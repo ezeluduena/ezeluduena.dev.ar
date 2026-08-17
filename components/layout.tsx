@@ -100,7 +100,16 @@ const ThemeSwitcher: FC = () => {
   return (
     <button
       aria-label={isDark ? t.themeToLight : t.themeToDark}
-      className={c('text-blue-500', 'dark:text-yellow-500', 'cursor-pointer')}
+      className={c(
+        'text-blue-500',
+        'dark:text-yellow-500',
+        'cursor-pointer',
+        'focus-visible:outline-none',
+        'focus-visible:ring-2',
+        'focus-visible:ring-cyan-500',
+        'focus-visible:ring-offset-2',
+        'rounded'
+      )}
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
     >
       {isDark ? <FiMoon aria-hidden /> : <FiSun aria-hidden />}
@@ -160,7 +169,11 @@ const LanguageSwitcher: FC = () => {
         'justify-center',
         'rounded',
         'transition-colors',
-        'duration-300'
+        'duration-300',
+        'focus-visible:outline-none',
+        'focus-visible:ring-2',
+        'focus-visible:ring-cyan-500',
+        'focus-visible:ring-offset-2'
       )}
       onClick={handleLocaleChange}
     >
@@ -268,7 +281,15 @@ const Header: FC = () => {
             aria-label={locale === 'es' ? 'Abrir menú' : 'Open menu'}
             aria-expanded={isMobileNavVisible}
             aria-controls="mobile-nav"
-            className={c('sm:hidden', { 'text-cyan-500': isMobileNavVisible })}
+            className={c(
+              'sm:hidden',
+              'focus-visible:outline-none',
+              'focus-visible:ring-2',
+              'focus-visible:ring-cyan-500',
+              'focus-visible:ring-offset-2',
+              'rounded',
+              { 'text-cyan-500': isMobileNavVisible }
+            )}
             onClick={() => setIsMobileNavVisible((v) => !v)}
           >
             <FiMenu aria-hidden />

@@ -33,7 +33,7 @@ const HomePage: NextPage<HomePageProps> = ({ age }) => {
         )}
       >
         <div className={c('flex-none', 'w-48', 'md:w-56', 'md:mt-12')}>
-          <Image src="/logo-trans.png" alt="Ezequiel Ludueña" priority />
+          <Image src="/logo-trans.png" alt="Ezequiel Ludueña" width={600} height={600} priority />
         </div>
 
         <div>
