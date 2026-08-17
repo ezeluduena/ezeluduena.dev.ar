@@ -17,9 +17,10 @@ const noFlashScript = `
     var locale = localStorage.getItem('locale');
     if (locale) { locale = JSON.parse(locale); }
     if (!locale) {
-      locale = (navigator.language && navigator.language.indexOf('en') === 0) ? 'en' : 'es';
+      locale = window.matchMedia('(prefers-language: en)').matches ? 'en' : 'es';
     }
     document.documentElement.lang = locale;
+    window.__INITIAL_LOCALE = locale;
   } catch (e) {}
 })();
 `;

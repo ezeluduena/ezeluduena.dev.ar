@@ -12,6 +12,7 @@ const homeTranslations = {
     projects1: 'On this page, you will find the different ',
     projects2: 'projects',
     projects3: 'I have been working on. You can also read my ',
+    blog: 'blog',
     projects4: ', where I write to record and share what I am learning.'
   },
   es: {
@@ -27,6 +28,7 @@ const homeTranslations = {
     projects1: 'En esta página vas a encontrar los distintos ',
     projects2: 'proyectos',
     projects3: 'en los que estuve trabajando. También podés leer mi ',
+    blog: 'blog',
     projects4: ', donde escribo para registrar y compartir lo que voy aprendiendo.'
   }
 };

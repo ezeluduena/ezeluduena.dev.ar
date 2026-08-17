@@ -12,14 +12,19 @@ const useLocale = () => {
     null
   );
 
+  const initialLocale =
+    typeof window !== 'undefined'
+      ? (window.__INITIAL_LOCALE as 'en' | 'es' | undefined)
+      : undefined;
+
   return useMemo(() => {
     return {
       systemPreferredLocale,
       userPreferredLocale,
-      locale: userPreferredLocale || systemPreferredLocale || 'es',
+      locale: userPreferredLocale || initialLocale || systemPreferredLocale || 'es',
       setLocale: setUserPreferredLocale
     };
-  }, [systemPreferredLocale, userPreferredLocale, setUserPreferredLocale]);
+  }, [systemPreferredLocale, userPreferredLocale, initialLocale, setUserPreferredLocale]);
 };
 
 export default useLocale;

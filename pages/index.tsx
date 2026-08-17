@@ -52,7 +52,7 @@ const HomePage: NextPage<HomePageProps> = ({ age }) => {
             </Paragraph>
             <Paragraph>
               {t.projects1} <Link href={'/projects'}> {t.projects2}</Link> {t.projects3}
-              <Link href={'/blog'}>blog</Link>
+              <Link href={'/blog'}>{t.blog}</Link>
               {t.projects4}
             </Paragraph>
           </div>

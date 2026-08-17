@@ -9,17 +9,20 @@ const SocialLinks = () => {
 
       <section className={c('flex', 'justify-center', 'gap-3', 'text-2xl', 'font-light')}>
         <Link variant="discreet" href="https://github.com/ezeluduena">
+          <span className="sr-only">GitHub</span>
           <div className={c('px-2')}>
             <FiGithub strokeWidth={1} />
           </div>
         </Link>
         <Link variant="discreet" href="mailto:ezeluduena123@gmail.com">
+          <span className="sr-only">Email</span>
           <div className={c('px-2')}>
             <FiMail strokeWidth={1} />
           </div>
         </Link>
 
         <Link variant="discreet" href="https://www.linkedin.com/in/ezeluduena/">
+          <span className="sr-only">LinkedIn</span>
           <div className={c('px-2')}>
             <FiLinkedin strokeWidth={1} />
           </div>
