@@ -18,24 +18,29 @@ type ProjectsPageProps = {
   projects: Project[];
 };
 
-const categoryOrder: (ProjectCategory | 'all')[] = [
-  'all',
-  'odoo',
-  'data-science',
-  'backend',
-  'web'
-];
+type ProjectTranslation = {
+  name: string;
+  description: string;
+  url: string;
+};
 
 const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
   const locale = useLocale().locale;
   const t = projectsTranslations[locale];
-  const tr = (key: string): string => (t as Record<string, unknown>)[key] as string;
+  const categories = Object.keys(t.categories).filter((c) => c !== 'all') as ProjectCategory[];
   const [activeCategory, setActiveCategory] = useState<ProjectCategory | 'all'>('all');
 
   const filteredProjects =
     activeCategory === 'all'
       ? projects
       : projects.filter((p) => p.categories.includes(activeCategory));
+
+  const tr = (id: string): ProjectTranslation =>
+    (t.projects as Record<string, ProjectTranslation>)[id] ?? {
+      name: id,
+      description: '',
+      url: '#'
+    };
 
   return (
     <>
@@ -48,7 +53,7 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
 
       {/* Category filter tabs */}
       <div className={c('flex', 'flex-wrap', 'gap-2', 'mt-6', 'mb-4')}>
-        {categoryOrder.map((cat) => (
+        {(['all', ...categories] as const).map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
@@ -77,92 +82,102 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
           'items-stretch'
         )}
       >
-        {filteredProjects.map((project, i) => (
-          <section
-            key={i}
-            className={c(
-              'group',
-              'relative',
-              'h-full',
-              'p-4',
-              'border',
-              'border-cyan-500',
-              'dark:border-cyan-700',
-              'rounded',
-              'transition-colors',
-              'hover:border-cyan-400',
-              'hover:bg-cyan-50',
-              'dark:hover:bg-cyan-900/20'
-            )}
-          >
-            <Link
-              href={tr(project.url) || '#'}
-              variant="hidden"
-              className={c('absolute', 'inset-0', 'z-10', 'block')}
+        {filteredProjects.map((project) => {
+          const pt = tr(project.id);
+          return (
+            <section
+              key={project.id}
+              className={c(
+                'group',
+                'relative',
+                'h-full',
+                'p-4',
+                'border',
+                'border-cyan-500',
+                'dark:border-cyan-700',
+                'rounded',
+                'transition-colors',
+                'hover:border-cyan-400',
+                'hover:bg-cyan-50',
+                'dark:hover:bg-cyan-900/20'
+              )}
             >
-              <span className={c('sr-only')}>{tr(project.name) || project.name}</span>
-            </Link>
+              <Link
+                href={pt.url}
+                variant="hidden"
+                className={c('absolute', 'inset-0', 'z-10', 'block')}
+              >
+                <span className={c('sr-only')}>{pt.name}</span>
+              </Link>
 
-            <div
-              className={c('relative', 'z-0', 'flex', 'flex-col', 'h-full', 'pointer-events-none')}
-            >
-              {/* Name */}
               <div
                 className={c(
-                  'text-lg',
-                  'text-ellipsis',
-                  'overflow-hidden',
-                  'text-blue-500',
-                  'dark:text-blue-300',
-                  'group-hover:underline'
+                  'relative',
+                  'z-0',
+                  'flex',
+                  'flex-col',
+                  'h-full',
+                  'pointer-events-none'
                 )}
-                title={tr(project.name) || project.name}
               >
-                {tr(project.name) || project.name}
+                {/* Name */}
+                <div
+                  className={c(
+                    'text-lg',
+                    'text-ellipsis',
+                    'overflow-hidden',
+                    'text-blue-500',
+                    'dark:text-blue-300',
+                    'group-hover:underline'
+                  )}
+                  title={pt.name}
+                >
+                  {pt.name}
+                </div>
+
+                <div className={c('grow', 'my-1', 'space-y-1')}>
+                  {/* Description */}
+                  <div>{pt.description}</div>
+                </div>
+
+                {/* Tech chips */}
+                {project.technologies.length > 0 && (
+                  <div className={c('flex', 'flex-wrap', 'gap-1', 'mt-2')}>
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className={c(
+                          'px-2',
+                          'py-0.5',
+                          'rounded',
+                          'text-xs',
+                          'bg-cyan-100',
+                          'dark:bg-cyan-900',
+                          'text-neutral-700',
+                          'dark:text-neutral-300'
+                        )}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
 
-              <div className={c('grow', 'my-1', 'space-y-1')}>
-                {/* Description */}
-                <div>{project.description && tr(project.description)}</div>
-              </div>
-
-              {/* Tech chips */}
-              {project.technologies && project.technologies.length > 0 && (
-                <div className={c('flex', 'flex-wrap', 'gap-1', 'mt-2')}>
-                  {project.technologies.map((tech, j) => (
-                    <span
-                      key={j}
-                      className={c(
-                        'px-2',
-                        'py-0.5',
-                        'rounded',
-                        'text-xs',
-                        'bg-cyan-100',
-                        'dark:bg-cyan-900',
-                        'text-neutral-700',
-                        'dark:text-neutral-300'
-                      )}
-                    >
-                      {tech}
-                    </span>
-                  ))}
+              {/* Homepage */}
+              {project.homepageUrl && (
+                <div className={c('overflow-hidden', 'pointer-events-auto', 'relative', 'z-20')}>
+                  <Inline>
+                    <FiExternalLink strokeWidth={1} />
+                    <div>
+                      <Link href={project.homepageUrl}>{project.homepageUrl}</Link>
+                    </div>
+                  </Inline>
                 </div>
               )}
-            </div>
-
-            {/* Homepage */}
-            {project.homepageUrl && (
-              <div className={c('overflow-hidden', 'pointer-events-auto', 'relative', 'z-20')}>
-                <Inline>
-                  <FiExternalLink strokeWidth={1} />
-                  <div>
-                    <Link href={project.homepageUrl}>{project.homepageUrl}</Link>
-                  </div>
-                </Inline>
-              </div>
-            )}
-          </section>
-        ))}
+            </section>
+          );
+        })}
       </section>
 
       <SocialLinks />
