@@ -20,3 +20,10 @@ updates:
       npm:
         patterns:
           - '*'
+    ignore:
+      - dependency-name: 'eslint'
+        versions: ['>=10']
+      - dependency-name: 'lint-staged'
+        versions: ['>=17']
+      - dependency-name: 'typescript'
+        versions: ['>=7']
