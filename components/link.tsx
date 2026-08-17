@@ -44,8 +44,8 @@ const Link: FC<LinkProps> = ({
   }
 
   return (
-    <NextLink href={href} legacyBehavior>
-      <a className={linkClassName}>{children}</a>
+    <NextLink href={href} className={linkClassName}>
+      {children}
     </NextLink>
   );
 };
