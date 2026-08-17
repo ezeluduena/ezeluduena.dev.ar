@@ -14,7 +14,12 @@ type SitemapEntry = {
 };
 
 const escapeXml = (value: string) =>
-  value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
 
 export const publishSitemap = async (entries: SitemapEntry[]) => {
   const filePath = path.resolve(process.cwd(), 'public', 'sitemap.xml');
