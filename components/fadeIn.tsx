@@ -1,4 +1,5 @@
 import { Children, FC, PropsWithChildren, useEffect, useState } from 'react';
+import useMedia from '~/hooks/useMedia';
 
 type FadeInProps = PropsWithChildren<{
   delay?: number;
@@ -8,9 +9,6 @@ type FadeInProps = PropsWithChildren<{
   onComplete?: () => void;
 }>;
 
-const prefersReducedMotion = () =>
-  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
 const FadeIn: FC<FadeInProps> = ({
   children,
   delay = 50,
@@ -19,7 +17,7 @@ const FadeIn: FC<FadeInProps> = ({
   visible = true,
   onComplete
 }) => {
-  const reduced = prefersReducedMotion();
+  const reduced = useMedia('(prefers-reduced-motion: reduce)');
   const childCount = Children.count(children);
   const [maxIsVisible, setMaxIsVisible] = useState(reduced ? childCount : 0);
 
