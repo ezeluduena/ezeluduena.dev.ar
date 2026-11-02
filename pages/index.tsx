@@ -1,5 +1,5 @@
 import c from 'classnames';
-import { GetStaticProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import Heading from '~/components/heading';
 import Image from '~/components/image';
 import Link from '~/components/link';
@@ -8,11 +8,7 @@ import SocialLinks from '~/components/sociallinks';
 import homeTranslations from '~/data/locale/home';
 import useLocale from '~/hooks/useLocale';
 
-type HomePageProps = {
-  age: number;
-};
-
-const HomePage: NextPage<HomePageProps> = ({ age }) => {
+const HomePage: NextPage = () => {
   const { locale } = useLocale();
 
   const famafLccUrl =
@@ -40,7 +36,7 @@ const HomePage: NextPage<HomePageProps> = ({ age }) => {
           <div className={c('text-center', 'md:text-left')}>
             <Heading>{t.greeting}</Heading>
             <Paragraph>
-              {t.introduction.replace('{age}', age.toString())}
+              {t.introduction}
               <br />
               {t.study1} <Link href={famafLccUrl}> {t.study2} </Link>
               {t.study3}
@@ -62,17 +58,6 @@ const HomePage: NextPage<HomePageProps> = ({ age }) => {
       <SocialLinks />
     </>
   );
-};
-
-export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
-  // Age is derived at build time so the render stays pure.
-  const age = new Date(Date.now() - Date.parse('2000-12-06')).getUTCFullYear() - 1970;
-
-  return {
-    props: {
-      age
-    }
-  };
 };
 
 export default HomePage;

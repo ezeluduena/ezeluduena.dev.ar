@@ -1,14 +1,16 @@
 const homeTranslations = {
   en: {
     greeting: 'Hello! 👋',
-    introduction: 'My name is Ezequiel, I am {age} years old and I am from Córdoba, Argentina.',
+    introduction:
+      'My name is Ezequiel, I am from Córdoba, Argentina and I work as a software developer.',
     study1: 'I am an advanced student of ',
     study2: 'Computer Science ',
-    study3: 'at the National University of Córdoba. I like football and cycling.',
+    study3:
+      'at the National University of Córdoba. I am developing my final project on automating supplier invoice loading in Odoo using small language models, classification and OCR. I am also taking the Diploma in Data Science, Machine Learning and their Applications.',
     interest1:
-      'When I was a kid, I was interested in how cell phones and computers work. Since then, I have spent a lot of time researching technology in general.',
+      'For the past two years I have been mainly working on full stack development of modules for Odoo, a free software ERP, adapting features to the needs of different projects and organizations.',
     interest2:
-      'My main interests are programming, free software, and self-hosting. Currently, I am working on developing Odoo modules for social organizations, unions, and worker cooperatives.',
+      'I am especially interested in the intersection of software development, artificial intelligence and data science. As part of the diploma, I am developing a mentoring project on football data: I build supervised and unsupervised models from match events to generate performance metrics and use clustering to support scouting.',
     projects1: 'On this page, you will find the different ',
     projects2: 'projects',
     projects3: 'I have been working on. You can also read my ',
@@ -17,14 +19,16 @@ const homeTranslations = {
   },
   es: {
     greeting: 'Buenas! 👋',
-    introduction: 'Me llamo Ezequiel, tengo {age} años y soy de Córdoba, Argentina.',
-    study1: 'Soy un estudiante avanzado de ',
+    introduction:
+      'Me llamo Ezequiel, soy de Córdoba, Argentina y trabajo como desarrollador de software.',
+    study1: 'Soy estudiante avanzado de ',
     study2: 'Ciencias de la Computación ',
-    study3: 'en la Universidad Nacional de Córdoba. Me gusta el fútbol y andar en bicicleta.',
+    study3:
+      'en la Universidad Nacional de Córdoba. Estoy desarrollando mi trabajo final sobre la automatización de la carga de facturas de proveedores en Odoo mediante modelos de lenguaje pequeños, clasificación y OCR. Además, curso la Diplomatura en Ciencia de Datos, Aprendizaje Automático y sus Aplicaciones.',
     interest1:
-      'Cuando era chico me interesé en cómo funcionan los celulares y las computadoras. Desde entonces que paso bastante tiempo investigando sobre tecnología en general.',
+      'Hace dos años que me dedico principalmente al desarrollo full stack de módulos para Odoo, un ERP de software libre, adaptando funcionalidades a las necesidades de distintos proyectos y organizaciones.',
     interest2:
-      'Entre mis principales intereses se encuentran la programación, el software libre y el self-hosting. Actualmente me dedico a desarrollar modulos de Odoo para organizaciones sociales, sindicatos y cooperativas de trabajo.',
+      'Me interesa especialmente la intersección entre el desarrollo de software, la inteligencia artificial y la ciencia de datos. En la diplomatura desarrollo un proyecto de mentoría sobre datos de fútbol: construyo modelos supervisados y no supervisados a partir de eventos de partidos para generar métricas de rendimiento y usar clustering como apoyo al scouting.',
     projects1: 'En esta página vas a encontrar los distintos ',
     projects2: 'proyectos',
     projects3: 'en los que estuve trabajando. También podés leer mi ',
