@@ -95,6 +95,8 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
         description={post.excerpt}
         imageUrl={post.coverUrl}
         imageAlt={post.title}
+        imageWidth={post.coverUrl ? 800 : undefined}
+        imageHeight={post.coverUrl ? 450 : undefined}
         rssUrl="/blog/en/rss.xml"
         publishedTime={post.date}
         hreflang={[

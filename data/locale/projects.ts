@@ -3,6 +3,8 @@ const projectsTranslations = {
     title: 'Projects',
     description:
       'These are some projects I have been working on. The link in the name of each one takes you to its repo or a post on my blog with more information.',
+    resultsLabel: 'results',
+    empty: 'There are no projects in this category yet.',
     categories: {
       'all': 'All',
       'odoo': 'Odoo',
@@ -61,6 +63,8 @@ const projectsTranslations = {
     title: 'Proyectos',
     description:
       'Estos son algunos proyectos en los que estuve trabajando. El enlace en el nombre de cada uno te lleva a su repositorio o a un post en mi blog con más información.',
+    resultsLabel: 'resultados',
+    empty: 'Todavía no hay proyectos en esta categoría.',
     categories: {
       'all': 'Todos',
       'odoo': 'Odoo',

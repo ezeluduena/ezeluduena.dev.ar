@@ -43,7 +43,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ enPosts, esPosts }) => {
 
   return (
     <>
-      <Meta title="Blog" rssUrl={rssUrl} />
+      <Meta title="Blog" description={t.description0} rssUrl={rssUrl} />
 
       <section>
         <Heading>Blog</Heading>

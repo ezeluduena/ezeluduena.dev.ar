@@ -21,7 +21,7 @@ type ProjectsPageProps = {
 type ProjectTranslation = {
   name: string;
   description: string;
-  url: string;
+  url?: string;
 };
 
 const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
@@ -38,13 +38,12 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
   const tr = (id: string): ProjectTranslation =>
     (t.projects as Record<string, ProjectTranslation>)[id] ?? {
       name: id,
-      description: '',
-      url: '#'
+      description: ''
     };
 
   return (
     <>
-      <Meta title={t.title} />
+      <Meta title={t.title} description={t.description} />
 
       <section>
         <Heading>{t.title}</Heading>
@@ -52,10 +51,13 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
       </section>
 
       {/* Category filter tabs */}
-      <div className={c('flex', 'flex-wrap', 'gap-2', 'mt-6', 'mb-4')}>
+      <div className={c('flex', 'flex-wrap', 'gap-2', 'mt-6', 'mb-2')}>
         {(['all', ...categories] as const).map((cat) => (
           <button
             key={cat}
+            type="button"
+            aria-pressed={activeCategory === cat}
+            aria-controls="projects-list"
             onClick={() => setActiveCategory(cat)}
             className={c(
               'px-3',
@@ -83,7 +85,15 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
         ))}
       </div>
 
+      <p
+        aria-live="polite"
+        className={c('mb-4', 'text-sm', 'text-neutral-600', 'dark:text-neutral-400')}
+      >
+        {filteredProjects.length} {t.resultsLabel}
+      </p>
+
       <section
+        id="projects-list"
         className={c(
           'grid',
           'sm:grid-cols-1',
@@ -94,6 +104,12 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
           'items-stretch'
         )}
       >
+        {filteredProjects.length === 0 && (
+          <p className={c('col-span-full', 'text-neutral-600', 'dark:text-neutral-400')}>
+            {t.empty}
+          </p>
+        )}
+
         {filteredProjects.map((project) => {
           const pt = tr(project.id);
           return (
@@ -114,13 +130,15 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
                 'dark:hover:bg-cyan-900/20'
               )}
             >
-              <Link
-                href={pt.url}
-                variant="hidden"
-                className={c('absolute', 'inset-0', 'z-10', 'block')}
-              >
-                <span className={c('sr-only')}>{pt.name}</span>
-              </Link>
+              {pt.url && (
+                <Link
+                  href={pt.url}
+                  variant="hidden"
+                  className={c('absolute', 'inset-0', 'z-10', 'block')}
+                >
+                  <span className={c('sr-only')}>{pt.name}</span>
+                </Link>
+              )}
 
               <div
                 className={c(

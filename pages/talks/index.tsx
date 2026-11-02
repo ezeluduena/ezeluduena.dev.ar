@@ -37,7 +37,7 @@ const TalksPage: NextPage<TalksPageProps> = ({ talks }) => {
 
   return (
     <>
-      <Meta title={t.title} />
+      <Meta title={t.title} description={t.description} />
 
       <section>
         <Heading>{t.title}</Heading>

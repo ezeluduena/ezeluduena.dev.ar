@@ -1,7 +1,7 @@
 import c from 'classnames';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { FC, PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react';
+import { FC, PropsWithChildren, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FiMenu, FiMoon, FiSun } from 'react-icons/fi';
 import FadeIn from '~/components/fadeIn';
 import Link from '~/components/link';
@@ -200,6 +200,7 @@ const Header: FC = () => {
   );
 
   const router = useRouter();
+  const headerRef = useRef<HTMLElement>(null);
   const [isMobileNavVisible, setIsMobileNavVisible] = useState(false);
 
   // Hide the mobile nav when the page changes
@@ -209,8 +210,35 @@ const Header: FC = () => {
     setIsMobileNavVisible(false);
   }, [router.pathname]);
 
+  // Close the mobile nav on Escape or when clicking outside the header
+  useEffect(() => {
+    if (!isMobileNavVisible) {
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsMobileNavVisible(false);
+      }
+    };
+
+    const onPointerDown = (event: PointerEvent) => {
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+        setIsMobileNavVisible(false);
+      }
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+    document.addEventListener('pointerdown', onPointerDown);
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.removeEventListener('pointerdown', onPointerDown);
+    };
+  }, [isMobileNavVisible]);
+
   return (
-    <header>
+    <header ref={headerRef}>
       <a
         href="#main"
         className={c(
@@ -278,7 +306,16 @@ const Header: FC = () => {
 
           {/* Nav button */}
           <button
-            aria-label={locale === 'es' ? 'Abrir menú' : 'Open menu'}
+            type="button"
+            aria-label={
+              isMobileNavVisible
+                ? locale === 'es'
+                  ? 'Cerrar menú'
+                  : 'Close menu'
+                : locale === 'es'
+                  ? 'Abrir menú'
+                  : 'Open menu'
+            }
             aria-expanded={isMobileNavVisible}
             aria-controls="mobile-nav"
             className={c(
@@ -301,6 +338,8 @@ const Header: FC = () => {
       <div className={c('sm:hidden', 'overflow-hidden')}>
         <nav
           id="mobile-nav"
+          aria-hidden={!isMobileNavVisible}
+          inert={!isMobileNavVisible}
           className={c(
             { '-mt-[100%]': !isMobileNavVisible },
             'p-2',

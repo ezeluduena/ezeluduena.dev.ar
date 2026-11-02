@@ -15,6 +15,8 @@ type MetaProps = {
   keywords?: string[];
   imageUrl?: string;
   imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   rssUrl?: string;
   publishedTime?: string;
   author?: string;
@@ -25,8 +27,8 @@ const siteName = 'Ezequiel Ludueña';
 const defaultAuthor = 'Ezequiel Ludueña';
 
 const defaultDescriptions = {
-  es: 'Ezequiel Ludueña - Estudiante de Licenciatura en Ciencias de la Computación en la FAMAF de la UNC.',
-  en: 'Ezequiel Ludueña - Computer Science student at the National University of Córdoba.'
+  es: 'Ezequiel Ludueña - Desarrollador de software especializado en Odoo, estudiante avanzado de Ciencias de la Computación e interesado en IA y ciencia de datos.',
+  en: 'Ezequiel Ludueña - Software developer specialized in Odoo, advanced Computer Science student interested in AI and data science.'
 };
 
 const Meta: FC<MetaProps> = ({
@@ -35,6 +37,8 @@ const Meta: FC<MetaProps> = ({
   keywords,
   imageUrl,
   imageAlt,
+  imageWidth,
+  imageHeight,
   rssUrl,
   publishedTime,
   author,
@@ -46,11 +50,13 @@ const Meta: FC<MetaProps> = ({
 
   const actualTitle = title ? title + ' • ' + siteName : siteName;
   const actualDescription = description || defaultDescriptions[locale];
-  const actualKeywords = keywords?.join(',') || '';
-  const actualImageUrl = getSiteUrl(imageUrl || '/logo.png');
+  const actualKeywords = keywords?.join(', ') || '';
+  const actualImageUrl = getSiteUrl(imageUrl || '/og.png');
+  const actualImageAlt = imageAlt || actualTitle;
+  const actualImageWidth = imageWidth ?? (imageUrl ? undefined : 1200);
+  const actualImageHeight = imageHeight ?? (imageUrl ? undefined : 630);
   const actualRssUrl = rssUrl && getSiteUrl(rssUrl);
   const canonicalUrl = getSiteUrl((router.asPath || '/').split(/[?#]/)[0]);
-  const twitterCard = imageUrl ? 'summary_large_image' : 'summary';
   const ogLocale = locale === 'es' ? 'es_AR' : 'en_US';
 
   const personLd = {
@@ -120,7 +126,17 @@ const Meta: FC<MetaProps> = ({
       <meta key="og:title" property="og:title" content={actualTitle} />
       <meta key="og:description" property="og:description" content={actualDescription} />
       <meta key="og:image" property="og:image" content={actualImageUrl} />
-      {imageAlt && <meta key="og:image:alt" property="og:image:alt" content={imageAlt} />}
+      <meta key="og:image:alt" property="og:image:alt" content={actualImageAlt} />
+      {actualImageWidth && (
+        <meta key="og:image:width" property="og:image:width" content={String(actualImageWidth)} />
+      )}
+      {actualImageHeight && (
+        <meta
+          key="og:image:height"
+          property="og:image:height"
+          content={String(actualImageHeight)}
+        />
+      )}
       <meta key="og:url" property="og:url" content={canonicalUrl} />
       <meta key="og:locale" property="og:locale" content={ogLocale} />
       {hreflang
@@ -143,10 +159,11 @@ const Meta: FC<MetaProps> = ({
         <meta key="article:author" property="article:author" content={author || defaultAuthor} />
       )}
 
-      <meta key="twitter:card" name="twitter:card" content={twitterCard} />
+      <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
       <meta key="twitter:title" name="twitter:title" content={actualTitle} />
       <meta key="twitter:description" name="twitter:description" content={actualDescription} />
       <meta key="twitter:image" name="twitter:image" content={actualImageUrl} />
+      <meta key="twitter:image:alt" name="twitter:image:alt" content={actualImageAlt} />
 
       {hreflang?.map((h) => (
         <link
