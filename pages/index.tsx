@@ -13,6 +13,7 @@ const HomePage: NextPage = () => {
 
   const famafLccUrl =
     'https://www.famaf.unc.edu.ar/academica/grado/licenciatura-en-ciencias-de-la-computaci%C3%B3n/';
+  const diplomaUrl = 'https://diplodatos.famaf.unc.edu.ar/';
 
   const t = homeTranslations[locale];
 
@@ -35,19 +36,20 @@ const HomePage: NextPage = () => {
         <div>
           <div className={c('text-center', 'md:text-left')}>
             <Heading>{t.greeting}</Heading>
+            <Paragraph>{t.introduction}</Paragraph>
             <Paragraph>
-              {t.introduction}
-              <br />
-              {t.study1} <Link href={famafLccUrl}> {t.study2} </Link>
+              {t.study1}
+              <Link href={famafLccUrl}>{t.study2}</Link>
               {t.study3}
+              <Link href={diplomaUrl}>{t.study4}</Link>
+              {t.study5}
             </Paragraph>
             <Paragraph>
-              {t.interest1}
-              <br />
-              {t.interest2}
+              {t.interest1} {t.interest2}
             </Paragraph>
             <Paragraph>
-              {t.projects1} <Link href={'/projects'}> {t.projects2}</Link> {t.projects3}
+              {t.projects1}
+              <Link href={'/projects'}>{t.projects2}</Link> {t.projects3}
               <Link href={'/blog'}>{t.blog}</Link>
               {t.projects4}
             </Paragraph>
